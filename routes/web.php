@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/article/list', function () {
     return view('admin.article.list');
 });
+
+// Route::group([])
+Route::resource('/admin/user','Admin\UserController');
