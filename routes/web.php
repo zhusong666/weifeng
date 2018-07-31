@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.layouts.default');
+});
+
+Route::get('/article/list', function () {
+    return view('admin.article.list');
 });
