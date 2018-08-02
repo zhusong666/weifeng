@@ -26,6 +26,15 @@
 				</ul>
 			</dd>
 		</dl>
+		<dl id="menu-product">
+			<dt><i class="Hui-iconfont">&#xe620;</i> 商品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a href="/admins/goods" title="查看商品">查看商品</a></li>
+					<li><a href="/admins/goods/create" title="添加商品">添加商品</a></li>
+				</ul>
+			</dd>
+		</dl>
 		<dl id="menu-comments">
 			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
