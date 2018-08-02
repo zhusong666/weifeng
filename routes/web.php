@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('/article/list', function () {
     return view('admin.article.list');
 });
+
+Route::resource('/admins/goods','Admin\GoodsController');
