@@ -39,7 +39,8 @@
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="member-list.html" title="会员列表">会员列表</a></li>
+					<li><a href="/admin/user" title="会员列表">会员列表</a></li>
+					<li><a href="/admin/user/create" title="添加会员">添加会员</a></li>
 					<li><a href="member-del.html" title="删除的会员">删除的会员</a></li>
 					<li><a href="member-level.html" title="等级管理">等级管理</a></li>
 					<li><a href="member-scoreoperation.html" title="积分管理">积分管理</a></li>

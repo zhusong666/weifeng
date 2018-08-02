@@ -17,13 +17,17 @@ Route::get('/', function () {
 
 Route::get('/article/list', function () {
     return view('admin.article.list');
-    // echo '111';
 });
+
 
 //威锋网后台
 Route::group([],function(){
 //分类管理
-	Route::resource('/admin/category','Admin\CategoryController');
- 
+Route::resource('/admin/category','Admin\CategoryController');
+// 用户后台路由
+Route::resource('/admin/user','Admin\UserController');
 
 });
+
+
+
