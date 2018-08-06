@@ -25,9 +25,9 @@ Route::get('/article/list', function () {
 Route::group([],function(){
 //分类管理
 Route::resource('/admin/category','Admin\CategoryController');
-// 用户后台路由
+//用户管理
 Route::resource('/admin/user','Admin\UserController');
-//商品路由
+//商品管理
 Route::resource('/admins/goods','Admin\GoodsController');
 });
 

@@ -23,8 +23,11 @@
             <span class="select-box" style="width:300px;">
                 <select class="select" name="cate_pid" size="1">
                     <option value='0'>请选择</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
+
+                    @foreach($res as $k=>$v)
+                    <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
+                    @endforeach
+                    
                 </select>
             </span> 
         </div>

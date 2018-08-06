@@ -4,7 +4,7 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CateGory extends Model
+class Category extends Model
 {
     /**
      * 与模型关联的数据表
@@ -13,7 +13,7 @@ class CateGory extends Model
      */
     protected $table = 'wf_category';//表名称
 
-    protected $primarykey = 'id';//主键ID
+    protected $primaryKey = 'cate_id';//主键ID
 
     public $timestamps = false;//时间戳(不要)
 
@@ -22,5 +22,5 @@ class CateGory extends Model
      *
      * @var array
      */
-    protected $fillable = ['cate_name','cate_pid','cate_path','cate_status'];
+    protected $fillable = ['cate_name','cate_pid','cate_path','cate_status','cate_id'];
 }
