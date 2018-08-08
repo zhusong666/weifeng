@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use App\app\Model\Admin\Goods;
-use App\app\Model\Admin\Goods_img;
+use App\Model\Admin\CateGory;
+use App\Model\Admin\Goods;
+use App\Model\Admin\Goods_img;
+use Config;
 class GoodsController extends Controller
 {
     /**
@@ -15,10 +17,33 @@ class GoodsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
-        $goods = DB::table('wf_goods')->get();
-        return view('admin.goods.index',['goods'=>$goods]);
+
+        // $goods = DB::table('wf_goods')->get();
+        $goods = DB::table('wf_goods')->orderBy('goods_id','asc')
+            ->where(function($query) use($request){
+                //商品名字查询
+                $goods_name = $request->input('goods_name');
+
+                //分类名查询
+                $cate_name = $request->input('cate_name');
+                //商品名不能为空
+                if(!empty($goods_name)) {
+                    $query->where('goods_name','like','%'.$goods_name.'%');
+                }
+                //商品分类名称
+                if(!empty($cate_id)) {
+                    $query->where('cate_name','like','%'.$cate_name.'%');
+                }
+                
+
+            })
+        ->paginate($request->input('num', 2));
+        $res = Category::select(DB::raw('*,concat(cate_path,cate_id) as paths'))->orderBy('paths')->get();
+        // $res = Goods::with('CateGory')->where('cate_id',)
+
+        return view('admin.goods.index',['goods'=>$goods,'request'=>$request,'res'=>$res,'title'=>'商品显示页面']);
     }
 
     /**
@@ -29,8 +54,15 @@ class GoodsController extends Controller
      */
     public function create()
     {   
-        $res = DB::table('wf_category')->orderBy('cate_path','asc')->get();
-        return view('admin.goods.add',['res'=>$res]);
+        $res = Category::select(DB::raw('*,concat(cate_path,cate_id) as paths'))->orderBy('paths')->get();
+
+        foreach ($res as $key => $value) {
+            // dump($value->catename);
+            $len = substr_count($value->cate_path,',')-1;
+            //根据path
+            $value->cate_name=str_repeat('|--',$len).$value->cate_name;
+        }
+        return view('admin.goods.add',['res'=>$res,'title'=>'商品添加页面']);
     }
 
     /**
@@ -41,13 +73,75 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-        //接收表单传过来的数据
-         $goods = $request->except('_token');
-         // $goods['goods_time'] = time();
-         // $data = Goods::create($goods);
+       
 
-         // $id = $data->goods_id;
-         // var_dump($goods);
+       
+       // $this->validate($request, [
+       //      'goods_price' => 'required|max:1|regex:/^\w{1,11}$/',
+       //  ],[
+       //      'goods_price.required' => '用户名不能为空',
+       //      'goods_price.regex'=>'用户名格式不正确',
+       //  ]);
+
+
+
+        $res = $request->except('_token','goods_img');
+
+        // //插入时间
+        $res['goods_time'] = time();
+        // //添加数据
+        $res = Goods::create($res);
+
+        $gid = $res->goods_id;
+
+        if(!$gid){
+            return back('/admins/goods/create')->with('error','获取id失败');
+        }
+
+        // // dump($gid);
+        //图片上传
+        if($request->hasFile('goods_img')){
+
+            //获取上传图片的数据
+           $gs = $request->file('goods_img');
+           $gr = [];
+           foreach($gs as $k => $v){
+
+                 $gd = [];
+
+                  //gid
+                 $gd['good_id'] = $gid;
+                 
+                 //设置名字
+                 $name = str_random(10).time();
+
+                 //获取后缀
+                 $suffix = $v->getClientOriginalExtension();
+
+                //移动
+                 $v->move(Config::get('webconfig.goodsimg'),$name.'.'.$suffix);
+
+                 //gimg
+                 $gd['goods_img'] = '/uploads/goodsimg/'.$name.'.'.$suffix;
+
+                 $gr[] = $gd;
+             }         
+            
+         }
+
+         try{
+           
+             //添加数据的时候   //模型关系 1对多
+             $data = $res->goodsmany()->createMany($gr);
+             if($data){
+
+                 return redirect('/admins/goods')->with('success','添加成功');
+             }
+         }catch(\Exception $e){
+
+             return back()->with('error','添加失败');
+
+         }
 
 
          
@@ -72,7 +166,8 @@ class GoodsController extends Controller
      */
     public function edit($id)
     {
-        //
+         $res = DB::table('wf_goods')->where('goods_id',$id)->first();
+        return view('admin.goods.edit',['title'=>'商品修改页面','res'=>$res]);
     }
 
     /**
@@ -84,7 +179,60 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       //将修改的数据发送到该方法中，去除csrf的验证字段，为了将信息分开发送，先把图片分离出来
+        $res = $request->except('_token','goods_img','_method');
+        //添加单纯的商品数据到goods商品表
+        Goods::where('goods_id',$id)->update($res);
+
+        Goods_img::where('good_id',$id)->delete();
+
+        // // dump($img);
+        
+        //查询修改后新增的商品数据，根据该商品的gid匹配关联图片的关联字段，使两者相等
+        $result = Goods::where('goods_id',$id)->first();
+        $gid = $result->goods_id;
+        //图片上传
+        if($request->hasFile('goods_img')){
+
+            //获取上传图片的数据
+           $gs = $request->file('goods_img');
+           $gr = [];
+           foreach($gs as $k => $v){
+
+                 $gd = [];
+
+                  //gid
+                 $gd['good_id'] = $gid;
+                 
+                 //设置名字
+                 $name = str_random(10).time();
+
+                 //获取后缀
+                 $suffix = $v->getClientOriginalExtension();
+
+                //移动
+                 $v->move(Config::get('webconfig.goodsimg'),$name.'.'.$suffix);
+
+                 //gimg
+                 $gd['goods_img'] = '/uploads/goodsimg/'.$name.'.'.$suffix;
+
+                 $gr[] = $gd;
+             }         
+            
+         }
+
+        try{
+            //将图片的数组数据写入数据库，因为在前台js删除原有的数据，这里等于重新写入
+             // $data = DB::table('wf_goods_img')->where('good_id',$id)->update($arr);
+            // $data = Goods_img::where('good_id',$id)->update($arr);
+            // $data = $res->goodsmany()->createMany($arr);
+            $data = DB::table('wf_goods_img')->insert($gr);
+            if($data){
+                return redirect('/admins/goods')->with('success','修改成功');
+            }
+        }catch(\Exception $e){
+            return back();
+        }
     }
 
     /**
@@ -94,7 +242,42 @@ class GoodsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        // // 商品详情图片删除
+        // $img = DB::table('wf_goods')->where('gooods_id',$id)->first();
+        // // dump($img);
+        // $name = $img[0]->goods_content;
+        // if(!empty($name)){
+        //     $name = '.'.$name;
+        //     unlink($name);
+        // }
+        // //商品图片删除
+        // $imgs = DB::table('wf_goods_img')->where('gooodsimg_id',$id)->first();
+        // // dump($img);
+        // $nam = $imgs[0]->goods_img;
+        // if(!empty($name1)){
+        //     $nam = '.'.$nam;
+        //     unlink($nam);
+        // }
+
+        //删除对应id的商品
+        $re =  Goods::where('goods_id',$id)->delete();
+        $res = Goods_img::where('good_id',$id)->delete();
+        //   return($re);
+       //    0表示成功 其他表示失败
+        if($re){
+            $data = [
+                'status'=>0,
+                'msg'=>'删除成功！'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'msg'=>'删除失败！'
+            ];
+        }
+        return $data;    
     }
+
+   
 }

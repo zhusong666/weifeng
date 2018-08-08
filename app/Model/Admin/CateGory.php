@@ -13,7 +13,7 @@ class CateGory extends Model
      */
     protected $table = 'wf_category';//表名称
 
-    protected $primarykey = 'id';//主键ID
+    protected $primarykey = 'cate_id';//主键ID
 
     public $timestamps = false;//时间戳(不要)
 

@@ -29,6 +29,10 @@ Route::resource('/admin/category','Admin\CategoryController');
 Route::resource('/admin/user','Admin\UserController');
 //商品路由
 Route::resource('/admins/goods','Admin\GoodsController');
+//后台路由
+// Route::get('admin//status/{id}','Admin\AdminsController@status');
+Route::any('/admin/status/{id}','Admin\AdminController@status');
+Route::any('/home/index','Admin\AdminController@index');
 });
 
 
