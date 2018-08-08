@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Config;
+use App\Http\Requests\FormRequest;
 
 class UserController extends Controller
 {
@@ -15,7 +17,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        //获取总条数
+        // $da = DB::table('wf_users')->get();
+        //pageinate分页,统计的是当前页显示的条数
         $res = DB::table('wf_users')
             ->where(function($query) use($request){
                 //关键字
@@ -27,14 +31,18 @@ class UserController extends Controller
                 }
                 //权限不为空
                 if(!empty($admin_auth)){
-                    $query->where('admin_auth','=',$admin_auth);
+                    $query->where('admin_auth',$admin_auth);
                 }
             })
             ->paginate(5);
 
-        $count = count($res);
+        //count统计条数,发送到页面
+        // $count = count($da);
+        $cou = count($res);
+
         // dd($res);
-        return view('admin/user/index',['title'=>'后台用户展示页面','res'=>$res,'request'=>$request,'count'=>$count]);
+
+        return view('admin/user/index',['title'=>'后台用户展示页面','res'=>$res,'request'=>$request,'cou'=>$cou]);
     }
 
     /**
@@ -53,25 +61,41 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormRequest $request)
     {
         //获取数据        
-        $res = $request->except('_token','repass');
+        $res = $request->except('_token','admin_repass','image');
          // dd($res);
+        //密码加密
         $res['admin_password'] = encrypt($request->input('admin_password'));
 
-        $res['admin_addtime'] = time();
+        //上传图片
+        if($request->hasFile('image')){
+
+            // dd(webconfig.upload);
+            //名字
+            $name = date('Ymd',time()).rand(1111,9999);
+            //后缀
+            $suffix = $request->file('image')->getClientOriginalExtension();
+
+            //移动
+            $request->file('image')->move(Config::get('webconfig.upload'),$name.'.'.$suffix);
+
+            $res['admin_pic'] = '/uploads/'.$name.'.'.$suffix;
+        }
+
+        $res['admin_addtime'] = time(); 
 
         $data = DB::table('wf_users')->insert($res);
 
         if($data){
 
-            return redirect('/admin/user');
+            return redirect('/admin/user')->with('success','添加成功');;
         } else {
 
-            return redirect('/admin/user/create');
-        }
+         return redirect('/admin/user/create')->with('error','添加失败');
 
+        }
 
     }
 
@@ -83,7 +107,26 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $result = DB::table('wf_users')->where('admin_id',$id)->first();
+        dd($result);die;
+        /*$status = $result->admin_status;
+
+
+        if($status=='0'){
+            $result = DB::table('wf_users')->where('admin_id',$id)->update(['admin_status'=>1]);
+        } else if($status=='1'){
+            $result = DB::table('wf_users')->where('admin_id',$id)->update(['admin_status'=>0]);
+        } 
+      
+        if($result){
+            $data = [
+                'status'=>0,
+                'msg'=>'操作成功！'
+            ];
+           return $data;   
+        }*/
+       
     }
 
     /**
@@ -97,9 +140,9 @@ class UserController extends Controller
         // 获取数据
         $res = DB::table('wf_users')->where('admin_id',$id)->first();
 
-        $pass = decrypt($res->admin_password);
+        // $pass = decrypt($res->admin_password);
 
-        return view('admin/user/edit',['title'=>'用户的修改页面','res'=>$res,'pass'=>$pass]);
+        return view('admin/user/edit',['title'=>'用户的修改页面','res'=>$res]);
     }
 
     /**
@@ -112,20 +155,41 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //获取数据
-        $res = $request->except('_token','_method');
-        $res['admin_password'] = encrypt($request->input('admin_password'));
-        // dd($res);
+        $res = $request->except('_token','_method','image');
+        //上传图片
+        if($request->hasFile('image')){
 
-       $data = DB::table('wf_users')->where('admin_id',$id)->update($res);
+            $img = DB::table('wf_users')->where('admin_id',$id)->get();
+            $sname = $img[0]->admin_pic;
+            if($sname){
+                $sname = '.'.$sname;
+                unlink($sname);
+            }
 
-       if($data){
+            //名字
+            $name = date('Ymd',time()).rand(1111,9999);
+            //后缀
+            $suffix = $request->file('image')->getClientOriginalExtension();
+            //移动
+            $request->file('image')->move(Config::get('webconfig.upload'),$name.'.'.$suffix);
 
-            return redirect('/admin/user')->with('success','session');
+            //保存到数据表中
+            $res['admin_pic']='/uploads/'.$name.'.'.$suffix;
+        }
 
-       } else {
-            //待判断
-            return redirect('/admin/user/{{$data->admin_id}}/edit')->with('error','session');
-       }
+        
+        try{
+
+            $data = DB::table('wf_users')->where('admin_id',$id)->update($res);
+
+            if($data){
+
+                return redirect('/admin/user')->with('success','修改成功');
+            }
+        }catch(\Exception $e){
+
+           return redirect('/admin/user')->with('error','修改失败');
+        }
     }
 
     /**
@@ -136,8 +200,32 @@ class UserController extends Controller
      */
     public function destroy($id)
     { 
-        //
 
-        echo 23;
+        $img = DB::table('wf_users')->where('admin_id',$id)->get();
+        // dump($img);
+        $name = $img[0]->admin_pic;
+        if(!empty($name)){
+            $name = '.'.$name;
+            unlink($name);
+        }
+        
+        $res = DB::table('wf_users')->where('admin_id',$id)->delete();
+        // dd($res);
+
+        if($res){
+
+           $data = [
+                'status'=>1,
+                'msg'=>'删除成功!'
+           ];
+        } else {
+
+            $data = [
+                'status'=>0,
+                'msg'=>'删除失败!'
+           ];    
+        }
+
+        return $data;
     }
 }

@@ -8,14 +8,6 @@
 
     <section class="Hui-article-box">
         <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">分类管理</span></nav>
-        <article class="page-container">
-    <form class="form form-horizontal" id="form-admin-add" action="/admin/category" method='post'>
-    <div class="row cl">
-        <label class="form-label col-xs-4 col-sm-3" ><span class="c-red"></span >分类名：</label>
-        <div class="formControls col-xs-8 col-sm-9">
-            <input type="text" class="input-text" value="" id="adminName" name="cate_name"style="width:300px;">
-        </div>
-    </div>
 
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3">顶级分类：</label>
@@ -53,5 +45,6 @@
     </div>
     </form>
 </article>
+
     </section>
 @stop
