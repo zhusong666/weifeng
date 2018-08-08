@@ -12,9 +12,7 @@ class Category extends Model
      * @var string
      */
     protected $table = 'wf_category';//表名称
-
-    protected $primaryKey = 'cate_id';//主键ID
-
+    protected $primaryKey = 'cate_id';
     public $timestamps = false;//时间戳(不要)
 
     /**

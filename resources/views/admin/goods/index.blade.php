@@ -1,17 +1,51 @@
 @extends('admin.layouts.default')
 
 @section('content')
-	<section class="Hui-article-box">
+
+
+ <section class="Hui-article-box">
 		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">商品管理</span></nav>
 		<article class="cl pd-20">
-			<div class="text-c"> 日期范围：
-				<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
-				-
-				<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-				<input type="text" class="input-text" style="width:250px" placeholder="" id="" name="">
-				<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont"></i> 搜记录</button>
-			</div>
-			<div class="cl pd-5 bg-1 bk-gray mt-20">  <span class="r">共有数据：<strong>88</strong> 条</span> </div>
+			<div class="row cl">
+		<form action="/admins/goods" method="get">
+			<label>
+                    显示
+                    <select name="num" size="1" aria-controls="DataTables_Table_1">
+                        <option value="5" @if($request->input('num') == '5') selected="selected" @endif >
+                            5
+                        </option>
+                        <option value="10" @if($request->input('num') == '10') selected="selected" @endif>
+                            10
+                        </option>
+                        <option value="15" @if($request->input('num') == '15') selected="selected" @endif>
+                            15
+                        </option>
+                      
+                    </select>
+                    条数据
+                </label>
+			<div class="text-c">
+					
+				<input type="text" class="input-text" style="width:250px" placeholder="输入商品名称" name="goods_name" value='{{$request->input("goods_name")}}'>
+
+
+					价格区间:<input type="text" class="input-text" style="width:100px" placeholder="最低价格" name="goods_price1" value='{{$request->input("goods_price")}}'>-
+					<input type="text" class="input-text" style="width:100px" placeholder="最高价格" name="goods_price2" value='{{$request->input("goods_price")}}'>
+
+						<!-- <span class="select-box" style="width:105px;">
+						<select class="select" name="" size="1">
+							@foreach($res as $k => $v)
+							<option value="{{$request->input("cate_id")}}">{{$v->cate_name}}</option>
+							@endforeach
+							</select>
+						</span> -->
+					<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+				</div>
+			</form>
+		</div>
+
+
+			
 			<div class="mt-20">
 				<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
 					<div class="dataTables_length" id="DataTables_Table_0_length">
@@ -26,34 +60,137 @@
 								<th>库存</th>
 								<th>添加时间</th>
 								<th>描述</th>
-								<th>图片</th>
 								<th>状态</th>
 								<th>操作</th>
 							</tr>
 					</thead>
 					<tbody>
+					
 					@foreach($goods as $k => $v)
+					
 					<tr class="text-c odd" role="row">
 								<th>{{$v->goods_id}}</th>
 								<th>{{$v->goods_name}}</th>
-								<th>{{$v->type_id}}</th>
+								<th>{{$v->cate_id}}</th>
 								<th>{{$v->goods_price}}</th>
 								<th>{{$v->goods_count}}</th>
-								<th>{{$v->goods_time}}</th>
+								<th>{{date('Y-m-d H:i:s',$v->goods_time)}}</th>
 								<th>{{$v->goods_selecnt}}</th>
-								<th>图片</th>
-								<th>{{$v->goods_status}}</th>
-							<td class="f-14"><a title="删除" href="https://www.baidu.com" onclick="user_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a></td>
+								@if($v->goods_status==1)
+                                    <th>新品</th>
+                                @elseif($v->goods_status==2)
+                                    <th>上架</th>
+                                @elseif($v->goods_status==3)
+                                    <th>下架</th>
+                                @endif
+
+							<td class="f-14">
+								 <a href="javascript:;" onclick="DelGood({{$v->goods_id}})" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除</a>
+								 <a href="/admins/goods/{{$v->goods_id}}/edit" onclick="" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 修改</a>
+
+						@if($v->goods_status == 1 || $v->goods_status == 3)
+						<a href="javascript:;" onclick="Status({{$v->goods_id}})"  class="tpl-table-black-operation-del"> 上架</a>
+						@elseif($v->goods_status ==2)
+						<a href="javascript:;"  onclick="Status({{$v->goods_id}})" class="tpl-table-black-operation-del"> 下架</a>
+						@endif
+							</td>
 					</tr>
 					@endforeach
-				</tbody>
-				</table>
-				<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">显示 1 到 1 ，共 1 条</div>
 
+					
+				</tbody>				
+				</table>
+				
 				<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-					<a class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">上一页</a>
-					<span><a class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></span>
-					<a class="paginate_button next disabled" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">下一页</a>
+					<script>
+				        function DelGood(goods_id){
+				            //询问框
+				            layer.confirm('是否确认删除？', {
+				                btn: ['确定','取消'] //按钮
+				            }, function(){
+				                $.post("{{url('/admins/goods/')}}/"+goods_id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+				                    if(data.status == 0){
+				                        location.href = location.href;
+				                        layer.msg(data.msg, {icon: 6});
+				                    }else{
+				                        location.href = location.href;
+				                        layer.msg(data.msg, {icon: 5});
+				                    }
+				                });
+				            }, function(){
+				            });
+				        }
+
+	    			</script>
+	    			<script>
+				        function Status(goods_id){
+				            //询问框
+				            layer.confirm('是否确认执行此操作？', {
+				                btn: ['确定','取消'] //按钮
+				            }, function(){
+				                $.post("{{url('/admin/status/')}}/"+goods_id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+				                    if(data.status == 0){
+				                        location.href = location.href;
+				                        layer.msg(data.msg, {icon: 6});
+				                    }else{
+				                        location.href = location.href;
+				                        layer.msg(data.msg, {icon: 5});
+				                    }
+				                });
+				            }, function(){
+				            });
+				        }
+
+	    			</script>
+	    			
+    			<style>
+                .pagination li{
+
+                    float: left;
+                    height: 20px;
+                    padding: 0 10px;
+                    display: block;
+                    font-size: 12px;
+                    line-height: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                    outline: none;
+                    background-color: #444444;
+                    
+                    text-decoration: none;
+                        border-right: 1px solid rgba(0, 0, 0, 0.5);
+                    border-left: 1px solid rgba(255, 255, 255, 0.15);
+                        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+
+                }
+
+                .pagination li a{
+                    color: #fff;
+                }
+
+
+                .pagination .active{
+
+                    background-color: #88a9eb;
+                    color: #323232;
+                    border: none;
+                    background-image: none;
+                    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+                }
+
+                .pagination{
+                    padding:0px;
+                    margin:0px;
+                }
+
+            </style>
+
+            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
+
+                {{$goods->appends($request->all())->links()}}
+               
+            </div>
+
 				</div>
 			</div>
 			</div>

@@ -1,11 +1,11 @@
 @extends('admin.layouts.default')
 
 
-@section('content')
-<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
-	<article class="cl pd-20">
-		@if (count($errors) > 0)
+@section('content')	
+<article class="cl pd-20" style="overflow-y:scroll;height:2000px">
+		
+	<form action="/admins/goods" method="post" class="form form-horizontal" id="form-admin-add"  enctype='multipart/form-data' novalidate="novalidate">
+	@if (count($errors) > 0)
         <div class="mws-form-message error">
             错误信息是
             <ol>
@@ -15,19 +15,14 @@
             </ol>
         </div>
     @endif
-	<form action="/admins/goods" method="post" class="form form-horizontal" id="form-admin-add" novalidate="novalidate">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">分类：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 			 <span class="select-box" style="width:150px;">
 				<select class="select" name="cate_id" size="1">
-					@foreach($res as $k=>$v)
-                        <?php
-                        $n = substr_count( $v['type_npath'] ,'-')-2;
-                        $v['type_name'] = str_repeat('&nbsp;',$n*8).'|--'.$v['type_name'];
-                        ?>
-                        <option value="{{ $v['type_id'] }}">{{ $v['cate_name'] }}</option>
-                    @endforeach
+                        @foreach($res as $k => $v)
+                            <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
+                        @endforeach
 				</select>
 				</span> 
 			</div>
@@ -50,6 +45,7 @@
 				<input type="" class="input-text" autocomplete="off" placeholder="商品库存" id="password2" name="goods_count">
 			</div>
 		</div>
+
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">描述：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -72,7 +68,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">商品图片：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="file" name="file" class="webuploader-element-invisible" multiple="multiple">
+				<input type="file" name="goods_img[]" class="webuploader-element-invisible" multiple="multiple">
 			</div>
 		</div>
 		

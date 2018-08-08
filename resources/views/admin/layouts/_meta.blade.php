@@ -19,6 +19,7 @@
 
 <link rel="stylesheet" type="text/css" href="/static/admin/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="/static/admin/h-ui.admin/css/style.css" />
+<<<<<<< HEAD
 
 <link rel="stylesheet" href="/css/sweetalert.css">
 <script type="text/javascript" src="/js/sweetalert.min.js"></script>
@@ -28,6 +29,14 @@
 <script type="text/javascript" src="/js/layer-v3.1.1/layer/mobile/layer.js"></script>
 <link rel="stylesheet" type="text/css" href="/js/layer-v3.1.1/layer/theme/default/layer.css" />
 
+=======
+<link rel="stylesheet" type="text/css" href="/layer-v3.1.1/layer/theme/default/layer.css" />
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/layer-v3.1.1/layer/layer.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
+>>>>>>> origin/zoushuai
 <title>@yield('title')</title>
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
