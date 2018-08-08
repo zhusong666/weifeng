@@ -29,6 +29,8 @@ Route::resource('/admin/category','Admin\CategoryController');
 Route::resource('/admin/user','Admin\UserController');
 //商品管理
 Route::resource('/admins/goods','Admin\GoodsController');
+//文章管理
+Route::resource('/admin/article','Admin\ArticleController');
 });
 
 

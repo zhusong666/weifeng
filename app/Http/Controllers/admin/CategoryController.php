@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Admin\CateGory;//引入模型
+use App\Model\Admin\Category;//引入模型
 use DB;
 
 class CategoryController extends Controller

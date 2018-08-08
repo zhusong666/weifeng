@@ -1,10 +1,11 @@
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 文章管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe616;</i> 帮助管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="{{ url('article/list') }}" title="文章管理">文章列表</a></li>
+					<li><a href="/admin/article/create" title="文章管理">添加帮助</a></li>
+					<li><a href="/admin/article" title="文章管理">帮助中心</a></li>
 				</ul>
 			</dd>
 		</dl>
