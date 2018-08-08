@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.layouts.default');
-});
+
 
 Route::get('/article/list', function () {
     return view('admin.article.list');
@@ -26,6 +24,10 @@ Route::any('/admin/dologin','Admin\LoginController@dologin');
 Route::any('/admin/captcha','Admin\LoginController@captcha');
 //威锋网后台  
 Route::group(['middleware'=>'login'],function(){
+	
+Route::get('/', function () {
+    return view('admin.layouts.default');
+});
 // 用户状态
 Route::any('/admin/logout', 'Admin\LoginController@logout');	
 //登录模块
