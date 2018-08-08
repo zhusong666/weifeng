@@ -54,7 +54,7 @@ class LoginController extends Controller
         session(['admin_name'=>$res->admin_name]);
         session(['id'=>$res->admin_id]);
         session(['admin_auth'=>$res->admin_auth]);
-		return redirect('/admin/user')->with('success','恭喜你登录成功');
+		return redirect('/')->with('success','恭喜你登录成功');
 	}
 
 	public function captcha()
