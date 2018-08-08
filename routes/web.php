@@ -24,7 +24,7 @@ Route::any('/admin/dologin','Admin\LoginController@dologin');
 Route::any('/admin/captcha','Admin\LoginController@captcha');
 //威锋网后台  
 Route::group(['middleware'=>'login'],function(){
-	
+//后台首页
 Route::get('/', function () {
     return view('admin.layouts.default');
 });

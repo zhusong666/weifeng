@@ -8,6 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <LINK rel="Bookmark" href="favicon.ico" >
 <LINK rel="Shortcut Icon" href="favicon.ico" />
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="lib/html5.js"></script>
 <script type="text/javascript" src="lib/respond.min.js"></script>
@@ -18,7 +19,6 @@
 
 <link rel="stylesheet" type="text/css" href="/static/admin/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="/static/admin/h-ui.admin/css/style.css" />
-
 <link rel="stylesheet" href="/css/sweetalert.css">
 <script type="text/javascript" src="/js/sweetalert.min.js"></script>
 <script type="text/javascript" src="/js/sweetalert-dev.js"></script>
@@ -27,6 +27,12 @@
 <script type="text/javascript" src="/js/layer-v3.1.1/layer/mobile/layer.js"></script>
 <link rel="stylesheet" type="text/css" href="/js/layer-v3.1.1/layer/theme/default/layer.css" />
 
+<link rel="stylesheet" type="text/css" href="/layer-v3.1.1/layer/theme/default/layer.css" />
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/layer-v3.1.1/layer/layer.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
 <title><?php echo $__env->yieldContent('title'); ?></title>
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
