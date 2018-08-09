@@ -37,8 +37,8 @@
                 <tbody>
                     @foreach($details as $k=>$v)
                     <tr class="text-c">
-                        <td></td>
-                        <td><img src=""></td>
+                        <td>{{$v->goods_name}}</td>
+                        <td><img src="{{$v->goods_img}}" style="width:150px;height:150px"></td>
                         <td>{{$v->details_price}}</td>
                         <td>{{$v->details_cnt}}</td>
                         <td>{{$v->details_price*$v->details_cnt}}</td>

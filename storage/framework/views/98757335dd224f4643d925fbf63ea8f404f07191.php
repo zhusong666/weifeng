@@ -1,3 +1,5 @@
+<?php $__env->startSection('title',$title); ?>
+
 <?php $__env->startSection('myCss'); ?>
 <link rel="stylesheet" href="/homes/common/css/index.min.css" />
 <?php echo $__env->yieldSection(); ?>

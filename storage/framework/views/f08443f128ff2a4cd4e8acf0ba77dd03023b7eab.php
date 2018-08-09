@@ -121,7 +121,7 @@ function member_show(admin_id){
     layer.confirm('是否确认修改状态？', {
         btn: ['确定','取消'] //按钮
     }, function(){
-        $.post("<?php echo e(url('/admin/up/')); ?>/"+admin_id,{'_method':'DELETE','_token':"<?php echo e(csrf_token()); ?>"},function(data){
+        $.post("<?php echo e(url('/admin/dset/')); ?>/"+admin_id,{'_method':'DELETE','_token':"<?php echo e(csrf_token()); ?>"},function(data){
             if(data.status == 0){
                 location.href = location.href;
                 layer.msg(data.msg, {icon: 5});

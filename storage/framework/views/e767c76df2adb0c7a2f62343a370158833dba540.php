@@ -35,8 +35,8 @@
                 <tbody>
                     <?php $__currentLoopData = $details; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr class="text-c">
-                        <td></td>
-                        <td><img src=""></td>
+                        <td><?php echo e($v->goods_name); ?></td>
+                        <td><img src="<?php echo e($v->goods_img); ?>" style="width:150px;height:150px"></td>
                         <td><?php echo e($v->details_price); ?></td>
                         <td><?php echo e($v->details_cnt); ?></td>
                         <td><?php echo e($v->details_price*$v->details_cnt); ?></td>
