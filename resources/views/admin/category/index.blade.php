@@ -1,9 +1,6 @@
 @extends('admin.layouts.default')
 
 @section('content')
-
-	<!-- {{session('success')}} -->
-
 	<section class="Hui-article-box">
 		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">分类管理</span><span class="c-999 en">&gt;</span><span class="c-666">浏览分类</span></nav>
 		<div class="Hui-article">

@@ -24,15 +24,15 @@ class Details extends Model
      */
     protected $fillable = ['details_price','details_cnt'];
 
-    public function goods()
+    public function goodss()
     {
-        return $this->hasOne('');
+        return $this->hasOne('App\Model\Admin\Goods','goods_id','goods_id');
 
     }
 
-    public function goods_img()
+    public function goods_imgs()
     {
-        return $this->hasMany('');
+        return $this->hasMany('App\Model\Admin\Goods_img','goodsimg_id','goods_id');
 
     }
 }

@@ -24,11 +24,10 @@
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">订单管理</span></nav>
     <div class="page-container" style="overflow-y:scroll;height:600px">
-        <form action="" method="get">
+        <form action="/admin/order" method="get">
             <div class="text-c">
-                
-                <input type="text" class="input-text" style="width:250px" placeholder="输入订单号" name="order_id" value=''>
-                <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+                <input type="text" class="input-text" style="width:250px" placeholder="输入订单号" name="order_id" value='{{$request->input("order_id")}}'>
+                <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
             </div>
         </form>
             <div class="cl pd-5 bg-1 bk-gray mt-20"></span><span class="r">当前页显示：<strong>{{$cou}}</strong> 条&nbsp;&nbsp;</div>
@@ -59,13 +58,32 @@
                         <td>{{$v->order_cnt}}</td>
                         <td>{{$v->order_address}}</td>
                         <td>{{$v->order_phone}}</td>
-                        <td>@if($v->order_status == 1) 未发货 @endif</td>
+                        <td>
+                            @if($v->order_status == 1) 
+                                未发货 
+                            @endif
+                            @if($v->order_status == 2) 
+                                未收货
+                            @endif
+                            @if($v->order_status == 3) 
+                                已收货
+                            @endif
+                        </td>
                         <td>{{$v->order_msg}}</td>
                         <td class="td-manage">
-                            <a href="/admin/detail/{{$v->order_id}}">订单详情</a>
-                            <a title="编辑" href="" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                            @if($v->order_status == 1) 
+                                <a href="javascript:;" onclick="status_show({{$v->orders_id}})" style="text-decoration:none">发货</a>|
+                            @endif
                             
-                            <!-- <a title="删除" href="javascript:;" onclick="member_del()" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a> -->
+                            @if($v->order_status == 2) 
+                                <a style="text-decoration:none" href="javascript:;">已发货</a>|
+                            @endif
+                            
+                            @if($v->order_status == 3)
+                                <a style="text-decoration:none" href="javascript:;">完成</a>|
+                            @endif
+                           
+                            <a href="/admin/detail/{{$v->order_id}}" style="text-decoration:none">订单详情</a>
                     </tr>
                   @endforeach
                 </tbody>
@@ -74,7 +92,30 @@
             
 </div>
 
+<script>
+//更改状态
+function status_show(orders_id){
+    //询问框
+    layer.confirm('是否确发货吗？', {
+        btn: ['确定','取消'] //按钮
+    }, function(){
+        $.post("{{url('/admin/dset/')}}/"+orders_id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+            if(data.status == 0){
+                location.href = location.href;
+                layer.msg(data.msg, {icon: 5});
+            }else{
+                location.href = location.href;
+                layer.msg(data.msg, {icon: 6});
+            }
+        });
+    }, function(){
+    });
+};
+
+</script>
+
 <style>
+    /*.shuju{ width: 100px;height:10px;}*/
     .pagination{height:20px;float:right;padding-top: 10px;text-align: right;}
     .pagination li{
                 float: left;

@@ -49,6 +49,8 @@ Route::resource('/admin/lunbo','Admin\LunboController');
 
 //订单管理
 Route::any('/admin/order','Admin\OrderController@index');
+//订单状态(发货,收货,完成)
+Route::any('/admin/dset/{id}','Admin\OrderController@dset');
 //订单详情
 Route::any('/admin/detail/{id}','Admin\OrderController@detail');
 
@@ -56,11 +58,14 @@ Route::any('/admin/detail/{id}','Admin\OrderController@detail');
 Route::any('/admin/status/{id}','Admin\AdminController@status');
 });
 
-
+//网站前台
+Route::group([],function(){
 //前台首页
-
 Route::any('/home/index','Home\IndexController@index');
+//前台登录
 Route::any('/home/login','Home\IndexController@login');
+
+});
 
 
 

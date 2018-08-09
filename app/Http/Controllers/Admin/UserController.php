@@ -108,8 +108,8 @@ class UserController extends Controller
     public function show($id)
     {
 
-        $result = DB::table('wf_users')->where('admin_id',$id)->first();
-        dd($result);die;
+        /*$result = DB::table('wf_users')->where('admin_id',$id)->first();
+        dd($result);die;*/
         /*$status = $result->admin_status;
 
 
