@@ -27,8 +27,8 @@
 				<input type="text" class="input-text" style="width:250px" placeholder="输入商品名称" name="goods_name" value='<?php echo e($request->input("goods_name")); ?>'>
 
 
-					价格区间:<input type="text" class="input-text" style="width:100px" placeholder="最低价格" name="goods_price" value='<?php echo e($request->input("goods_price")); ?>'>-
-					<input type="text" class="input-text" style="width:100px" placeholder="最高价格" name="goods_price" value='<?php echo e($request->input("goods_price")); ?>'>
+					价格区间:<input type="text" class="input-text" style="width:100px" placeholder="最低价格" name="goods_price1" value='<?php echo e($request->input("goods_price")); ?>'>-
+					<input type="text" class="input-text" style="width:100px" placeholder="最高价格" name="goods_price2" value='<?php echo e($request->input("goods_price")); ?>'>
 
 						<!-- <span class="select-box" style="width:105px;">
 						<select class="select" name="" size="1">
@@ -57,7 +57,6 @@
 								<th>价格</th>
 								<th>库存</th>
 								<th>添加时间</th>
-								<th>描述</th>
 								<th>状态</th>
 								<th>操作</th>
 							</tr>
@@ -69,13 +68,10 @@
 					<tr class="text-c odd" role="row">
 								<th><?php echo e($v->goods_id); ?></th>
 								<th><?php echo e($v->goods_name); ?></th>
-
 								<th><?php echo e($v->cate_id); ?></th>
-
 								<th><?php echo e($v->goods_price); ?></th>
 								<th><?php echo e($v->goods_count); ?></th>
 								<th><?php echo e(date('Y-m-d H:i:s',$v->goods_time)); ?></th>
-								<th><?php echo e($v->goods_selecnt); ?></th>
 								<?php if($v->goods_status==1): ?>
                                     <th>新品</th>
                                 <?php elseif($v->goods_status==2): ?>
@@ -96,6 +92,7 @@
 							</td>
 					</tr>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
 					
 				</tbody>				
 				</table>
@@ -190,6 +187,7 @@
 
                
             </div>
+
 				</div>
 			</div>
 			</div>

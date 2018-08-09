@@ -6,14 +6,6 @@
 
     <section class="Hui-article-box">
         <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">分类管理</span></nav>
-        <article class="page-container">
-    <form class="form form-horizontal" id="form-admin-add" action="/admin/category" method='post'>
-    <div class="row cl">
-        <label class="form-label col-xs-4 col-sm-3" ><span class="c-red"></span >分类名：</label>
-        <div class="formControls col-xs-8 col-sm-9">
-            <input type="text" class="input-text" value="" id="adminName" name="cate_name"style="width:300px;">
-        </div>
-    </div>
 
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-3">顶级分类：</label>
@@ -21,8 +13,11 @@
             <span class="select-box" style="width:300px;">
                 <select class="select" name="cate_pid" size="1">
                     <option value='0'>请选择</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
+
+                    <?php $__currentLoopData = $res; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($v->cate_id); ?>"><?php echo e($v->cate_name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    
                 </select>
             </span> 
         </div>
@@ -48,6 +43,7 @@
     </div>
     </form>
 </article>
+
     </section>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

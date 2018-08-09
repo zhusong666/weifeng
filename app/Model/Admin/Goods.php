@@ -1,6 +1,6 @@
 <?php
 
-namespace App\app\Model\Admin;
+namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,7 +22,7 @@ class Goods extends Model
      *
      * @var array
      */
-    protected $fillable = ['goods_name','type_id','goods_price','goods_count','goods_selecnt','goods_time','goods_status'];
+    protected $fillable = ['goods_name','cate_id','goods_price','goods_count','goods_selecnt','goods_time','goods_status','goods_content'];
 
     //与用户关联的属性
     public function goods_img()

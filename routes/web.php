@@ -58,6 +58,8 @@ Route::any('/admin/status/{id}','Admin\AdminController@status');
 
 Route::any('/home/index','Home\IndexController@index');
 Route::any('/home/login','Home\IndexController@login');
+//商品列表
+Route::any('goodlist/{id}','GoodController@goodList');
 
 
 
