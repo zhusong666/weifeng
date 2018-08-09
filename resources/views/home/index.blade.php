@@ -1,7 +1,6 @@
 
 @extends('layout.index')
 
-@section('title',$title)
 
 @section('myCss')
 <link rel="stylesheet" href="/homes/common/css/index.min.css" />

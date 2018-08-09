@@ -18,7 +18,7 @@ Route::get('/article/list', function () {
 });
 
 
-
+//登录模块
 Route::any('/admin/login','Admin\LoginController@login');
 Route::any('/admin/dologin','Admin\LoginController@dologin');
 Route::any('/admin/captcha','Admin\LoginController@captcha');
@@ -28,9 +28,9 @@ Route::group([],function(){
 Route::get('/', function () {
     return view('admin.layouts.default');
 });
-// 用户状态
+//退出
 Route::any('/admin/logout', 'Admin\LoginController@logout');	
-//登录模块
+// 用户状态
 Route::any('/admin/up/{id}', 'Admin\LoginController@up');
 Route::any('/admin/pass', 'Admin\LoginController@pass');
 Route::any('/admin/repass', 'Admin\LoginController@repass');

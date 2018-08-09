@@ -22,7 +22,7 @@ class Goods extends Model
      *
      * @var array
      */
-    protected $fillable = ['goods_name','cate_id','goods_price','goods_count','goods_selecnt','goods_time','goods_status','goods_content'];
+    protected $fillable = ['goods_name','cates_id','goods_price','goods_count','goods_selecnt','goods_time','goods_status','goods_content'];
 
     //与用户关联的属性
     public function goods_img()
