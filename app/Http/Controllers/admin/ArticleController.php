@@ -68,10 +68,8 @@ class ArticleController extends Controller
         // dump($res);检查表单值是否接收到`
 
         // echo '111'; 
+
         //把值传入数据库中
-        // $res['profile']='/uploads/'.$name.'.'.$suffix;
-
-
         $date = DB::table('wf_article')->insert($res);
 
         if($date){
@@ -103,9 +101,9 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $res =DB::where('article_id',$id)->first();
+        $res = DB::table('wf_article')->where('article_id',$id)->first();
 
-        return view ('admin.article.edit',['res' => $res]);
+        return view ('admin.article.edit',['res'=>$res]);
     }
 
     /**
@@ -117,7 +115,21 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        echo '1111';
+        // 接收在页面修改后的数据
+        // $res = $request->except('_token');
+
+        // dump($res);
+        // //把数据插入数据库
+
+        // $date = DB::table('wf_article')->update($res);
+
+        // if($date){
+        //     return redirect('admin/article');
+        // }else{
+        //     return redirect('admin/article/edit');
+        // }
     }
 
     /**
@@ -128,6 +140,15 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $res = DB::table('article')->where('article_id',$id)->delete();
+
+        // if($res){
+
+        //     return redirect('/admin/article');
+        // } else {
+
+        //     return redirect('/admin/article');
+
+        // echo($id);
     }
 }

@@ -1,6 +1,4 @@
-@extends('admin.layouts.default')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <style type="text/css">
     .mws-form-row {padding: 10px 356px; }
     .mws-form-list {padding: 10px 68px;}
@@ -24,9 +22,9 @@
                     <select class="select" name="cate_pid" size="1">
                         <option value='0'>请选择</option>
 
-                        @foreach($res as $k=>$v)
-                        <option value="{{$v->cate_id}}">{{$v->cate_name}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $res; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($v->cate_id); ?>"><?php echo e($v->cate_name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         
                     </select>
                 </span> 
@@ -47,7 +45,7 @@
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                {{csrf_field()}}<!-- 防止表单伪造 防止跨站提交 -->
+                <?php echo e(csrf_field()); ?><!-- 防止表单伪造 防止跨站提交 -->
                 <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;添加&nbsp;&nbsp;">
             </div>
         </div>
@@ -55,4 +53,5 @@
 </article>
 
     </section>
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

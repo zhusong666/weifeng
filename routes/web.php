@@ -22,8 +22,8 @@ Route::get('/article/list', function () {
 Route::any('/admin/login','Admin\LoginController@login');
 Route::any('/admin/dologin','Admin\LoginController@dologin');
 Route::any('/admin/captcha','Admin\LoginController@captcha');
-//威锋网后台  
-Route::group(['middleware'=>'login'],function(){
+//威锋网后台  'middleware'=>'login'
+Route::group([],function(){
 //后台首页
 Route::get('/', function () {
     return view('admin.layouts.default');
@@ -43,6 +43,9 @@ Route::resource('/admins/goods','Admin\GoodsController');
 
 //文章管理
 Route::resource('/admin/article','Admin\ArticleController');
+
+//轮播图管理
+Route::resource('/admin/lunbo','Admin\LunboController');
 
 //订单管理
 Route::any('/admin/order','Admin\OrderController@index');
