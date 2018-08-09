@@ -1,12 +1,7 @@
-
-@extends('layout.index')
-
-@section('title',$title)
-
-@section('myCss')
+<?php $__env->startSection('myCss'); ?>
 <link rel="stylesheet" href="/homes/common/css/index.min.css" />
-@show
-@section('content')
+<?php echo $__env->yieldSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="home-hero-container container">
         <div class="home-hero">
             <div class="home-hero-slider">
@@ -329,4 +324,5 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

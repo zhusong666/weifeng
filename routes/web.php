@@ -64,6 +64,8 @@ Route::group([],function(){
 Route::any('/home/index','Home\IndexController@index');
 //前台登录
 Route::any('/home/login','Home\IndexController@login');
+//商品列表
+Route::any('goodlist/{id}','GoodController@goodList');
 
 });
 

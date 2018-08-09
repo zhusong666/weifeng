@@ -59,7 +59,6 @@
 								<th>价格</th>
 								<th>库存</th>
 								<th>添加时间</th>
-								<th>描述</th>
 								<th>状态</th>
 								<th>操作</th>
 							</tr>
@@ -75,7 +74,6 @@
 								<th>{{$v->goods_price}}</th>
 								<th>{{$v->goods_count}}</th>
 								<th>{{date('Y-m-d H:i:s',$v->goods_time)}}</th>
-								<th>{{$v->goods_selecnt}}</th>
 								@if($v->goods_status==1)
                                     <th>新品</th>
                                 @elseif($v->goods_status==2)

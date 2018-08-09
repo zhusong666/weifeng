@@ -39,7 +39,7 @@ class GoodsController extends Controller
                 
 
             })
-        ->paginate($request->input('num', 2));
+        ->paginate($request->input('num', 4));
         $res = Category::select(DB::raw('*,concat(cate_path,cate_id) as paths'))->orderBy('paths')->get();
         // $res = Goods::with('CateGory')->where('cate_id',)
 
@@ -86,12 +86,10 @@ class GoodsController extends Controller
 
 
         $res = $request->except('_token','goods_img');
-
         // //插入时间
         $res['goods_time'] = time();
         // //添加数据
         $res = Goods::create($res);
-
         $gid = $res->goods_id;
 
         if(!$gid){
@@ -132,7 +130,7 @@ class GoodsController extends Controller
          try{
            
              //添加数据的时候   //模型关系 1对多
-             $data = $res->goodsmany()->createMany($gr);
+             $data = $res->goods_img()->createMany($gr);
              if($data){
 
                  return redirect('/admins/goods')->with('success','添加成功');
