@@ -24,10 +24,6 @@ Route::any('/admin/dologin','Admin\LoginController@dologin');
 Route::any('/admin/captcha','Admin\LoginController@captcha');
 //威锋网后台  'middleware'=>'login'
 Route::group([],function(){
-//后台首页
-Route::get('/', function () {
-    return view('home.index');
-});
 //退出
 Route::any('/admin/logout', 'Admin\LoginController@logout');	
 // 用户状态
@@ -61,7 +57,7 @@ Route::any('/admin/status/{id}','Admin\AdminController@status');
 //网站前台
 Route::group([],function(){
 //前台首页
-Route::any('/home/index','Home\IndexController@index');
+Route::any('/','Home\IndexController@index');
 //前台登录
 Route::any('/home/login','Home\IndexController@login');
 //商品列表
