@@ -22,14 +22,17 @@ class Details extends Model
      *
      * @var array
      */
-    public function goods()
+    protected $fillable = ['details_price','details_cnt'];
+
+    public function goodss()
     {
-        return $this->hasMany('App\Model\Admin\Goods','goods_id');
+        return $this->hasOne('App\Model\Admin\Goods','goods_id','goods_id');
+
     }
 
-
-    public function shop_orders()
+    public function goods_imgs()
     {
-        return $this->hasOne('App\Model\Admin\Shop_orders','order_id');
+        return $this->hasMany('App\Model\Admin\Goods_img','goodsimg_id','goods_id');
+
     }
 }
