@@ -26,7 +26,7 @@ Route::any('/admin/captcha','Admin\LoginController@captcha');
 Route::group([],function(){
 //后台首页
 Route::get('/', function () {
-    return view('admin.layouts.default');
+    return view('home.index');
 });
 //退出
 Route::any('/admin/logout', 'Admin\LoginController@logout');	
