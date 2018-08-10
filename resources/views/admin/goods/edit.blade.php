@@ -10,7 +10,7 @@
 	<form action="/admins/goods/{{$res->goods_id}}"   method="post" class="form form-horizontal" id="form-admin-add"  enctype='multipart/form-data' novalidate="novalidate">
 		
 		<div class="row cl" >
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>名称：</label>
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="{{$res->goods_name}}" placeholder="商品名称" id="adminName" name="goods_name">
 			</div>
