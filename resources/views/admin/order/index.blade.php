@@ -72,7 +72,7 @@
                         <td>{{$v->order_msg}}</td>
                         <td class="td-manage">
                             @if($v->order_status == 1) 
-                                <a href="javascript:;" onclick="status_show({{$v->orders_id}})" style="text-decoration:none">发货</a>|
+                                <a href="javascript:;" onclick="status_show({{$v->order_id}})" style="text-decoration:none">发货</a>|
                             @endif
                             
                             @if($v->order_status == 2) 
@@ -94,12 +94,12 @@
 
 <script>
 //更改状态
-function status_show(orders_id){
+function status_show(order_id){
     //询问框
     layer.confirm('是否确发货吗？', {
         btn: ['确定','取消'] //按钮
     }, function(){
-        $.post("{{url('/admin/dset/')}}/"+orders_id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+        $.post("{{url('/admin/dset/')}}/"+order_id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
             if(data.status == 0){
                 location.href = location.href;
                 layer.msg(data.msg, {icon: 5});
