@@ -7,7 +7,7 @@
 					<span class="c-999 en">&gt;</span><span class="c-666">轮播浏览</span>
 		</nav>
 
-		<<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 图片管理 <span class="c-gray en">&gt;</span> 图片列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+		
 <div class="page-container">
 	<div class="text-c"> 日期范围：
 		<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">
@@ -23,28 +23,30 @@
 				<tr class="text-c">
 					<th width="40"><input name="" type="checkbox" value=""></th>
 					<th width="80">ID</th>
-					<th width="100">分类</th>
+					
 					<th width="100">图片</th>
 					<th width="100">图片名称</th>
 					
-					<th width="150">更新时间</th>
+					
 					<th width="60">发布状态</th>
 					<th width="100">操作</th>
 				</tr>
 			</thead>
 			<tbody>
-
+				@foreach($res as $k=>$v)
 				<tr class="text-c">
 					<td><input name="" type="checkbox" value=""></td>
-					<td>001</td>
-					<td>分类名称</td>
-					<td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="210" class="picture-thumb" src="temp/200x150.jpg"></a></td>
-					<td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">现代简约 白色 餐厅</a></td>
+					<td>{{$v->lunbo_id}}</td>
 					
-					<td>2014-6-11 11:11:42</td>
+					<td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="210" class="picture-thumb" src="{{$v->lunbo_img}}"></a></td>
+					<td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">{{$v->lunbo_name}}</a></td>
+					
+					
 					<td class="td-status"><span class="label label-success radius">已发布</span></td>
 					<td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
+				@endforeach
+
 			</tbody>
 		</table>
 	</div>

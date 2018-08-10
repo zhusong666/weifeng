@@ -4,15 +4,15 @@
 		<nav class="breadcrumb">
 			<i class="Hui-iconfont"></i> 
 				<a href="/" class="maincolor">首页</a> 
-					<span class="c-999 en">&gt;</span><span class="c-666">轮播图管理</span>
+					<span class="c-999 en">&gt;</span><span class="c-666">修改轮播</span>
 		</nav>
 
 		<article class="page-container">
-			<form action="/admin/lunbo" method="post" enctype='multipart/form-data' class="form form-horizontal" id="form-article-add" >
+			<form action="/admin/lunbo" method="post" class="form form-horizontal" id="form-article-add" >
 				<div class="row cl">
 						<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片标题：</label>
 						<div class="formControls col-xs-8 col-sm-9">
-							<input type="text" class="input-text" value="" placeholder="" id="" name="lunbo_name">
+							<input type="text" class="input-text" value="{{$res->lunbo_name}}" placeholder="" id="" name="lunbo_name">
 						</div>
 				</div>
 				
@@ -27,7 +27,7 @@
 						<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
 
 						<div class="field">
-          						<input type="file" id="url1" name="lunbo_img" class="input tips" style="width:25%; float:left;" value="" data-toggle="hover" data-place="right" data-image="" title="">
+          						<input type="file" id="url1" name="lunbo_img" class="input tips" style="width:25%; float:left;" value="{{$res->lunno_img}}" data-toggle="hover" data-place="right" data-image="" title="">
         				</div>
 
 						
@@ -35,6 +35,7 @@
 				<div class="row cl">
 						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 							{{csrf_field()}}
+							{{method_field('PUT')}}
 							<button  class="btn btn-primary radius" type="submit">
 							<i class="Hui-iconfont">&#xe632;</i> 提交
 							</button>

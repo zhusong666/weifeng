@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Config;
 
 class LunboController extends Controller
 {
@@ -46,10 +47,26 @@ class LunboController extends Controller
         //接收表单传过来的值
         $res = $request->except('_token');
 
-        //把数值传入数据库
+       
+        //上传图片
+        if($request->hasFile('lunbo_img')){
+
+            //名字
+            $name = date('Ymd',time()).rand(111,333);
+            //后缀
+            $suffix = $request->file('lunbo_img')->getClientOriginalExtension();
+            //移动
+            $request->file('lunbo_img')->move(Config::get('webconfig.upload'),$name.'.'.$suffix);    
+
+        }
+        //保存到数据表中
+            $res['lunbo_img']='/uploads/'.$name.'.'.$suffix;
+
+         //把数值传入数据库
         $date = DB::table('wf_lunbo')->insert($res);
          // dump($res);
          // echo '111';
+
         if($date){
             return redirect('admin/lunbo');
         }else{
@@ -77,7 +94,10 @@ class LunboController extends Controller
      */
     public function edit($id)
     {
-        //
+       
+        $res = DB::table('wf_lunbo')->where('lunbo_id',$id)->first();
+
+        return view ('admin.lunbo.edit',['res'=>$res]);
     }
 
     /**
@@ -89,7 +109,18 @@ class LunboController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $res = $request->except('_token','_method');
+
+        // dd($res);
+        //把数据插入数据库
+
+        $date = DB::table('wf_article')->where('article_id',$id)->update($res);
+
+        if($date){
+            return redirect('admin/article');
+        }else{
+            return redirect('admin/article/edit');
+        }
     }
 
     /**

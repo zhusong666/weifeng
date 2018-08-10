@@ -116,20 +116,20 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
 
-        echo '1111';
+        // echo '1111';
         // 接收在页面修改后的数据
-        // $res = $request->except('_token');
+        $res = $request->except('_token','_method');
 
-        // dump($res);
-        // //把数据插入数据库
+        // dd($res);
+        //把数据插入数据库
 
-        // $date = DB::table('wf_article')->update($res);
+        $date = DB::table('wf_article')->where('article_id',$id)->update($res);
 
-        // if($date){
-        //     return redirect('admin/article');
-        // }else{
-        //     return redirect('admin/article/edit');
-        // }
+        if($date){
+            return redirect('admin/article');
+        }else{
+            return redirect('admin/article/edit');
+        }
     }
 
     /**
@@ -140,15 +140,17 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        // $res = DB::table('article')->where('article_id',$id)->delete();
+        //根据修改页面传回要删除的id
+        $res = DB::table('wf_article')->where('article_id',$id)->delete();
+        // dump($res);
+        
+        if($res){
 
-        // if($res){
+                return redirect('/admin/article');
+            }else{
+        
 
-        //     return redirect('/admin/article');
-        // } else {
-
-        //     return redirect('/admin/article');
-
-        // echo($id);
+            return back()->with('error','删除失败');
+            }
     }
 }

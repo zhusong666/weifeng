@@ -1,6 +1,15 @@
 @extends('admin.layouts.default')
 <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
+@if (count($errors) > 0)
+	<div class="c-red">
+						        <ul>
+						            @foreach ($errors->all() as $error)
+						                <li>{{ $error }}</li>
+						            @endforeach
+						        </ul>
+						    </div>
+@endif
 
 @section('content')
 	<section class="Hui-article-box">
@@ -73,20 +82,12 @@
 				<div class="row cl">
 					<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 						{{csrf_field()}}
-						<!-- {{method_field('PUT')}} -->
+						{{method_field('PUT')}}
 						<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;完成&nbsp;&nbsp;">
 						<!-- <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button> -->
 						<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 					
-						@if (count($errors) > 0)
-						    <div class="c-red">
-						        <ul>
-						            @foreach ($errors->all() as $error)
-						                <li>{{ $error }}</li>
-						            @endforeach
-						        </ul>
-						    </div>
-						@endif
+						
 					
 					</div>
 				</div>
