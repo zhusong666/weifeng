@@ -8,7 +8,7 @@
 		</nav>
 
 		<article class="page-container">
-			<form action="/admin/lunbo" method="post" class="form form-horizontal" id="form-article-add" >
+			<form action="/admin/lunbo/{{$res->lunbo_id}}" method="post" class="form form-horizontal" id="form-article-add" >
 				<div class="row cl">
 						<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片标题：</label>
 						<div class="formControls col-xs-8 col-sm-9">

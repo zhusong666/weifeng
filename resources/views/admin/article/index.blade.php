@@ -64,11 +64,11 @@
 										<form action="/admin/article/{{$v->article_id}}" method="post" style="display:inline"> 
 											{{csrf_field()}}
 											{{method_field("DELETE")}}
-											<!-- <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"> -->
+											<!-- <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"></a> -->
 											<button class='ml-5'style="text-decoration:none">删除</button>
 											<!-- <i class="Hui-iconfont">&#xe6e2;</i> -->
 
-										</a>
+										
 										</form>
 										
 

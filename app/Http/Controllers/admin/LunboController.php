@@ -109,18 +109,18 @@ class LunboController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $res = $request->except('_token','_method');
+        //  $res = $request->except('_token','_method');
 
-        // dd($res);
-        //把数据插入数据库
+        // // dd($res);
+        // //把数据插入数据库
 
-        $date = DB::table('wf_article')->where('article_id',$id)->update($res);
+        // $date = DB::table('wf_article')->where('article_id',$id)->update($res);
 
-        if($date){
-            return redirect('admin/article');
-        }else{
-            return redirect('admin/article/edit');
-        }
+        // if($date){
+        //     return redirect('admin/article');
+        // }else{
+        //     return redirect('admin/article/edit');
+        // }
     }
 
     /**
