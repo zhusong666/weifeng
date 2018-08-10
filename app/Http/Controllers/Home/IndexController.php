@@ -24,7 +24,6 @@ class IndexController extends Controller
     	}
     	//一对多查询(查询每个分类下的所有商品)
          $data = CateGory::with('goods')->whereIn('cate_id',$arr)->get();
-         dump($data);
          //循环遍历把图片路经赋给$data
          foreach ($data as $k => $v) {
          	foreach ($v['goods'] as  $kk =>$vv) { 
@@ -35,7 +34,6 @@ class IndexController extends Controller
                 
          	}
          }
-         dump($data);
          //查询10条销量最大的数据
         $img = Goods::with('goodsimg')->orderBy('goods_volume','desc')->limit(10)->get();
          //随机获取手机分类下的8个商品
