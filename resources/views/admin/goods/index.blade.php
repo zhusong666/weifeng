@@ -70,7 +70,7 @@
 					<tr class="text-c odd" role="row">
 								<th>{{$v->goods_id}}</th>
 								<th>{{$v->goods_name}}</th>
-								<th>{{$v->cate_id}}</th>
+								<th>{{$v->cates_id}}</th>
 								<th>{{$v->goods_price}}</th>
 								<th>{{$v->goods_count}}</th>
 								<th>{{date('Y-m-d H:i:s',$v->goods_time)}}</th>

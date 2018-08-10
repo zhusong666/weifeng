@@ -131,7 +131,7 @@
         <div class="home-star-goods" id="J_homeStar">
             <div class="xm-plain-box">
                 <div class="box-hd">
-                    <h2 class="title">小米明星单品</h2>
+                    <h2 class="title">小米明星产品</h2>
                     <div class="more">
                         <div class="xm-controls xm-controls-line-small xm-carousel-controls">
                             <a class="control control-prev iconfont" href="javascript: void(0);"></a>
@@ -141,16 +141,11 @@
                 </div>
                 <div class="box-bd">
                     <ul class="xm-carousel-list xm-carousel-col-5-list goods-list rainbow-list clearfix J_carouselList">
-                        <li class="rainbow-item">
-                            <a class="thumb" href=""  target="_blank">
-                                <img src="http://i3.mifile.cn/a4/40d24892-317d-4883-ad63-647f1b9e3cdf" srcset="" alt="" />
-                            </a>
-                            <h3 class="title">
-                                <a href="" target="_blank"></a>
-                            </h3>
-                            <p class="desc"></p>
-                            <p class="price"></p>
-                        </li>
+                        @foreach($img as $k => $v)
+                        <li class="brick-item brick-item-m brick-item-m-2" data-gid="2182300042"> <div class="figure figure-img"> <a class="exposure" href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"> <img src="{{$v->goodsimg->goods_img}}" width="160" height="160" alt="{{$v->goods_name}}"> </a> </div> <h3 class="title"><a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);">{{$v->goods_name}}</a></h3> <p class="desc">{{$v->goods_selecnt}}</p> <p class="price"> <span class="num">{{$v->goods_price}}</span>元  </br></br><span class="num" style="padding-left:140px;color:gray;">已售：{{$v->goods_volume}}</span></p>  </li>
+                        @endforeach
+
+
                     </ul>
                 </div>
             </div>
@@ -177,21 +172,11 @@
                         </div>
                         <div class="span16">
                             <ul class="brick-list clearfix">
-                                <li class="brick-item brick-item-m brick-item-m-2" data-gid="1161200059">
-                                    <div class="figure figure-img">
-                                        <a href=""></a> 
-                                    </div>
-                                    <h3 class="title">
-                                        <a href=""></a>
-                                    </h3>
-                                    <p class="desc"></p>
-                                    <p class="price">
-                                        <span class="num"></span>
-                                        元
-                                    </p>
-                                    <!-- <div class="flag flag-postfree">免邮费</div> -->
-                                </li>
 
+                                 @foreach($shouji as $sjk => $sjv)
+                                <li class="brick-item brick-item-m brick-item-m-2" data-gid="2182300042"> <div class="figure figure-img"> <a class="exposure" href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"> 
+                                    <img src="{{$sjv->goodsimg->goods_img}}" width="160" height="160" alt=""> </a> </div> <h3 class="title"><a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);">{{$sjv->goods_name}}</a></h3> <p class="desc">{{$sjv->goods_selecnt}}</p> <p class="price"> <span class="num">{{$sjv->goods_price}}</span>元  </p>  </li>
+                                  @endforeach
                             </ul>
                         </div>
                     </div>
@@ -200,13 +185,14 @@
             </div>
 <!-- 小米手机 end-->
 
+           <div class="page-main home-main">
+        <div class="container">
             <div id="smart" class="home-brick-box home-brick-row-2-box xm-plain-box J_itemBox J_brickBox" data-from-stat="false">
                 <div class="box-hd">
-                    <h2 class="title">智能硬件</h2>
+                    <h2 class="title">笔记本 平板</h2>
                     <div class="more J_brickNav"></div>
                 </div>
                 <div class="box-bd J_brickBd">
-                <!-- 智能硬件 start-->
                     <div class="row">
                         <div class="span4 span-first">
                             <ul class="brick-promo-list clearfix">
@@ -218,31 +204,17 @@
                         </div>
                         <div class="span16">
                             <ul class="brick-list clearfix">
-                                <li class="brick-item brick-item-m brick-item-m-2" data-gid="1161200059">
-                                    <div class="figure figure-img">
-                                        <a href=""></a> 
-                                    </div>
-                                    <h3 class="title">
-                                        <a href=""></a>
-                                    </h3>
-                                    <p class="desc"></p>
-                                    <p class="price">
-                                        <span class="num"></span>
-                                        元
-                                    </p>
-                                    <!-- <div class="flag flag-postfree">免邮费</div> -->
-                                </li>
 
+                                 @foreach($bjb as $bjbk => $bjbv)
+                                <li class="brick-item brick-item-m brick-item-m-2" data-gid="2182300042"> <div class="figure figure-img"> <a class="exposure" href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"> 
+                                    <img src="{{$bjbv->goodsimg->goods_img}}" width="160" height="160" alt=""> </a> </div> <h3 class="title"><a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);">{{$bjbv->goods_name}}</a></h3> <p class="desc">{{$bjbv->goods_selecnt}}</p> <p class="price"> <span class="num">{{$bjbv->goods_price}}</span>元  </p>  </li>
+                                  @endforeach
                             </ul>
                         </div>
                     </div>
-                <!-- 智能硬件 end-->
+                
                 </div>
             </div>
-
-
-
-
 
             <div id="video" class="home-video-box xm-plain-box J_itemBox J_videoBox is-visible">
                 <div class="box-hd">
@@ -256,58 +228,66 @@
                     <ul class="video-list clearfix">
                         <li class="video-item video-item-first">
                             <div class="figure figure-img">
-                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12841" data-stat-pid="2_43_1_245" data-video="http://player.youku.com/embed/XMTU2NDM3NjEzMg==" data-video-title="小米Max 绝美外观视频" >
-                                    <img src="//i3.mifile.cn/a4/T1v3LgBTxv1RXrhCrK.jpg" width="296" height="180" alt="小米Max 绝美外观视频">
+                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12841" data-stat-pid="2_43_1_245" data-video="https://v.mifile.cn/b2c-mimall-media/c2cb94c9485243e1767d43268fb90820.mp4" data-video-title="一团火" >
+                                    <img src="//i1.mifile.cn/a4/xmad_15318974928021_cthgC.jpg" width="296" height="180" alt="一团火">
+                                    <span class="play"> <i class="iconfont"></i>
+                                    </span>
+                                </a>
+
+                            </div>
+                            <h3 class="title">
+                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12841" data-stat-pid="2_43_1_245" data-video="http://player.youku.com/embed/XMTU2NDM3NjEzMg==" data-video-title="一团火" >一团火</a>
+                            </h3>
+                            <p class="desc">小米创业8年内部纪录片（手机篇）</p>
+                        </li>
+
+                        <li class="video-item">
+                            <div class="figure figure-img">
+                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA13049" data-stat-pid="2_43_2_246" data-video="https://v.mifile.cn/b2c-mimall-media/ed921294fb62caf889d40502f5b38147.mp4" data-video-title="小米8，一部与众不同的手机" title="点击播放视频" >
+                                    <img src="https://i8.mifile.cn/b2c-mimall-media/6589da5fea27b58e5b061c1fb70bdfce.jpg" width="296" height="180" alt="小米8，一部与众不同的手机">
                                     <span class="play"> <i class="iconfont"></i>
                                     </span>
                                 </a>
                             </div>
                             <h3 class="title">
-                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12841" data-stat-pid="2_43_1_245" data-video="http://player.youku.com/embed/XMTU2NDM3NjEzMg==" data-video-title="小米Max 绝美外观视频" >小米Max 绝美外观视频</a>
+                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA13049" data-stat-pid="2_43_2_246" data-video="http://player.youku.com/embed/XMTU5ODI2NzMyMA==" data-video-title="小米8，一部与众不同的手机" data-stat-id="AA13049+2_43_2_246">小米8，一部与众不同的手机</a>
                             </h3>
-                            <p class="desc">6.44" 大屏黄金尺寸，看什么都震撼</p>
+                            <p class="desc">透明探索版，将科技与美学完美结合</p>
                         </li>
+
+
                         <li class="video-item">
                             <div class="figure figure-img">
-                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA13049" data-stat-pid="2_43_2_246" data-video="http://player.youku.com/embed/XMTU5ODI2NzMyMA==" data-video-title="手机摄影，防抖绷带（教程）" title="点击播放视频" >
-                                    <img src="http://i3.mifile.cn/a4/66cbfd29-8e48-4ed1-aee0-e0e46f4cdc8b" width="296" height="180" alt="手机摄影，防抖绷带（教程）">
-                                    <span class="play"> <i class="iconfont"></i>
-                                    </span>
-                                </a>
-                            </div>
-                            <h3 class="title">
-                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA13049" data-stat-pid="2_43_2_246" data-video="http://player.youku.com/embed/XMTU5ODI2NzMyMA==" data-video-title="手机摄影，防抖绷带（教程）" data-stat-id="AA13049+2_43_2_246">手机摄影，防抖绷带（教程）</a>
-                            </h3>
-                            <p class="desc">一分钟，拍照手抖迅速见效</p>
-                        </li>
-                        <li class="video-item">
-                            <div class="figure figure-img">
-                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12771" data-stat-pid="2_43_3_247" data-video="http://player.youku.com/embed/XMTU2MTQ2Njg3Ng==" data-video-title="笑喷了，沈腾爆笑出演，6集联播" title="点击播放视频">
-                                    <img src="//i3.mifile.cn/a4/T1k9CgB7Av1RXrhCrK.jpg" width="296" height="180" alt="笑喷了，沈腾爆笑出演，6集联播">
+                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12771" data-stat-pid="2_43_3_247" data-video="https://v.mifile.cn/b2c-mimall-media/53fc775dd6b29ecd8df3e2ea35129766.mp4" data-video-title="小米MIX 2S，一面科技 一面艺术" title="点击播放视频">
+                                    <img src="//i1.mifile.cn/a4/xmad_15278359339164_dDTJC.jpg" width="296" height="180" alt="小米MIX 2S，一面科技 一面艺术">
                                     <span class="play">
                                         <i class="iconfont"></i>
                                     </span>
                                 </a>
                             </div>
                             <h3 class="title">
-                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12771" data-stat-pid="2_43_3_247" data-video="XMTU2MTQ2Njg3Ng==" data-video-title="笑喷了，沈腾爆笑出演，6集联播" >笑喷了，沈腾爆笑出演，6集联播</a>
+                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12771" data-stat-pid="2_43_3_247" data-video="XMTU2MTQ2Njg3Ng==" data-video-title="小米MIX 2S，一面科技 一面艺术" >小米MIX 2S，一面科技 一面艺术</a>
                             </h3>
-                            <p class="desc">小米Max沈腾爆笑预告全集</p>
+                            <p class="desc">艺术品般陶瓷机身，惊艳、璀璨</p>
                         </li>
+
+
                         <li class="video-item">
                             <div class="figure figure-img">
-                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12405" data-stat-pid="2_43_4_249" data-video="XMTUwMTEyMjk0MA==" data-video-title="15秒了解小米5 有多快" title="点击播放视频">
-                                    <img src="//i3.mifile.cn/a4/T1ZOZgBmYv1RXrhCrK.jpg" width="296" height="180" alt="15秒了解小米5 有多快">
+                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12405" data-stat-pid="2_43_4_249" data-video="https://v.mifile.cn/b2c-mimall-media/69f7b9881f4ed7123f0d473dcd44d621.mp4" data-video-title="生活中无所不在的小爱同学" title="点击播放视频">
+                                    <img src="//i1.mifile.cn/a4/xmad_15278358912266_LDHfI.jpg" width="296" height="180" alt="生活中无所不在的小爱同学">
                                     <span class="play">
                                         <i class="iconfont"></i>
                                     </span>
                                 </a>
                             </div>
                             <h3 class="title">
-                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12405" data-stat-pid="2_43_4_249" data-video="XMTUwMTEyMjk0MA==" data-video-title="15秒了解小米5 有多快">15秒了解小米5 有多快</a>
+                                <a class="J_videoTrigger" href="javascript: void(0);" data-stat-aid="AA12405" data-stat-pid="2_43_4_249" data-video="XMTUwMTEyMjk0MA==" data-video-title="生活中无所不在的小爱同学">生活中无所不在的小爱同学</a>
                             </h3>
-                            <p class="desc">华少用超快语速告诉你小米5 到底有多快</p>
+                            <p class="desc">一句话搞定手机复杂操作</p>
                         </li>
+
+                        
                     </ul>
                     <!-- 视频 end -->
                 </div>
