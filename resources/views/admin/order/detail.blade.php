@@ -35,13 +35,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($details as $k=>$v)
+                    @foreach($good as $k=>$v)
                     <tr class="text-c">
                         <td>{{$v->goods_name}}</td>
                         <td><img src="{{$v->goods_img}}" style="width:150px;height:150px"></td>
-                        <td>{{$v->details_price}}</td>
-                        <td>{{$v->details_cnt}}</td>
-                        <td>{{$v->details_price*$v->details_cnt}}</td>
+                        <td>{{$v->goods_price}}</td>
+                        <td>{{$v->goods_status}}</td>
+                        <td>{{$v->goods_price}}</td>  <!-- *$v->goods_cnt -->
                     </tr>
                     @endforeach
                 </tbody>

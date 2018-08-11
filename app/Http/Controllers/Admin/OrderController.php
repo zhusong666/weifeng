@@ -14,6 +14,7 @@ class OrderController extends Controller
     
     public function index(Request $request)
     {
+        //查询
     	$res = DB::table('wf_shop_orders')
             ->where(function($query) use($request){
                 //关键字
@@ -31,141 +32,59 @@ class OrderController extends Controller
     }
 
     public function detail($id)
-    {
+    {  
+        //获取订单号
     	$orders = DB::table('wf_shop_orders')->where('order_id',$id)->first();
+        //订单详情表的订单号 和 订单表的订单号 相同,获取
     	$res = Details::where('orderss_id','=',$id)->get();
 
+        //把商品id从订单号里遍历出来
         $arr = [];
         foreach($res as $k => $v) {
            $arr[] = $v->goodss_id;
         }
-        dump($arr);
-        $goods = DB::table('wf_goods')->whereIn('goods_id',$arr)->get();
 
-        $goods = DB::table('wf_goods_img')->whereIn('good_id',$arr)->get();
-
-        // dump($good.good_id);
-
-
+        //如果goods和goods_img表有没有id在$arr数组里,遍历出来放在good里
+        $good = [];
+        foreach ($arr as $k => $v) {
+          $good[] = DB::table('wf_goods')
+            ->join('wf_goods_img','goods_id','=','good_id')
+            ->where('goods_id',$v)
+            ->first();
+        }
         
 
-        dump($goods);
-        // dd($good);
-
-        // dd($goods[0].goods_id);
-        // $aa = [];
-        // foreach($goods as $k=>$v){
-
-            // dd($v->goods_id);
-
-            // $gg = Goods::with('goodsimg')->where('good_id',$v['goods_id'])->first();
-
-            // $zou = Goods::with('goods_img')->where('goods_id',$v->goods_id)->first();
-            // $k->goods_id = $zou->goods_img;
-
-            // dd($gg);
-            // $aa[] = $v;
-            // $a = [];
-            // foreach ($v as  $kk =>$vv) { 
-            //     // $zou = Goods::with('goods_img')->where('goods_id',$vv['goods_id'])->first();
-            //     // $v[$kk]['goods_id'] = $zou->goods_img.goods_img;
-
-            //     $a[] = $vv;
-            // }
-           
-        // }
-        // dd($a);
-        // dump($goods);
-        // dd($img);
-
-
-
-
-
-        /*$good = DB::table('wf_goods_img')->whereIn('good_id',$arr)->get();
-
-        $img = [];
-        foreach ($good as $key => $value) {
-            
-            $img[] = $value->goods_img;
-        }
-
-        dump($arr);
-        dump($goods);
         dump($good);
-        dd($img);*/
-        
 
+        dump($res);
 
-
-
-
-        /*$name = [];
-        foreach($goods as $kk=>$vv){
-
-            // foreach($vv as $kkk=>$vvv){
-                // $img = DB::table('wf_goods_img')->whereIn('goods_id',$vvv['good_id'])->first();
-                // $vv[$kkk]['goods_img'] = $img->goodsimg->goods_img;
-                $name[] = $vv;
-            }
-            
-        }*/
-
-        // dd($goods);
-
-        /*$goods = DB::table('wf_goods')
-            ->whereIn('goods_id',$arr)
-            ->get();
-
-        $name =[];
-        foreach($goods as $kk=>$vv){
-
-            $name[] = $vv->goods_name;
-        }
-
-        $goods_img = DB::table('wf_goods_img')
-            ->whereIn('good_id',$arr)
-            ->get();
-
-        $img = [];
-        foreach($goods_img as $kkk=>$vvv){
-            $img[] = $vvv->goods_img;
-        }
-
-        dump($goods_img);
-        dd($img);*/
 
         /*$details = DB::table('wf_orders_details')
             ->join('wf_goods_img','goodss_id','=','good_id')
             ->join('wf_goods','goodss_id','=','goods_id')
-            ->select('wf_orders_details.*','wf_goods_img.goods_img','wf_goods.goods_name')
-            ->get();*/
-
-        $details = DB::table('wf_orders_details')
-            ->join('wf_goods_img','goodss_id','=','good_id')
-            ->join('wf_goods','goodss_id','=','goods_id')
             ->join('wf_shop_orders','orderss_id','=','order_id')
             ->select('wf_orders_details.*','wf_goods_img.goods_img','wf_goods.goods_name','wf_shop_orders.order_id')
-            ->get();
+            ->get();*/
 
         // dd($details);
 
-    	return view('/admin/order/detail',['title'=>'订单详情','details'=>$details]);
+    	return view('/admin/order/detail',['title'=>'订单详情','good'=>$good]);
     }
 
     public function dset(Request $request, $id)
     {
-       //获取id
+        //根据表单传输的订单号获取订单表里的订单号
         $result = DB::table('wf_shop_orders')->where('order_id',$id)->first();
+        //订单状态
         $status = $result->order_status;
         
-        //更改状态
+        //更改订单状态
         if($status=='1'){
             $result = DB::table('wf_shop_orders')->where('order_id',$id)->update(['order_status'=>2]);
         } else if($status=='2'){
             $result = DB::table('wf_shop_orders')->where('order_id',$id)->update(['order_status'=>3]);
         } 
-        //返回结果
+        //返回处理结果
         if($result){
             $data = [
                 'status'=>1,
