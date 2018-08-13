@@ -38,25 +38,46 @@ class OrderController extends Controller
         //订单详情表的订单号 和 订单表的订单号 相同,获取
     	$res = Details::where('orderss_id','=',$id)->get();
 
+        // dump($res);
+
         //把商品id从订单号里遍历出来
         $arr = [];
         foreach($res as $k => $v) {
            $arr[] = $v->goodss_id;
         }
+        // dd($arr);
 
-        //如果goods和goods_img表有没有id在$arr数组里,遍历出来放在good里
+        //goods和goods_img表有没有id在$arr数组里,遍历出来放在good里
         $good = [];
         foreach ($arr as $k => $v) {
-          $good[] = DB::table('wf_goods')
-            ->join('wf_goods_img','goods_id','=','good_id')
+          $good[] = Goods::join('wf_goods_img','goods_id','=','good_id')
             ->where('goods_id',$v)
             ->first();
         }
-        
+        // dump($good);
 
-        dump($good);
 
-        dump($res);
+
+        //数量
+        $aa = [];
+        foreach($res as $k => $v) {
+           
+           $aa[] = $v->details_cnt;
+
+           // $aa[] = $bb;
+        }
+
+        // dd($aa);
+
+        // $b = implode(',',$aa);
+
+        // foreach ($aa as $v) {
+            
+        //     $good = $v->0;
+        // }
+        // dump($res);
+       // dump($res->[0].details_cnt);
+        // dd($res);
 
 
         /*$details = DB::table('wf_orders_details')

@@ -7,7 +7,6 @@
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
     <title>小米官网</title>
-
     <link href="/homes/common/css/login.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/homes/common/js/common.js"></script>
     <script type="text/javascript" src="/homes/common/js/user.js"></script>
@@ -19,58 +18,6 @@
 <script type="text/javascript" src="/homes/common/js/utils.js"></script>
 <script type="text/javascript" src="/homes/common/js/jquery.SuperSlide.js"></script>
 <script type="text/javascript" src="/homes/common/js/xiaomi_common.js"></script>
-<script>
-    $(function(){
-
-        //加载清空文本框
-        $("input:text,input:password").val("");
-
-        //提示文字隐藏显示效果
-        //登录界面
-        $(".enter-area .enter-item").focus(function(){
-            if($(this).val().length==0){
-                $(this).siblings(".placeholder").addClass("hide");
-            }
-        }).blur(function(){
-            if($(this).val().length==0){
-                $(this).siblings(".placeholder").removeClass("hide");
-            }
-        }).keyup(function(){
-            if($(this).val().length>0){
-                $(this).siblings(".placeholder").addClass("hide");
-            }else{
-                $(this).siblings(".placeholder").removeClass("hide");
-            }
-        });
-        //注册界面
-        $(".inputbg input").focus(function(){
-            $('#error').remove();
-
-            if($(this).val().length>0){
-                $(this).parent().siblings(".t_text").addClass("hide");
-            }
-        }).blur(function(){
-            if($(this).val().length==0){
-                $(this).parent().siblings(".t_text").removeClass("hide");
-            }
-        }).keyup(function(){
-            if($(this).val().length>0){
-                $(this).parent().siblings(".t_text").addClass("hide");
-            }else{
-                $(this).parent().siblings(".t_text").removeClass("hide");
-            }
-        });
-
-        //其它登录方式
-        $("#other_method").click(function(){
-            if($(".third-area").hasClass("hide")){
-                $(".third-area").removeClass("hide");
-            }else{
-                $(".third-area").addClass("hide");
-            }
-        })
-    })
-</script>
 <div class="register_wrap">
     <div class="bugfix_ie6 dis_none">
         <div class="n-logo-area clearfix">
@@ -83,7 +30,7 @@
                 <h4 class="title-big">注册小米官网</h4>
             </div>
             <div class="regbox" id="register_box">
-                <form action="/login/register" method="post" name="formUser" onsubmit="return submitPwdInfo();">
+                <form action="/doregister" method="post" name="formUser" onsubmit="return submitPwdInfo();">
                     <input type="hidden" value="C4E1AB9A7DE79D7C750E8916875E7DBE" id="validate" />
                     <div class="phone_step1">
                         <style type="text/css">
@@ -105,43 +52,43 @@
                             @endif
                         </div>
                         <input type="hidden" id="sendtype" />
-                        <div class="inputbg">
+                        <div class="inputbg" style="width:500px">
                             <label class="labelbox"> <input type="text" name="username" id="username" placeholder="用户名" /> </label>
-                            <span class="t_text">用户名</span>
+                            <span class="yhm">请填写2-6位用户名</span>
                             <span class="error_icon"></span>
                         </div>
                         <div class="err_tip" id="username_notice">
                             <em></em>
                         </div>
-                        <div class="inputbg">
-                            <label class="labelbox"> <input name="email" type="text" id="email"placeholder="email" /> </label>
-                            <span class="t_text">email</span>
-                            <span class="error_icon"></span>
-                        </div>
-                        <div class="err_tip" id="email_notice">
-                            <em></em>
-                        </div>
-                        <div class="inputbg">
-                            <label class="labelbox"> <input type="password" name="password" id="password1" onblur="check_password(this.value);" onkeyup="check_password(this.value);checkIntensity(this.value);" placeholder="密码" /> </label>
-                            <span class="t_text">密码</span>
+                        <div class="inputbg" style="width:500px">
+                            <label class="labelbox"><input type="password" name="password" id="password1" placeholder="密码" /></label>
+                            <span class="mima">请填写密码,长度为6-18位</span>
+                            
                             <span class="error_icon"></span>
                         </div>
                         <div class="err_tip" id="password_notice">
                             <em></em>
                         </div>
-                        <div class="inputbg">
-                            <label class="labelbox"> <input name="confirm_password" type="password" id="conform_password" onblur="check_conform_password(this.value);" onkeyup="check_conform_password(this.value);" placeholder="确认密码" /> </label>
-                            <span class="t_text">确认密码</span>
+                        <div class="inputbg" style="width:500px">
+                            <label class="labelbox"> <input name="confirm_password" type="password" id="conform_password" placeholder="确认密码" /> </label>
+                            <span class="czmm">请输入确认密码</span>
                             <span class="error_icon"></span>
                         </div>
                         <div class="err_tip" id="conform_password_notice">
                             <em></em>
                         </div>
-                        <div class="inputbg inputcode dis_box clearfix">
-                            <label class="labelbox label-code"> <input type="text" class="code" name="Vcode" maxlength="6" placeholder="验证码" /> </label>
-                            <span class="t_text">验证码</span>
+                        <div class="inputbg" style="width:500px">
+                            <label class="labelbox"> <input name="email" type="text" id="email"placeholder="邮箱" /> </label>
+                            <span class="yxx">请输入邮箱</span>
                             <span class="error_icon"></span>
-                            <img src="/login/captcha" alt="captcha" class="icode_image code-image chkcode_img" onclick="this.src='/login/captcha?'+Math.random()" />
+                        </div>
+                        <div class="err_tip" id="email_notice">
+                            <em></em>
+                        </div>
+                        <div class="inputbg" style="width:500px">
+                            <label class="labelbox"> <input name="phone" type="text" id="phone" placeholder="手机号" /> </label>
+                            <span class="sjh">请输入手机号</span>
+                            <span class="error_icon"></span>
                         </div>
                         <div class="err_tip">
                             <em></em>
@@ -154,7 +101,7 @@
                         </div>
                         <div class="fixed_bot mar_phone_dis1">
                             {{csrf_field()}}
-                            <input name="Submit" type="submit" value="同意协议并注册" class="btn332 btn_reg_1 submit-step" />
+                            <input type="submit" value="同意协议并注册" class="btn332 btn_reg_1 submit-step" />
                         </div>
                         <div class="trig">
                             已有账号?
@@ -171,34 +118,182 @@
         <p class="nf-intro"><span>&copy;<a href="http://mm.com/user.php?act=register#">mi.com</a> 京ICP证110507号 京ICP备10046444号 京公网安备1101080212535号 <a href="http://mm.com/user.php?act=register#">京网文[2014]0059-0009号</a></span></p>
     </div>
 </div>
-<script type="text/javascript">
-    var process_request = "正在处理您的请求...";
-    var username_empty = "用户名不能为空。";
-    var username_shorter = "用户名长度不能少于 3 个字符。";
-    var username_invalid = "用户名只能是由字母数字以及下划线组成。";
-    var password_empty = "登录密码不能为空。";
-    var password_shorter = "登录密码不能少于 6 个字符。";
-    var confirm_password_invalid = "两次输入密码不一致";
-    var email_empty = "Email 为空";
-    var email_invalid = "Email 不是合法的地址";
-    var agreement = "您没有接受协议";
-    var msn_invalid = "msn地址不是一个有效的邮件地址";
-    var qq_invalid = "QQ号码不是一个有效的号码";
-    var home_phone_invalid = "家庭电话不是一个有效号码";
-    var office_phone_invalid = "办公电话不是一个有效号码";
-    var mobile_phone_invalid = "手机号码不是一个有效号码";
-    var msg_un_blank = "用户名不能为空";
-    var msg_un_length = "用户名最长不得超过7个汉字";
-    var msg_un_format = "用户名含有非法字符";
-    var msg_un_registered = "用户名已经存在,请重新输入";
-    var msg_can_rg = "可以注册";
-    var msg_email_blank = "邮件地址不能为空";
-    var msg_email_registered = "邮箱已存在,请重新输入";
-    var msg_email_format = "邮件地址不合法";
-    var msg_blank = "不能为空";
-    var no_select_question = "您没有完成密码提示问题的操作";
-    var passwd_balnk = "- 密码中不能包含空格";
-    var username_exist = "用户名 %s 已经存在";
+<script>
+    var UV  = false;
+    var PV  = false;
+    var RPV = false;
+    var EV  = false;
+    var NV  = false;
+
+        //获取焦点
+        $('input[name=username]').focus(function(){
+
+            // $(this).css('border','solid 1px purple');
+        })
+
+        //失去焦点
+        $('input[name=username]').blur(function(){
+
+            //获取值
+            var tv = $(this).val(); 
+
+            //设置正则
+            var reg = /^\w{2,12}$/;
+
+            var inps = $(this);
+
+            if(!reg.test(tv)){
+
+                $('.yhm').text(' *用户名格式不正确').css('color','red');
+
+                // $(this).css('border','solid 1px red');
+
+                UV = false;
+            } else {
+
+                //发送ajax
+                $.get('/checkuser',{username:tv},function(data){
+
+                    if(data == '1'){
+
+                        $('.yhm').text(' *用户名已存在').css({color:'red'});
+
+                        // $('.yhm').css('border','solid 1px red');
+
+                        UV = false;
+                    } else {
+
+                        $('.yhm').text(' 恭喜用户名可用').css('color','green');
+
+                        // inps.css('border','solid 1px green');
+
+                        UV = true;
+                    }
+                })
+            }
+        })
+
+        //密码
+        $('input[name=password]').focus(function(){
+
+            // $(this).css('border','solid 1px purple');
+        })
+
+        $('input[name=password]').blur(function(){
+
+            var pv = $(this).val();
+
+            var reg = /^\w{6,18}$/;
+
+            if(!reg.test(pv)){
+
+                $('.mima').text(' *密码格式不正确').css('color','red');
+
+                // $(this).css('border','solid 1px red');
+
+                PV = false;
+
+            } else {
+                $('.mima').text(' 恭喜密码可用').css('color','green');
+
+                // $(this).css('border','solid 1px green');
+
+                PV = true;
+            }
+        })
+
+        //确认密码
+        $('input[name=confirm_password]').focus(function(){
+
+            // $(this).css('border','solid 1px purple');
+        })
+
+        $('input[name=confirm_password]').blur(function(){
+
+            var rpv = $(this).val();
+
+            var pv = $('input[name=password]').val();
+
+            if(rpv != pv){
+
+                $('.czmm').text(' *两次密码不一致').css('color','red');
+
+                // $(this).css('border','solid 1px red');
+
+                RPV = false;
+            } else {
+
+                $('.czmm').text(' 两次密码一致').css('color','green');
+
+                // $(this).css('border','solid 1px green');
+
+                RPV = true;
+            }
+        })
+
+        //邮箱
+        $('input[name=email]').focus(function(){
+
+        })
+
+        $('input[name=email]').blur(function(){
+
+            var yx = $(this).val();
+
+            var reg =  /^[0-9a-zA-Z]\w{5,}@[0-9a-zA-Z]{1,10}(\.[a-zA-Z]{2,5}){1,2}$/;
+
+            if(!reg.test(yx)){
+
+                $('.yxx').text(' *请填写正确的邮箱').css('color','red');
+
+                EV = false;
+            } else {
+
+                $('.yxx').text(' *恭喜邮箱可用').css('color','green');
+
+                EV = true;
+            }
+        })
+
+        //手机号
+        $('input[name=phone]').focus(function(){
+
+            // $(this).css('border','solid 1px purple');
+        })
+
+        $('input[name=phone]').blur(function(){
+
+            var sj = $(this).val();
+
+            var reg = /^1[3456789]\d{9}$/;
+
+            if(!reg.test(sj)){
+
+                $('.sjh').text(' *请填写正确的手机号').css('color','red');
+
+                // $(this).css('border','solid 1px red');
+
+                NV = false;
+            } else {
+
+                $('.sjh').text(' 恭喜手机号可用').css('color','green');
+
+                // $(this).css('border','solid 1px green');
+
+                NV = true;
+            }
+        })
+
+        //控制提交功能
+        $(':submit').click(function(){
+
+            if(UV && PV && RPV && EV && NV){
+
+                return true;
+            }
+
+            return false;
+        })
 </script>
 </body>
 </html>

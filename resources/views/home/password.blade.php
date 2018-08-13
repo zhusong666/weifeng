@@ -7,13 +7,10 @@
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
     <title>小米官网</title>
-
     <link rel="stylesheet" href="/homes/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/homes/bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="/homes/bootstrap/js/jquery.min.js"></script>
     <script type="text/javascript" src="/homes/bootstrap/js/bootstrap.min.js"></script>
-
-
     <link href="/homes/common/css/login.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/homes/common/js/common.js"></script>
     <script type="text/javascript" src="/homes/common/js/user.js"></script>
@@ -25,77 +22,6 @@
 <script type="text/javascript" src="/homes/common/js/utils.js"></script>
 <script type="text/javascript" src="/homes/common/js/jquery.SuperSlide.js"></script>
 <script type="text/javascript" src="/homes/common/js/xiaomi_common.js"></script>
-
-
-
-
-
-<script>
-    $(function(){
-
-        @if(session('mark')==1)
-            $('#but').trigger('click');
-        @endif
-
-
-        //加载清空文本框
-        $("input:text,input:password").val("").focus(function(){
-            $('#error').remove();
-        });
-
-        //提示文字隐藏显示效果
-        //登录界面
-        $(".enter-area .enter-item").focus(function(){
-
-            if($(this).val().length==0){
-                $(this).siblings(".placeholder").addClass("hide");
-            }
-        }).blur(function(){
-            if($(this).val().length==0){
-                $(this).siblings(".placeholder").removeClass("hide");
-            }
-        }).keyup(function(){
-            if($(this).val().length>0){
-                $(this).siblings(".placeholder").addClass("hide");
-            }else{
-                $(this).siblings(".placeholder").removeClass("hide");
-            }
-        });
-        //注册界面
-        $(".inputbg input").focus(function(){
-            if($(this).val().length>0){
-                $(this).parent().siblings(".t_text").addClass("hide");
-            }
-        }).blur(function(){
-            if($(this).val().length==0){
-                $(this).parent().siblings(".t_text").removeClass("hide");
-            }
-        }).keyup(function(){
-            if($(this).val().length>0){
-                $(this).parent().siblings(".t_text").addClass("hide");
-            }else{
-                $(this).parent().siblings(".t_text").removeClass("hide");
-            }
-        });
-
-        //其它登录方式
-        $("#other_method").click(function(){
-            if($(".third-area").hasClass("hide")){
-                $(".third-area").removeClass("hide");
-            }else{
-                $(".third-area").addClass("hide");
-            }
-        })
-    })
-</script>
-<script type="text/javascript">
-    var user_name_empty = "请输入您的用户名！";
-    var email_address_empty = "请输入您的电子邮件地址！";
-    var email_address_error = "您输入的电子邮件地址格式不正确！";
-    var new_password_empty = "请输入您的新密码！";
-    var confirm_password_empty = "请输入您的确认密码！";
-    var both_password_error = "您两次输入的密码不一致！";
-</script>
 <style type="text/css">
     img{
         position: absolute;
@@ -110,9 +36,6 @@
 
 </style>
 
-
-
-
 <div class="register_wrap">
     <div class="bugfix_ie6 dis_none">
         <div class="n-logo-area clearfix">
@@ -122,10 +45,10 @@
     <div id="main" class="">
         <div class="n-frame device-frame reg_frame">
             <div class="title-item dis_bot35 t_c">
-                <h4 class="title-big">请输入您注册时填写的用户名和电子邮件地址。 </h4>
+                <h4 class="title-big">请输入您注册时填写的用户名、手机号和电子邮箱。 </h4>
             </div>
             <div class="regbox">
-                <form action="/login/password" method="post" name="getPassword" onsubmit="return submitPwdInfo();">
+                <form action="/doeditpass" method="post" name="getPassword">
                     <style type="text/css">
                         #error{
                             color: orangered;
@@ -139,14 +62,19 @@
                             </h4>
                         @endif
                     </div>
-                    <div class="inputbg">
-                        <label class="labelbox"> <input name="username" type="text" size="30" placeholder="用户名" /> </label>
-                        <span class="t_text">用户名</span>
+                    <div class="inputbg" style="width:500px">
+                        <label class="labelbox"> <input name="username" type="text" size="30" placeholder="请输入用户名" /> </label>
+                        <span class="yhm" style="margin-top:10px"></span>
                         <span class="error_icon"></span>
                     </div>
                     <div class="inputbg">
-                        <label class="labelbox"> <input name="email" type="text" size="30" class="inputBg" placeholder="电子邮件地址" /> </label>
-                        <span class="t_text">电子邮件地址</span>
+                        <label class="labelbox"> <input name="phone" type="text" size="30" placeholder="请输入手机号" /> </label>
+                        <span class="t_text">手机号</span>
+                        <span class="error_icon"></span>
+                    </div>
+                    <div class="inputbg">
+                        <label class="labelbox"> <input name="email" type="text" size="30" class="inputBg" placeholder="请输入电子邮箱" /> </label>
+                        <span class="t_text">电子邮箱</span>
                         <span class="error_icon"></span>
                     </div>
                     <div class="fixed_bot mar_phone_dis1">
@@ -164,59 +92,97 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="exampleModalLabel">内容已核实 请登录邮箱验证</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <a href="/login/repass">
-                            <button class="btn btn-warning col-xs-offset-5" >确定前往验证</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
         <button type="button" id="but" class="btn btn-primary col-xs-offset-4 hidden" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"></button>
 
-    <script type="text/javascript">
-        var process_request = "正在处理您的请求...";
-        var username_empty = "用户名不能为空。";
-        var username_shorter = "用户名长度不能少于 3 个字符。";
-        var username_invalid = "用户名只能是由字母数字以及下划线组成。";
-        var password_empty = "登录密码不能为空。";
-        var password_shorter = "登录密码不能少于 6 个字符。";
-        var confirm_password_invalid = "两次输入密码不一致";
-        var email_empty = "Email 为空";
-        var email_invalid = "Email 不是合法的地址";
-        var agreement = "您没有接受协议";
-        var msn_invalid = "msn地址不是一个有效的邮件地址";
-        var qq_invalid = "QQ号码不是一个有效的号码";
-        var home_phone_invalid = "家庭电话不是一个有效号码";
-        var office_phone_invalid = "办公电话不是一个有效号码";
-        var mobile_phone_invalid = "手机号码不是一个有效号码";
-        var msg_un_blank = "用户名不能为空";
-        var msg_un_length = "用户名最长不得超过7个汉字";
-        var msg_un_format = "用户名含有非法字符";
-        var msg_un_registered = "用户名已经存在,请重新输入";
-        var msg_can_rg = "可以注册";
-        var msg_email_blank = "邮件地址不能为空";
-        var msg_email_registered = "邮箱已存在,请重新输入";
-        var msg_email_format = "邮件地址不合法";
-        var msg_blank = "不能为空";
-        var no_select_question = "您没有完成密码提示问题的操作";
-        var passwd_balnk = "- 密码中不能包含空格";
-        var username_exist = "用户名 %s 已经存在";
-    </script>
 </div>
 
+<script>
 
+    var UV = false;
+    var PV = false;
+    var EV = false;
+    //获取焦点
+        $('input[name=username]').focus(function(){
 
+        })
+
+        //失去焦点
+        $('input[name=username]').blur(function(){
+
+            //获取值
+            var tv = $(this).val(); 
+            var inps = $(this);
+
+            if(tv == ''){
+
+                UV = false;
+            } else {
+
+                //发送ajax
+                $.get('/checkname',{username:tv},function(data){
+
+                    if(data == '0'){
+
+                        $('.yhm').text(' *用户名错误').css({color:'red'});
+
+                        UV = false;
+                    } else {
+
+                        $('.yhm').text(' 恭喜用户名正确').css('color','green');
+
+                        UV = true;
+                    }
+                })
+            }
+        })
+
+        //密码
+        $('input[name=phone]').focus(function(){
+
+        })
+
+        $('input[name=phone]').blur(function(){
+
+            var pv = $(this).val();
+
+            if(pv == ''){
+
+                PV = false;
+
+            } else {
+                
+                PV = true;
+            }
+        })
+
+        //邮箱
+        $('input[name=email]').focus(function(){
+
+        })
+
+        $('input[name=email]').blur(function(){
+
+            var yxx = $(this).val();
+
+            if(yxx == ''){
+
+                EV = false;
+            } else {
+
+                EV = true;
+            }
+        })
+
+    $(':submit').click(function(){
+
+            if(UV && PV && EV){
+
+                return true;
+            }
+
+            return false;
+        })
+</script>
 
 </body>
 </html>

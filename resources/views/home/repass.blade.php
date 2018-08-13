@@ -7,7 +7,6 @@
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
     <title>小米官网</title>
-
     <link href="/homes/common/css/login.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/homes/common/js/common.js"></script>
     <script type="text/javascript" src="/homes/common/js/user.js"></script>
@@ -19,58 +18,6 @@
 <script type="text/javascript" src="/homes/common/js/utils.js"></script>
 <script type="text/javascript" src="/homes/common/js/jquery.SuperSlide.js"></script>
 <script type="text/javascript" src="/homes/common/js/xiaomi_common.js"></script>
-<script>
-    $(function(){
-
-        //加载清空文本框
-        $("input:text,input:password").val("");
-
-        //提示文字隐藏显示效果
-        //登录界面
-        $(".enter-area .enter-item").focus(function(){
-            if($(this).val().length==0){
-                $(this).siblings(".placeholder").addClass("hide");
-            }
-        }).blur(function(){
-            if($(this).val().length==0){
-                $(this).siblings(".placeholder").removeClass("hide");
-            }
-        }).keyup(function(){
-            if($(this).val().length>0){
-                $(this).siblings(".placeholder").addClass("hide");
-            }else{
-                $(this).siblings(".placeholder").removeClass("hide");
-            }
-        });
-        //注册界面
-        $(".inputbg input").focus(function(){
-            $('#error').remove();
-
-            if($(this).val().length>0){
-                $(this).parent().siblings(".t_text").addClass("hide");
-            }
-        }).blur(function(){
-            if($(this).val().length==0){
-                $(this).parent().siblings(".t_text").removeClass("hide");
-            }
-        }).keyup(function(){
-            if($(this).val().length>0){
-                $(this).parent().siblings(".t_text").addClass("hide");
-            }else{
-                $(this).parent().siblings(".t_text").removeClass("hide");
-            }
-        });
-
-        //其它登录方式
-        $("#other_method").click(function(){
-            if($(".third-area").hasClass("hide")){
-                $(".third-area").removeClass("hide");
-            }else{
-                $(".third-area").addClass("hide");
-            }
-        })
-    })
-</script>
 <div class="register_wrap">
     <div class="bugfix_ie6 dis_none">
         <div class="n-logo-area clearfix">
@@ -83,28 +30,41 @@
                 <h4 class="title-big">重置密码</h4>
             </div>
             <div class="regbox" id="register_box">
-                <form action="/login/repass" method="post" name="formUser" onsubmit="return submitPwdInfo();">
+                <form action="/dorepass" method="post" name="formUser">
+                    <style type="text/css">
+                        #success{
+                            color: green;
+                            text-align: center;
+                        }
+                        #error{
+                            color: orangered;
+                            text-align: center;
+                        }
+                    </style>
+                    <div class="enter-area" id="success">
+                        @if(session('success'))
+                            <h4 id="success">
+                                {{ session('success') }}
+                            </h4>
+                        @endif
+                    </div>
+                    <div class="enter-area" id="error">
+                        @if(session('error'))
+                            <h4 id="error">
+                                {{ session('error') }}
+                            </h4>
+                        @endif
+                    </div>
                     <input type="hidden" value="C4E1AB9A7DE79D7C750E8916875E7DBE" id="validate" />
                     <div class="phone_step1">
-
-
                         <input type="hidden" id="sendtype" />
-
-                        <div class="inputbg">
-                            <label class="labelbox"> <input type="password" name="password" id="password1" onblur="check_password(this.value);" onkeyup="check_password(this.value);checkIntensity(this.value);" placeholder="密码" /> </label>
-                            <span class="t_text">密码</span>
-                            <span class="error_icon"></span>
+                        <div class="inputbg" style="width:500px">
+                            <label class="labelbox"> <input type="password" name="password" id="password1" placeholder="请输入密码"/> </label>
+                            <span class="mima">请填写密码,长度为6-18位</span>
                         </div>
-                        <div class="err_tip" id="password_notice">
-                            <em></em>
-                        </div>
-                        <div class="inputbg">
-                            <label class="labelbox"> <input name="confirm_password" type="password" id="conform_password" onblur="check_conform_password(this.value);" onkeyup="check_conform_password(this.value);" placeholder="确认密码" /> </label>
-                            <span class="t_text">确认密码</span>
-                            <span class="error_icon"></span>
-                        </div>
-                        <div class="err_tip" id="conform_password_notice">
-                            <em></em>
+                        <div class="inputbg" style="width:500px">
+                            <label class="labelbox"> <input name="confirm_password" type="password" id="conform_password" placeholder="请确认密码"/> </label>
+                            <span class="mimam">请确认密码</span>
                         </div>
                         <div class="fixed_bot mar_phone_dis1">
                             {{csrf_field()}}
@@ -122,34 +82,70 @@
         <p class="nf-intro"><span>&copy;<a href="http://mm.com/user.php?act=register#">mi.com</a> 京ICP证110507号 京ICP备10046444号 京公网安备1101080212535号 <a href="http://mm.com/user.php?act=register#">京网文[2014]0059-0009号</a></span></p>
     </div>
 </div>
-<script type="text/javascript">
-    var process_request = "正在处理您的请求...";
-    var username_empty = "用户名不能为空。";
-    var username_shorter = "用户名长度不能少于 3 个字符。";
-    var username_invalid = "用户名只能是由字母数字以及下划线组成。";
-    var password_empty = "登录密码不能为空。";
-    var password_shorter = "登录密码不能少于 6 个字符。";
-    var confirm_password_invalid = "两次输入密码不一致";
-    var email_empty = "Email 为空";
-    var email_invalid = "Email 不是合法的地址";
-    var agreement = "您没有接受协议";
-    var msn_invalid = "msn地址不是一个有效的邮件地址";
-    var qq_invalid = "QQ号码不是一个有效的号码";
-    var home_phone_invalid = "家庭电话不是一个有效号码";
-    var office_phone_invalid = "办公电话不是一个有效号码";
-    var mobile_phone_invalid = "手机号码不是一个有效号码";
-    var msg_un_blank = "用户名不能为空";
-    var msg_un_length = "用户名最长不得超过7个汉字";
-    var msg_un_format = "用户名含有非法字符";
-    var msg_un_registered = "用户名已经存在,请重新输入";
-    var msg_can_rg = "可以注册";
-    var msg_email_blank = "邮件地址不能为空";
-    var msg_email_registered = "邮箱已存在,请重新输入";
-    var msg_email_format = "邮件地址不合法";
-    var msg_blank = "不能为空";
-    var no_select_question = "您没有完成密码提示问题的操作";
-    var passwd_balnk = "- 密码中不能包含空格";
-    var username_exist = "用户名 %s 已经存在";
+<script>
+
+    var PV = false;
+    var RPV = false;
+        //密码
+        $('input[name=password]').focus(function(){
+
+        })
+
+        $('input[name=password]').blur(function(){
+
+            var pv = $(this).val();
+
+            var reg = /^\w{6,18}$/;
+
+            if(!reg.test(pv)){
+
+                $('.mima').text(' *密码格式不正确').css('color','red');
+
+
+                PV = false;
+
+            } else {
+                $('.mima').text(' 恭喜密码可用').css('color','green');
+
+
+                PV = true;
+            }
+        })
+
+        //确认密码
+        $('input[name=confirm_password]').focus(function(){
+
+        })
+
+        $('input[name=confirm_password]').blur(function(){
+
+            var rpv = $(this).val();
+
+            var pv = $('input[name=password]').val();
+
+            if(rpv != pv){
+
+                $('.mimam').text(' *两次密码不一致').css('color','red');
+
+
+                RPV = false;
+            } else {
+
+                $('.mimam').text(' 两次密码一致').css('color','green');
+
+
+                RPV = true;
+            }
+        })
+    $(':submit').click(function(){
+
+            if(PV && RPV){
+
+                return true;
+            }
+
+            return false;
+        })
 </script>
 </body>
 </html>

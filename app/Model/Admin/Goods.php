@@ -29,4 +29,9 @@ class Goods extends Model
     {
     	return $this->hasOne('App\Model\Admin\Goods_img','good_id');
     }
+
+    public function details()
+    {
+        return $this->hasOne('App\Model\Admin\Details','goodss_id');
+    }
 }

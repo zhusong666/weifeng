@@ -59,7 +59,29 @@ Route::group([],function(){
 //前台首页
 Route::any('/','Home\IndexController@index');
 //前台登录
-Route::any('/home/login','Home\IndexController@login');
+Route::any('/login','Home\LoginController@login');
+Route::any('/dologin','Home\LoginController@dologin');
+Route::any('/captcha','Home\LoginController@getCaptcha');
+//登录ajax 查询用户名
+Route::any('/checkname','Home\LoginController@checkname');
+//退出
+Route::any('/logout','Home\LoginController@logout');
+//注册
+Route::any('/register','Home\RegisterController@register');
+Route::any('/doregister','Home\RegisterController@doregister');
+//注册ajax验证
+Route::any('/checkuser','Home\RegisterController@checkuser');
+//邮箱激活
+Route::any('/jihuo','Home\RegisterController@jihuo');
+Route::any('/tixing','Home\RegisterController@tixing');
+//忘记密码(输入用户名.邮箱验证)
+Route::any('/editpass','Home\LoginController@editpass');
+//处理验证
+Route::any('/doeditpass','Home\LoginController@doeditpass');
+//输入新密码
+Route::any('/repass','Home\LoginController@repass');
+Route::any('/dorepass','Home\LoginController@dorepass');
+
 //商品列表
 Route::any('goodlist/{id}','GoodController@goodList');
 
