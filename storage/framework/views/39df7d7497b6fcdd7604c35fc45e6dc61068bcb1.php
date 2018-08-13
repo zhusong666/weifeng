@@ -7,19 +7,19 @@
     <meta name="description" content="小米商城-直营小米公司旗下所有产品，囊括小米手机、红米手机、小米电视、智能硬件、配件及小米生活周边，同时提供小米客户服务及售后支持。" />
     <meta name="keywords" content="小米,小米官网,小米手机,小米官网首页,小米商城" />
     <meta name="viewport" content="width=1226" />
-    @section('css')
+    <?php $__env->startSection('css'); ?>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/homes/common/css/base.min.css" />
-    @show
-    @section('myCss')
-    @show
+    <?php echo $__env->yieldSection(); ?>
+    <?php $__env->startSection('myCss'); ?>
+    <?php echo $__env->yieldSection(); ?>
 </head>
 <style type="text/css">
     
 
 </style>
 <body>
-@section('header')
+<?php $__env->startSection('header'); ?>
     <div class="site-topbar">
         <div class="container">
             <div class="topbar-nav">
@@ -31,65 +31,47 @@
                     购物车
                     <span class="cart-mini-num J_cartNum"></span>
                 </a>
-                {{--<div class="cart-menu" id="J_miniCartMenu">--}}
-                    {{--<div class="loading">--}}
-                        {{--<div class="loader"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                
+                    
+                        
+                    
+                
             </div>
-
-             @if(!session('username'))
-
+            <!--  <?php if(!session('uid')){?> -->
             <div class="topbar-info" id="J_userInfo">
-                <a  rel="nofollow" class="link" href="/login" data-needlogin="true">
-                    <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
-
+                <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
                 <span class="sep">|</span>
-                <a  rel="nofollow" class="link" href="/register" >注册</a>
+                <a  rel="nofollow" class="link" href="/login/register" >注册</a>
             </div>
-
+            <!-- <?php 
+                }else{ 
             
+                    $user = \App\Http\Controllers\Home\UserController::gainUsername();
+            ?> -->
             <div class="topbar-info" id="J_userInfo">
                 <span class="user">
                     <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
-                        <span class="name"></span> <i class="iconfont"></i>
-
-            @endif
-            @if(session('username'))
-            <div class="topbar-info" id="J_userInfo">
-                <span class="user">
-                    <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
-                        <span class="name">{{session('username')}}</span> <i class="iconfont"></i>
+                        <span class="name"><!-- <?php echo e($user->username); ?> --></span> <i class="iconfont"></i>
                     </a>
                     <ul class="user-menu" style="display: none;">
+
                         <li>
-                            <a rel="nofollow" href="/comment" target="_blank">评价晒单</a>
+                            <a rel="nofollow" href="/user/comment" target="_blank">评价晒单</a>
                         </li>
+                        <!-- <li>
+                            <a rel="nofollow" href="http://order.mi.com/user/favorite" target="_blank">我的喜欢</a>
+                        </li> -->
                         <li>
-                            <a rel="nofollow" href="/logout">退出登录</a>
+                            <a rel="nofollow" href="/user/logout">退出登录</a>
                         </li>
                     </ul>
                 </span>
                 <span class="sep">|</span>
                 <a rel="nofollow" class="link link-order" href="/user/order/" target="_blank">我的订单</a>
             </div>
-            @endif
+            <!-- <?php } ?> -->
         </div>
     </div>
-<div class="site-header">
-    <div class="container">
-        <div class="header-logo">
-            <a class="logo ir" href="/" title="小米官网">小米官网</a>
-        </div>
-<div class="header-search"> 
-    <form id="J_searchForm" class="search-form clearfix" action="/home/search" method="get"> 
-     <label for="search" class="hide">站内搜索</label> 
-     <input class="search-text" type="search"  name="goods_name"  autocomplete="off" /> 
-     <input type="submit" class="search-btn iconfont" value="" /> 
-    </form> 
-   </div> 
-  </div>
-</div>
     <div class="site-header">
         <div class="container">
             <div class="header-logo" style="width:220px;">
@@ -114,27 +96,27 @@
 <div class="site-category"> 
    <ul id="J_categoryList" class="site-category-list clearfix"> 
 
-    @foreach ($data as $catek => $catev)
-    <li class="category-item"> <a class="title" href="//www.mi.com/p/3469.html?client_id=180100041086&amp;masid=17409.0245" data-stat-id="886b68ab740e29bb" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-886b68ab740e29bb', '//www.mi.com/p/3469.htmlclient_id=180100041086&amp;masid=17409.0245', 'pcpid', '']);">{{$catev->cate_name}}<i class="iconfont"></i></a> 
+    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $catek => $catev): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <li class="category-item"> <a class="title" href="//www.mi.com/p/3469.html?client_id=180100041086&amp;masid=17409.0245" data-stat-id="886b68ab740e29bb" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-886b68ab740e29bb', '//www.mi.com/p/3469.htmlclient_id=180100041086&amp;masid=17409.0245', 'pcpid', '']);"><?php echo e($catev->cate_name); ?><i class="iconfont"></i></a> 
     <div class="children clearfix children-col-3"  >
         <ul class="children-list children-list-col children-list-col-1" style=" width:1000px;">
-            @foreach ($catev['goods'] as $goodsk => $goodsv)
+            <?php $__currentLoopData = $catev['goods']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $goodsk => $goodsv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div >
                 <li style=" display:inline;"> 
                      <a class="link" href="https://www.mi.com/aircondition/third" data-stat-id="0cb048b7c1ea5757" >
                       
-                        <img class="thumb" src="{{$goodsv->imgs}}" width="40" height="40" alt="" />
+                        <img class="thumb" src="<?php echo e($goodsv->imgs); ?>" width="40" height="40" alt="" />
                         
-                         <span class="text"> {{$goodsv->goods_name}}</span>
+                         <span class="text"> <?php echo e($goodsv->goods_name); ?></span>
                     </a> 
                 </li>
             </div>
-       @endforeach
+       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </ul>
      </div>
 
     </li> 
- @endforeach
+ <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
    </ul>
   </div>
@@ -169,9 +151,10 @@
 
         <div id="J_navMenu" class="header-nav-menu" style="display: none;"><div class="container"></div></div>
     </div>
-@show
-@section('content')
-@show
+<?php echo $__env->yieldSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+<?php echo $__env->yieldSection(); ?>
     <div class="site-footer">
         <div class="container">
             <div class="footer-service">
@@ -339,16 +322,16 @@
             <img alt="" src="//c1.mifile.cn/f/i/2014/cn/qr.png" width="375" height="375" />
         </div>
     </div>
-    @section('js')
+    <?php $__env->startSection('js'); ?>
     <script src="/homes/common/myjs/jquery.min.js"></script>
     <script src="/data/indexNav.js"></script>
     <script src="/data/indexData.js"></script>
     <script src="/homes/common/myjs/jquery.SuperSlide.js"></script>
     <script src="/homes/common/myjs/common.js"></script>
     <script src="/homes/common/myjs/index.js"></script>
-    @show
-    @section('LDjs')
-    @show
+    <?php echo $__env->yieldSection(); ?>
+    <?php $__env->startSection('LDjs'); ?>
+    <?php echo $__env->yieldSection(); ?>
 </body>
 </html>
    

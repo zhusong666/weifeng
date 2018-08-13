@@ -1,46 +1,13 @@
-
-@extends('layout.index')
-
-@section('myCss')
+<?php $__env->startSection('myCss'); ?>
 <link rel="stylesheet" href="/homes/common/css/index.min.css" />
-@show
-@section('content')
-<div class="site-category"> 
-   <ul id="J_categoryList" class="site-category-list clearfix"> 
-    @foreach ($data as $catek => $catev)
-    <li class="category-item"> <a class="title" href="//www.mi.com/p/3469.html?client_id=180100041086&amp;masid=17409.0245" data-stat-id="886b68ab740e29bb" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-886b68ab740e29bb', '//www.mi.com/p/3469.htmlclient_id=180100041086&amp;masid=17409.0245', 'pcpid', '']);">{{$catev->cate_name}}<i class="iconfont"></i></a> 
-    <div class="children clearfix children-col-3"  >
-        <ul class="children-list children-list-col children-list-col-1" style=" width:1000px;">
-            @foreach ($catev['goods'] as $goodsk => $goodsv)
-            <div >
-                <li style=" display:inline;"> 
-                     <a class="link" href="https://www.mi.com/aircondition/third" data-stat-id="0cb048b7c1ea5757" >
-                      
-                        <img class="thumb" src="{{$goodsv->imgs}}" width="40" height="40" alt="" />
-                        
-                         <span class="text"> {{$goodsv->goods_name}}</span>
-                    </a> 
-                </li>
-            </div>
-       @endforeach
-      </ul>
-     </div>
-
-    </li> 
- @endforeach
-
-   </ul>
-  </div>
-        </div>
-        <div id="J_navMenu" class="header-nav-menu" style="display: none;"><div class="container"></div></div>
-    </div>
+<?php echo $__env->yieldSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="home-hero-container container">
         <div class="home-hero">
             <div class="home-hero-slider">
                 <div class="ui-wrapper" style="max-width: 100%;">
                     <div class="ui-viewport" style="width: 100%; overflow: hidden; position: relative; height: 460px;">
                         <div id="J_homeSlider" class="xm-slider" data-stat-title="焦点图轮播" style="width: auto; position: relative;">
-                        
                             <div class="slide loaded">
                                 <a href="/" >
                                    <img src="http://i3.mifile.cn/a4/3df93b73-1f38-41dc-9c19-c6feb05c9cc1" srcset="http://i3.mifile.cn/a4/20c8359e-6e5e-46e1-a017-b2308d9fbbae 2x"></a>
@@ -170,21 +137,9 @@
                 </div>
                 <div class="box-bd">
                     <ul class="xm-carousel-list xm-carousel-col-5-list goods-list rainbow-list clearfix J_carouselList">
-                        @foreach($img as $k => $v)
-                        <li class="brick-item brick-item-m brick-item-m-2" data-gid="2182300042"> 
-                            <div class="figure figure-img"> 
-                                <a class="exposure" href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"> 
-                                    <img src="{{$v->goodsimg->goods_img}}" width="160" height="160" alt="{{$v->goods_name}}"> 
-                                </a> 
-                            </div> 
-                            <h3 class="title">
-                                <a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);">{{$v->goods_name}}</a>
-                                </h3> <p class="desc">{{$v->goods_selecnt}}</p> 
-                                    <p class="price"> <span class="num">{{$v->goods_price}}</span>元  </br></br>
-                                    <span class="num" style="padding-left:140px;color:gray;">已售：{{$v->goods_volume}}</span>
-                                    </p>  
-                        </li>
-                        @endforeach
+                        <?php $__currentLoopData = $img; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li class="brick-item brick-item-m brick-item-m-2" data-gid="2182300042"> <div class="figure figure-img"> <a class="exposure" href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"> <img src="<?php echo e($v->goodsimg->goods_img); ?>" width="160" height="160" alt="<?php echo e($v->goods_name); ?>"> </a> </div> <h3 class="title"><a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"><?php echo e($v->goods_name); ?></a></h3> <p class="desc"><?php echo e($v->goods_selecnt); ?></p> <p class="price"> <span class="num"><?php echo e($v->goods_price); ?></span>元  </br></br><span class="num" style="padding-left:140px;color:gray;">已售：<?php echo e($v->goods_volume); ?></span></p>  </li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                     </ul>
@@ -214,10 +169,10 @@
                         <div class="span16">
                             <ul class="brick-list clearfix">
 
-                                 @foreach($shouji as $sjk => $sjv)
+                                 <?php $__currentLoopData = $shouji; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sjk => $sjv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li class="brick-item brick-item-m brick-item-m-2" data-gid="2182300042"> <div class="figure figure-img"> <a class="exposure" href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"> 
-                                    <img src="{{$sjv->goodsimg->goods_img}}" width="160" height="160" alt=""> </a> </div> <h3 class="title"><a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);">{{$sjv->goods_name}}</a></h3> <p class="desc">{{$sjv->goods_selecnt}}</p> <p class="price"> <span class="num">{{$sjv->goods_price}}</span>元  </p>  </li>
-                                  @endforeach
+                                    <img src="<?php echo e($sjv->goodsimg->goods_img); ?>" width="160" height="160" alt=""> </a> </div> <h3 class="title"><a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"><?php echo e($sjv->goods_name); ?></a></h3> <p class="desc"><?php echo e($sjv->goods_selecnt); ?></p> <p class="price"> <span class="num"><?php echo e($sjv->goods_price); ?></span>元  </p>  </li>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
                     </div>
@@ -246,10 +201,10 @@
                         <div class="span16">
                             <ul class="brick-list clearfix">
 
-                                 @foreach($bjb as $bjbk => $bjbv)
+                                 <?php $__currentLoopData = $bjb; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bjbk => $bjbv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li class="brick-item brick-item-m brick-item-m-2" data-gid="2182300042"> <div class="figure figure-img"> <a class="exposure" href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"> 
-                                    <img src="{{$bjbv->goodsimg->goods_img}}" width="160" height="160" alt=""> </a> </div> <h3 class="title"><a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);">{{$bjbv->goods_name}}</a></h3> <p class="desc">{{$bjbv->goods_selecnt}}</p> <p class="price"> <span class="num">{{$bjbv->goods_price}}</span>元  </p>  </li>
-                                  @endforeach
+                                    <img src="<?php echo e($bjbv->goodsimg->goods_img); ?>" width="160" height="160" alt=""> </a> </div> <h3 class="title"><a href="https://item.mi.com/product/10000099.html" data-stat-aid="AA20560" data-stat-pid="2_58_2_334" data-log_code="31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348" target="_blank" data-stat-id="AA20560+2_58_2_334" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-AA20560+2_58_2_334', 'https://item.mi.com/product/10000099.html', 'pcpid', '31pchomephone_right_0002019#t=normal&amp;act=other&amp;page=home&amp;bid=3185161.2&amp;pid=2182300042&amp;adm=5348']);"><?php echo e($bjbv->goods_name); ?></a></h3> <p class="desc"><?php echo e($bjbv->goods_selecnt); ?></p> <p class="price"> <span class="num"><?php echo e($bjbv->goods_price); ?></span>元  </p>  </li>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
                     </div>
@@ -349,4 +304,5 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

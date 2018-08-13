@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Model\Admin\Article;
+use App\Model\Admin\Article_cates;
 
 class ArticleController extends Controller
 {
@@ -16,6 +18,25 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $res = DB::select("select * from wf_article");
+
+        // $res = Article_cates::find(2);
+
+        // $res->articlecate_id;
+
+        // $rs = $res->article_cates;
+
+        // dump($rs);
+
+         // $result = Article_cates::all()->toArray();
+
+         // foreach ($result as $key => $value) {
+         //     $res[$key] = Article_cates::find($value['articlecate_id']);
+         //     $rs[$key] = $res[$key]->article_cates;
+         // }
+       
+
+
+
         // echo "11111";
         return view('admin.article.index',[
                  'res'=>$res
@@ -56,7 +77,7 @@ class ArticleController extends Controller
 
         //表单验证
         $this->validate($request, [
-            'article_name' => 'required|max:255',
+            'article_title' => 'required|max:255',
             'article_content' => 'required',
         ],[
             'article_name.required'=>'帮助名称不能为空',
