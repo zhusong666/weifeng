@@ -25,7 +25,7 @@ Route::any('/admin/captcha','Admin\LoginController@captcha');
 //威锋网后台  'middleware'=>'login'
 Route::group([],function(){
 //退出
-Route::any('/admin/logout', 'Admin\LoginController@logout');	
+Route::any('/admin/logout', 'Admin\LoginController@logout');
 // 用户状态
 Route::any('/admin/up/{id}', 'Admin\LoginController@up');
 Route::any('/admin/pass', 'Admin\LoginController@pass');

@@ -1,6 +1,4 @@
-@extends('admin.layouts.default')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<section class="Hui-article-box">
 		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">帮助中心</span></nav>
 		<div class="Hui-article">
@@ -46,28 +44,30 @@
 							</thead>
 							<tbody>
 							
-							@foreach($res as $k => $v)
+							<?php $__currentLoopData = $res; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 								<tr class="text-c">
 									<td><input type="checkbox" value="" name=""></td>
-									<td>{{$v->article_id}}</td>
-									<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">{{$v->article_title}}</u></td>
+									<td><?php echo e($v->article_id); ?></td>
+									<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看"><?php echo e($v->article_title); ?></u></td>
 									<td>请选择</td>
-									<td>{{$v->article_content}}</td>
+									<td><?php echo e($v->article_content); ?></td>
 									<td class="td-status"><span class="label label-success radius">已发布</span></td>
 									<td class="f-14 td-manage">
 										<a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架">
 											<i class="Hui-iconfont">&#xe6de;</i>
 										</a> 
 										<!-- 修改 -->
-										<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="/admin/article/{{$v->article_id}}/edit" title="编辑">
+										<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="/admin/article/<?php echo e($v->article_id); ?>/edit" title="编辑">
 											<i class="Hui-iconfont">&#xe6df;</i>
 										</a> 
 
 										<!-- 删除 -->
 
-										<form action="/admin/article/{{$v->article_id}}" method="post" style="display:inline"> 
-											{{csrf_field()}}
-											{{method_field("DELETE")}}
+										<form action="/admin/article/<?php echo e($v->article_id); ?>" method="post" style="display:inline"> 
+											<?php echo e(csrf_field()); ?>
+
+											<?php echo e(method_field("DELETE")); ?>
+
 											<!-- <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"></a> -->
 											<button class='ml-5'style="text-decoration:none">删除</button>
 											<!-- <i class="Hui-iconfont">&#xe6e2;</i> -->
@@ -79,7 +79,7 @@
 
 									</td>
 								</tr>
-							@endforeach	
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>	
 							</tbody>
 						</table>
 					</div>
@@ -89,4 +89,5 @@
 			<!-- </form> -->
 		</div>
 	</section>
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

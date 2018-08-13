@@ -131,6 +131,15 @@ class LunboController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = DB::table('wf_lunbo')->where('lunbo_id',$id)->delete();
+
+        if($res){
+
+            return redirect('/admin/lunbo');
+        } else {
+
+            return redirect('/admin/lunbo');
+            
+        }
     }
 }

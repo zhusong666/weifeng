@@ -1,5 +1,4 @@
-@extends('admin.layouts.default')
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<section class="Hui-article-box">
 		<nav class="breadcrumb">
 			<i class="Hui-iconfont"></i> 
@@ -36,18 +35,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($res as $k=>$v)
+				<?php $__currentLoopData = $res; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 				<tr class="text-c">
 					<td><input name="" type="checkbox" value=""></td>
-					<td>{{$v->lunbo_id}}</td>
+					<td><?php echo e($v->lunbo_id); ?></td>
 					
 					<td>
 						<a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">
-							<img width="210" class="picture-thumb" src="{{$v->lunbo_img}}">
+							<img width="210" class="picture-thumb" src="<?php echo e($v->lunbo_img); ?>">
 						</a>
 					</td>
 					<td class="text-l">
-						<a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">{{$v->lunbo_name}}
+						<a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><?php echo e($v->lunbo_name); ?>
+
 						</a>
 					</td>
 				
@@ -58,12 +58,14 @@
 							<i class="Hui-iconfont">&#xe6de;</i>
 						</a>  -->
 
-						<a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','picture-add.html','10001')" href="/admin/lunbo/{{$v->lunbo_id}}/edit" title="编辑">
+						<a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','picture-add.html','10001')" href="/admin/lunbo/<?php echo e($v->lunbo_id); ?>/edit" title="编辑">
 							<i class="Hui-iconfont">&#xe6df;</i>
 						</a> 
-						<form action="/admin/lunbo/{{$v->lunbo_id}}" method="post" style="display:inline"> 
-											{{csrf_field()}}
-											{{method_field("DELETE")}}
+						<form action="/admin/lunbo/<?php echo e($v->lunbo_id); ?>" method="post" style="display:inline"> 
+											<?php echo e(csrf_field()); ?>
+
+											<?php echo e(method_field("DELETE")); ?>
+
 											<!-- <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"></a> -->
 											<button class='ml-5'style="text-decoration:none">删除</button>
 											<!-- <i class="Hui-iconfont">&#xe6e2;</i> -->
@@ -72,11 +74,12 @@
 										</form>
 					</td>
 				</tr>
-				@endforeach
+				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 			</tbody>
 		</table>
 	</div>
 </div>
 
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
