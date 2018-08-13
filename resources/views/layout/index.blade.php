@@ -37,48 +37,50 @@
                     {{--</div>--}}
                 {{--</div>--}}
             </div>
+
+             @if(!session('username'))
+
             <div class="topbar-info" id="J_userInfo">
-                <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
+                <a  rel="nofollow" class="link" href="/login" data-needlogin="true">
+                    <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
+
                 <span class="sep">|</span>
-                <a  rel="nofollow" class="link" href="/login/register" >注册</a>
+                <a  rel="nofollow" class="link" href="/register" >注册</a>
             </div>
+
             
             <div class="topbar-info" id="J_userInfo">
                 <span class="user">
                     <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
                         <span class="name"></span> <i class="iconfont"></i>
+
+            @endif
+            @if(session('username'))
+            <div class="topbar-info" id="J_userInfo">
+                <span class="user">
+                    <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
+                        <span class="name">{{session('username')}}</span> <i class="iconfont"></i>
                     </a>
                     <ul class="user-menu" style="display: none;">
-
                         <li>
-                            <a rel="nofollow" href="/user/comment" target="_blank">评价晒单</a>
+                            <a rel="nofollow" href="/comment" target="_blank">评价晒单</a>
                         </li>
-                        <!-- <li>
-                            <a rel="nofollow" href="http://order.mi.com/user/favorite" target="_blank">我的喜欢</a>
-                        </li> -->
                         <li>
-                            <a rel="nofollow" href="/user/logout">退出登录</a>
+                            <a rel="nofollow" href="/logout">退出登录</a>
                         </li>
                     </ul>
                 </span>
                 <span class="sep">|</span>
                 <a rel="nofollow" class="link link-order" href="/user/order/" target="_blank">我的订单</a>
             </div>
+            @endif
         </div>
     </div>
-
-
-
 <div class="site-header">
     <div class="container">
         <div class="header-logo">
             <a class="logo ir" href="/" title="小米官网">小米官网</a>
         </div>
-
-
-
-
-
 <div class="header-search"> 
     <form id="J_searchForm" class="search-form clearfix" action="/home/search" method="get"> 
      <label for="search" class="hide">站内搜索</label> 
@@ -86,18 +88,10 @@
      <input type="submit" class="search-btn iconfont" value="" /> 
     </form> 
    </div> 
-
-
-
-
   </div>
 </div>
-
-
-
 @show
 @section('content')
-
 @show
     <div class="site-footer">
         <div class="container">
