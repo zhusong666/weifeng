@@ -1,6 +1,5 @@
 @extends('layout.index')
 
-@section('title','小米商城')
 @section('css')
 
 
@@ -26,38 +25,31 @@
 
 @endsection
 @section('content')
+
+
+
+
 <!-- 面包屑 -->
 <div class="breadcrumbs">
     <div class="container">
-        <a href="/" data-stat-id="b0bcd814768c68cc" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-b0bcd814768c68cc&#39;, &#39;//www.mi.com/index.html&#39;, &#39;pcpid&#39;]);">首页</a><span class="sep">&gt;</span><a href="http://search.mi.com/search_%E6%89%8B%E6%9C%BA" data-stat-id="c80dafcf0a25c533" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-c80dafcf0a25c533&#39;, &#39;//search.mi.com/search_手机&#39;, &#39;pcpid&#39;]);">全部结果</a><span class="sep">&gt;</span><span>手机</span>
+        <a href="/" data-stat-id="b0bcd814768c68cc" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-b0bcd814768c68cc&#39;, &#39;//www.mi.com/index.html&#39;, &#39;pcpid&#39;]);">首页</a><span class="sep">&gt;</span><a href="http://search.mi.com/search_%E6%89%8B%E6%9C%BA" data-stat-id="c80dafcf0a25c533" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-c80dafcf0a25c533&#39;, &#39;//search.mi.com/search_手机&#39;, &#39;pcpid&#39;]);">全部结果</a><span class="sep">&gt;</span><span></span>
     </div>
 </div>
+
+
+
 
 <!-- 分类条 -->
 <div class="container">
     <div class="filter-box">
-        <div class="filter-list-wrap">
-            <dl class="filter-list clearfix filter-list-row-3">
-                <dt>分类：</dt>
-                <dd class="active">全部</dd>
-                @foreach($cates as $cate)
-                    <dd><a href="?id={{$cate->id}}" data-stat-id="b120dec55d40e599" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-b120dec55d40e599&#39;, &#39;//search.mi.com/search_手机-10&#39;, &#39;pcpid&#39;]);">{{$cate->name}}</a></dd>
-                @endforeach
-            </dl>
-            <a class="more J_filterToggle" href="javascript: void(0);" data-stat-id="3306e9b581810c0b" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-3306e9b581810c0b&#39;, &#39;javascript:void(0);&#39;, &#39;pcpid&#39;]);">更多<i class="iconfont"></i></a>
-        </div>
-
-
-
 
         <div class="filter-list-wrap">
             <dl class="filter-list clearfix filter-list-row-4">
                 <dt>机型：</dt>
                 <dd class="active">全部</dd>
 
-                @foreach($search_goods as $search_good)
-                    <dd><a href="/detail?id={{$search_good->id}}" data-stat-id="4e1a960f60c0ad53" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-4e1a960f60c0ad53&#39;, &#39;//search.mi.com/search_手机-0-54321&#39;, &#39;pcpid&#39;]);">{{$search_good->title}}</a></dd>
-                @endforeach
+                    <dd><a href="" data-stat-id="4e1a960f60c0ad53" onclick="" > </a></dd>
+                
 
             </dl>
             <a class="more J_filterToggle" href="javascript: void(0);" data-stat-id="3306e9b581810c0b" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-3306e9b581810c0b&#39;, &#39;javascript:void(0);&#39;, &#39;pcpid&#39;]);">更多<i class="iconfont"></i></a>
@@ -69,11 +61,11 @@
             <dl class="filter-list clearfix filter-list-row-2">
                 <dt>最新：</dt>
                 <dd class="active">部分</dd>
-                @foreach($goods as $good)
+                
                     <dd>
-                        <a href="/detail?id={{$good->id}}" data-stat-id="c6199f21493cb057" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-c6199f21493cb057&#39;, &#39;//search.mi.com/search_手机-0-0-1&#39;, &#39;pcpid&#39;]);">{{$good->title}}</a>
+                        <a href="" data-stat-id="c6199f21493cb057" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-c6199f21493cb057&#39;, &#39;//search.mi.com/search_手机-0-0-1&#39;, &#39;pcpid&#39;]);"></a>
                     </dd>
-                @endforeach
+                
             </dl>
             <a class="more J_filterToggle" href="javascript: void(0);" data-stat-id="3306e9b581810c0b" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-3306e9b581810c0b&#39;, &#39;javascript:void(0);&#39;, &#39;pcpid&#39;]);">更多<i class="iconfont"></i></a>
         </div>
@@ -94,28 +86,30 @@
         <div class="goods-list-box">
             <div class="goods-list clearfix">
 
-                @foreach($search_goods as $search_good)
+                @foreach ($goods as $k => $v)
                     <div class="goods-item">
                         <div class="figure figure-img">
-                            <a href="/detail?id={{$search_good->id}}" data-stat-id="f9c0265126b0aab7" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-f9c0265126b0aab7&#39;, &#39;//www.mi.com/mi5/&#39;, &#39;pcpid&#39;]);">
-                                <img src="{{$search_good->showImg}}" width="200" height="200" alt="">
+                            <a href="" data-stat-id="f9c0265126b0aab7" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-f9c0265126b0aab7&#39;, &#39;//www.mi.com/mi5/&#39;, &#39;pcpid&#39;]);">
+                                <img src="{{$v->goodsimg->goods_img}}" width="200" height="200" alt="">
                             </a>
                         </div>
                         <p class="desc"></p>
                         <h2 class="title">
-                            <a href="/detail?id={{$search_good->id}}" data-stat-id="cdded373f9d107a4" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-cdded373f9d107a4&#39;, &#39;//www.mi.com/mi5/&#39;, &#39;pcpid&#39;]);">
-                                {{$search_good->title}}
+                            <a href="" data-stat-id="cdded373f9d107a4" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-cdded373f9d107a4&#39;, &#39;//www.mi.com/mi5/&#39;, &#39;pcpid&#39;]);">
+                                {{$v->goods_name}}
                             </a>
                         </h2>
-                        <p class="price">{{$search_good->price}} 起</p>
+                        
+                        <p class="price">{{$v->goods_price}} </p>
                         <div class="thumbs">
                             <ul class="thumb-list">
                                 <li data-config="{&quot;cid&quot;:&quot;1160800057&quot;,&quot;gid&quot;:&quot;0&quot;,&quot;discount&quot;:&quot;0&quot;,&quot;price&quot;:&quot;1999\u5143 \u8d77&quot;,&quot;new&quot;:0,&quot;is-cos&quot;:0,&quot;package&quot;:1,&quot;hasgift&quot;:0,&quot;postfree&quot;:0,&quot;postfreenum&quot;:1,&quot;cfrom&quot;:&quot;search&quot;}"><a data-stat-id="efb530fe034a2407" onclick="_msq.push([&#39;trackEvent&#39;, &#39;a5543b161410aa8b-efb530fe034a2407&#39;, &#39;&#39;, &#39;pcpid&#39;]);">
-                                        <img src="{{$search_good->cate->img}}" width="34" height="34" alt="小米手机5 白色">
+                                        <img src="{{$v->goodsimg->goods_img}}" width="34" height="34" alt="{{$v->goods_name}}">
                                     </a>
                                 </li>
                             </ul>
                         </div>
+
                         <div class="actions clearfix">
                             <a class="btn-like J_likeGoods" data-cid="1160800057" onclick="return false;" data-stat-id="ff751b1fdf797192" >
                                 <i class="iconfont"></i>
@@ -129,11 +123,13 @@
                         <div class="flags"></div>
                         <div class="notice"></div>
                     </div>
-                @endforeach
+                    @endforeach
+                
 
             </div>
 
         </div>
+
     </div>
 </div>
 @endsection

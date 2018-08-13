@@ -1,11 +1,39 @@
 
 @extends('layout.index')
 
-
 @section('myCss')
 <link rel="stylesheet" href="/homes/common/css/index.min.css" />
 @show
 @section('content')
+<div class="site-category"> 
+   <ul id="J_categoryList" class="site-category-list clearfix"> 
+    @foreach ($data as $catek => $catev)
+    <li class="category-item"> <a class="title" href="//www.mi.com/p/3469.html?client_id=180100041086&amp;masid=17409.0245" data-stat-id="886b68ab740e29bb" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-886b68ab740e29bb', '//www.mi.com/p/3469.htmlclient_id=180100041086&amp;masid=17409.0245', 'pcpid', '']);">{{$catev->cate_name}}<i class="iconfont"></i></a> 
+    <div class="children clearfix children-col-3"  >
+        <ul class="children-list children-list-col children-list-col-1" style=" width:1000px;">
+            @foreach ($catev['goods'] as $goodsk => $goodsv)
+            <div >
+                <li style=" display:inline;"> 
+                     <a class="link" href="https://www.mi.com/aircondition/third" data-stat-id="0cb048b7c1ea5757" >
+                      
+                        <img class="thumb" src="{{$goodsv->imgs}}" width="40" height="40" alt="" />
+                        
+                         <span class="text"> {{$goodsv->goods_name}}</span>
+                    </a> 
+                </li>
+            </div>
+       @endforeach
+      </ul>
+     </div>
+
+    </li> 
+ @endforeach
+
+   </ul>
+  </div>
+        </div>
+        <div id="J_navMenu" class="header-nav-menu" style="display: none;"><div class="container"></div></div>
+    </div>
     <div class="home-hero-container container">
         <div class="home-hero">
             <div class="home-hero-slider">

@@ -1,5 +1,4 @@
 @extends('layout.index')
-@section('title','小米官网')
 
 @section('css')
     <link rel="shortcut icon" href="/homes/common/img/favicon.ico" />
@@ -18,11 +17,6 @@
     <script type="text/javascript" src="/homes/common/js/jquery.SuperSlide.js"></script>
     <script type="text/javascript" src="/homes/common/js/xiaomi_common.js"></script>
 @endsection
-
-
-
-
-
 
 @section('content')
 <script type="text/javascript" src="/homes/common/js/xiaomi_category.js"></script>
@@ -61,19 +55,16 @@
             <div class="goods-list-box">
 
 
-                {{--这里是需要遍历的单体--}}
-                @foreach($goods as $good)
-                    @if($good->skus->first())
                 <div class="goods-item" style="width:292px;">
                     <div class="figure figure-img">
-                        <a href="/detail?id={{$good->id}}"><img src="{{$good->showImg}}" alt="红米Note2" class="goodsimg" /></a>
+                        <a href=""><img src="" alt="红米Note2" class="goodsimg" /></a>
                     </div>
-                    <p class="desc">{{$good->sub_title}}</p>
-                    <h2 class="title"><a href="/detail?id={{$good->id}}" title="红米Note2">{{$good->title}}</a></h2>
-                    <p class="price"> 本店价<font class="shop_s">{{$good->price}}<em>元</em></font>
+                    <p class="desc"></p>
+                    <h2 class="title"><a href="" title="红米Note2"></a></h2>
+                    <p class="price"> 本店价<font class="shop_s"><em>元</em></font>
                         <del>
                             专柜价
-                            <font class="market_s">{{$good->price+300}}<em>元</em></font>
+                            <font class="market_s"><em>元</em></font>
                         </del>
                     </p>
 
@@ -81,7 +72,7 @@
                         <div style="width:212px;margin:0 auto;" >
                             <ul class="thumb-list clearfix J_imgList">
 
-                                <a><img src="{{$good->skus->first()->img}}" width="34" height="34" /></a>
+                                <a><img src="" width="34" height="34" /></a>
 
                             </ul>
                         </div>
@@ -93,8 +84,6 @@
                     </div>
 
                 </div>
-                    @endif
-                @endforeach
                 {{--这里是需要遍历的单体 结束--}}
 
 
