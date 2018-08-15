@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Hash;
 use Config;
 use App\Http\Requests\FormRequest;
 
@@ -67,7 +68,7 @@ class UserController extends Controller
         $res = $request->except('_token','admin_repass','image');
          // dd($res);
         //密码加密
-        $res['admin_password'] = encrypt($request->input('admin_password'));
+        $res['admin_password'] = Hash::make($request->input('admin_password'));        
 
         //上传图片
         if($request->hasFile('image')){

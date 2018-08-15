@@ -14,6 +14,11 @@ class Goods extends Model
     //与用户关联的属性
     public function goodsimg()
     {
-    	return $this->hasOne('App\Model\Home\Goodsimg','good_id');
+    	return $this->hasOne('App\Model\Home\Goodsimg','good_id','goods_id');
+    }
+
+    public function details()
+    {
+        return $this->hasOne('App\Model\Home\Details','goodss_id','goods_id');
     }
 }

@@ -30,7 +30,7 @@
                                         <a href="/user/order/">我的订单</a>
                                     </li>
                                     
-                                    <li>
+                                    <li class="active">
                                         <a href="/user/comment/">评价晒单</a>
                                     </li>
                                     
@@ -43,9 +43,10 @@
                             </div>
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
-                                    <li class="active">
+                                    <li>
+                                        <a href="/user/details">个人资料</a>
+                                    </li>
+                                    <li>
                                         <a href="/user/address">收货地址</a>
                                     </li>
                                 </ul>

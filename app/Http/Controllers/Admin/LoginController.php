@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
 use DB;
+use Hash;
 
 
 class LoginController extends Controller
@@ -33,13 +34,19 @@ class LoginController extends Controller
 
 		//判断密码是否正确 用查询到的用户名来获取它的密码
 		$pass = $request->input('password');
-		//解密密码
-		$admin_pass = decrypt($res->admin_password);
 
-		if($pass != $admin_pass){
+        //判断密码
+        if(!Hash::check($pass,$res->admin_password)){
+            return back()->with('error','用户名或者密码错误');
+        }
+
+		/*//解密密码
+		$admin_pass = decrypt($res->admin_password);*/
+
+		/*if($pass != $admin_pass){
 
 			return back()->with('error','用户名或密码错误');
-		}
+		}*/
 
 		//判断验证码
         $code = $request->input('code');
@@ -54,7 +61,7 @@ class LoginController extends Controller
         session(['admin_name'=>$res->admin_name]);
         session(['id'=>$res->admin_id]);
         session(['admin_auth'=>$res->admin_auth]);
-		return redirect('/')->with('success','恭喜你登录成功');
+		return redirect('/admin/index')->with('success','恭喜你登录成功');
 	}
 
 	public function captcha()
@@ -114,14 +121,19 @@ class LoginController extends Controller
     	$oldpass = $request->input('oldpassword');
     	//获取session的 id
     	$rs = DB::table('wf_users')->where('admin_id',session('id'))->first();
-    	//通过id解析密码
+
+        //判断密码
+        if(!Hash::check($oldpass,$res->admin_password)){
+            return back()->with('error','用户名或者密码错误');
+        }
+    	/*//通过id解析密码
     	$rspass = decrypt($rs->admin_password);
 
     	//判断输入的旧密码和数据库的密码是否一致
 		if($oldpass != $rspass){
 
 			return back()->with('error','旧密码格式错误');
-		}
+		}*/
 
 		//如果一致,进行判断新密码和确认密码是否一致
 		$pass = $request->input('password');
@@ -133,7 +145,7 @@ class LoginController extends Controller
 		}
 
 		//如果两次密码一致,加密
-        $res['admin_password'] = encrypt($pass);
+        $res['admin_password'] = Hash::make($pass);
 
         $data = DB::table('wf_users')->where('admin_id',session('admin_id'))->update($res);
         //判断是否成功

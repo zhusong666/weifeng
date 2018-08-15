@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-     //与模型关联的数据表
+    //与模型关联的数据表
     protected $table = 'wf_home_user';
     protected $primaryKey = 'user_id';
     public $timestamps = false;
+
+    public function order()
+    {
+    	return $this->hasMany('App\Model\Home\Order','user_id');
+    }
 
 }

@@ -41,8 +41,8 @@
                         <td>{{$v->goods_name}}</td>
                         <td><img src="{{$v->goods_img}}" style="width:150px;height:150px"></td>
                         <td>{{$v->goods_price}}</td>
-                        <td>{{$v->goods_status}}</td>
-                        <td>{{}}</td>  <!-- *$v->goods_cnt -->
+                        <td>{{$v->details->details_cnt}}</td>
+                        <td>{{$v->goods_price*$v->details->details_cnt}}</td>
                     </tr>
                     @endforeach
                 </tbody>

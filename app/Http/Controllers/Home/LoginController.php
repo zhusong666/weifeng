@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use App\Model\Home\User;
 use DB;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,7 @@ class LoginController extends Controller
     	$res = $request->except('_token');
 		//获取输入的用户名
 		$name = $request->input('username');
-		$res = DB::table('wf_home_user')->where('username',$name)->first();
+		$res = User::where('username',$name)->first();
 
         //如果查询不到,返回
 		if(!$res){
@@ -37,15 +38,13 @@ class LoginController extends Controller
 		//判断密码是否正确 用查询到的用户名来获取它的密码
 		$pass = $request->input('password');
 
-		//解密密码
-		$user_password = decrypt($res->user_password);
+		/*//解密密码
+		$user_password = decrypt($res->user_password);*/
 
-		//如果输入的密码不等于数据库的密码
-		if($pass != $user_password){
-
-			return back()->with('error','用户名或密码错误');
-		}
-
+        //判断密码
+        if(!Hash::check($pass,$res->user_password)){
+            return back()->with('error','用户名或者密码有误');
+        }
 
         //验证码
 		$Vcode = $request->input('Vcode');

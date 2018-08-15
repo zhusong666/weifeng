@@ -37,33 +37,23 @@
                     {{--</div>--}}
                 {{--</div>--}}
             </div>
-
-             @if(!session('username'))
-
+            @if(!session('username'))
             <div class="topbar-info" id="J_userInfo">
-                <a  rel="nofollow" class="link" href="/login" data-needlogin="true">
-                    <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
-
+                <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
                 <span class="sep">|</span>
                 <a  rel="nofollow" class="link" href="/register" >注册</a>
             </div>
-
-            
-            <div class="topbar-info" id="J_userInfo">
-                <span class="user">
-                    <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
-                        <span class="name"></span> <i class="iconfont"></i>
-
             @endif
             @if(session('username'))
             <div class="topbar-info" id="J_userInfo">
                 <span class="user">
-                    <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
+                    <a rel="nofollow" class="user-name" href="/user/details" target="_blank">
                         <span class="name">{{session('username')}}</span> <i class="iconfont"></i>
                     </a>
                     <ul class="user-menu" style="display: none;">
+
                         <li>
-                            <a rel="nofollow" href="/comment" target="_blank">评价晒单</a>
+                            <a rel="nofollow" href="/user/comment" target="_blank">评价晒单</a>
                         </li>
                         <li>
                             <a rel="nofollow" href="/logout">退出登录</a>
@@ -76,11 +66,19 @@
             @endif
         </div>
     </div>
+
+
+
 <div class="site-header">
     <div class="container">
         <div class="header-logo">
             <a class="logo ir" href="/" title="小米官网">小米官网</a>
         </div>
+
+
+
+
+
 <div class="header-search"> 
     <form id="J_searchForm" class="search-form clearfix" action="/home/search" method="get"> 
      <label for="search" class="hide">站内搜索</label> 
@@ -88,89 +86,18 @@
      <input type="submit" class="search-btn iconfont" value="" /> 
     </form> 
    </div> 
+
+
+
+
   </div>
 </div>
-    <div class="site-header">
-        <div class="container">
-            <div class="header-logo" style="width:220px;">
-                <div style="float:left;"><a class="logo ir" href="/" title="小米官网" style=""> 小米官网</a></div>
-                <div style="float:left;"><a href="//www.mi.com/a/h/6624.html?client_id=180100041086&amp;masid=17409.0425"><img src="/homes/common/image/163git66.gif" height="55px"></a></div>
-                
-            </div>
-           
-
-  
 
 
 
-
-
-
-
-
-
-
-
-<div class="site-category"> 
-   <ul id="J_categoryList" class="site-category-list clearfix"> 
-
-    @foreach ($data as $catek => $catev)
-    <li class="category-item"> <a class="title" href="//www.mi.com/p/3469.html?client_id=180100041086&amp;masid=17409.0245" data-stat-id="886b68ab740e29bb" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-886b68ab740e29bb', '//www.mi.com/p/3469.htmlclient_id=180100041086&amp;masid=17409.0245', 'pcpid', '']);">{{$catev->cate_name}}<i class="iconfont"></i></a> 
-    <div class="children clearfix children-col-3"  >
-        <ul class="children-list children-list-col children-list-col-1" style=" width:1000px;">
-            @foreach ($catev['goods'] as $goodsk => $goodsv)
-            <div >
-                <li style=" display:inline;"> 
-                     <a class="link" href="https://www.mi.com/aircondition/third" data-stat-id="0cb048b7c1ea5757" >
-                      
-                        <img class="thumb" src="{{$goodsv->imgs}}" width="40" height="40" alt="" />
-                        
-                         <span class="text"> {{$goodsv->goods_name}}</span>
-                    </a> 
-                </li>
-            </div>
-       @endforeach
-      </ul>
-     </div>
-
-    </li> 
- @endforeach
-
-   </ul>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="header-search">
-
-                <form id="J_searchForm" class="search-form clearfix" action="/list_search" method="get">
-                    <label for="search" class="hide">站内搜索</label>
-                    <input class="search-text" type="search" id="search" name="kWord" autocomplete="off" style="width:400px;"/>
-                    <input type="submit" class="search-btn iconfont" value="&#xe616;" />
-                    <div class="search-hot-words">
-                        <a href="/list_search?kWord=小米手机5">小米手机5</a>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-
-        <div id="J_navMenu" class="header-nav-menu" style="display: none;"><div class="container"></div></div>
-    </div>
 @show
 @section('content')
+
 @show
     <div class="site-footer">
         <div class="container">
@@ -208,73 +135,12 @@
                     </li>
                 </ul>
             </div>
-
             <div class="footer-links clearfix">
-                <!-- 友情链接 -->    
                 <dl class="col-links col-links-first">
-                    <dt>帮助中心</dt>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/service/account/register/"   target="_blank">账户管理</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/service/buy/buytime/"   target="_blank">购物指南</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/service/order/sendprogress/"   target="_blank">订单操作</a></dd>
-                    
-                </dl>
-                    
-                <dl class="col-links ">
-                    <dt>服务支持</dt>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/service/exchange"   target="_blank">售后政策</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/service/"   target="_blank">自助服务</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/c/service/download/"   target="_blank">相关下载</a></dd>
-                    
-                </dl>
-                    
-                <dl class="col-links ">
-                    <dt>线下门店</dt>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/c/xiaomizhijia/"   target="_blank">小米之家</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/static/maintainlocation/"   target="_blank">服务网点</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/static/familyLocation/"   target="_blank">授权体验店</a></dd>
-                    
-                </dl>
-                    
-                <dl class="col-links ">
-                    <dt>关于小米</dt>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/about/"   target="_blank">了解小米</a></dd>
-                    
-                    <dd><a rel="nofollow" href="http://hr.xiaomi.com/"   target="_blank">加入小米</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/ir/"   target="_blank">投资者关系</a></dd>
-                    
-                </dl>
-                    
-                <dl class="col-links ">
-                    <dt>关注我们</dt>
-                    
-                    <dd><a rel="nofollow" href="https://weibo.com/xiaomishangcheng"   target="_blank">新浪微博</a></dd>
-                    
-                    <dd><a rel="nofollow" href="#J_modalWeixin" data-toggle="modal" >官方微信</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/about/contact/"   target="_blank">联系我们</a></dd>
-                    
-                </dl>
-                    
-                <dl class="col-links ">
-                    <dt>特色服务</dt>
-                    
-                    <dd><a rel="nofollow" href="//order.mi.com/queue/f2code"   target="_blank">F 码通道</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//www.mi.com/giftcode/"   target="_blank">礼物码</a></dd>
-                    
-                    <dd><a rel="nofollow" href="//order.mi.com/misc/checkitem"   target="_blank">防伪查询</a></dd>
-                    
+                    <dt></dt>
+                    <dd>
+                        <a rel="nofollow" href=""   target="_blank"></a>
+                    </dd>
                 </dl>
  
 
