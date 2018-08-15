@@ -112,6 +112,12 @@ Route::any('goodlist/{id}','GoodController@goodList');
 //用户个人订单
 	Route::any('/user/order','Home\UserController@order');
 
+//帮助模块
+Route::any('/home/help','Home\HelpController@help');
+//评论模块
+Route::resource('/comments','Home\CommentController');
+
+
 });
 
 

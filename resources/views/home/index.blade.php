@@ -40,31 +40,14 @@
                 <div class="ui-wrapper" style="max-width: 100%;">
                     <div class="ui-viewport" style="width: 100%; overflow: hidden; position: relative; height: 460px;">
                         <div id="J_homeSlider" class="xm-slider" data-stat-title="焦点图轮播" style="width: auto; position: relative;">
-                        
+                        @foreach($res as $k=>$v)
                             <div class="slide loaded">
                                 <a href="/" >
-                                   <img src="http://i3.mifile.cn/a4/3df93b73-1f38-41dc-9c19-c6feb05c9cc1" srcset="http://i3.mifile.cn/a4/20c8359e-6e5e-46e1-a017-b2308d9fbbae 2x"></a>
+                                   <img src="{{$v->lunbo_img}}" srcset="">
+                                </a>
                             </div>
-
-                            <div class="slide loaded">
-                                <a href="/" >
-                                    <img src="http://i3.mifile.cn/a4/8ebfdc81-ace7-4bfb-b07a-409e17d6d3cf" srcset="http://i3.mifile.cn/a4/5de4e2bb-54fe-45b1-a399-d5b26f106f82 2x"></a>
-                            </div>
-
-                            <div class="slide loaded">
-                                <a href="/" >
-                                    <img src="http://i3.mifile.cn/a4/eadf8c22-c83d-446b-ac04-b3ce72078388" srcset="http://i3.mifile.cn/a4/b3642c09-0d31-49e0-a011-7934fa395697 2x"></a>
-                            </div>
-
-                            <div class="slide loaded">
-                                <a href="/" >
-                                    <img src="http://i3.mifile.cn/a4/c5688819-4791-4b8f-b13e-2d29718f0ed6" srcset="http://i3.mifile.cn/a4/f779d9d8-caac-4f12-8b9c-3032f3daf8e1 2x"></a>
-                            </div>
-
-                            <div class="slide loaded">
-                                <a href="/" >
-                                    <img src="http://i3.mifile.cn/a4/9ea4cb98-3628-4384-bdb1-21646222a53a" srcset="http://i3.mifile.cn/a4/efaf715f-a1cc-4942-a24d-41f7d73e7ff5 2x"></a>
-                            </div>
+                        @endforeach
+                            
 
                         </div>
                     </div>

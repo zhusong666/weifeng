@@ -62,7 +62,7 @@
             <h3 class="title">亲,留个评价吧!</h3>
         </div>
         <div>
-            <h2 class="title"><a href="" >{{$sku->title}}</a></h2>
+            <h2 class="title"><a href="" ></a></h2>
             <div class="demo">
                 <div id="precision-demo" class="target-demo"></div>
                 <div id="precision-hint" class="hint"></div>
@@ -72,14 +72,14 @@
         <div class="section-body clearfix">
             <div class="goods-item">
                 <div class="figure figure-img"><a href="//item.mi.com/1152000033.html?cfrom=list" data-stat-id="06967af09ddae9f3" >
-                    <img src="{{$sku->img}}" width="200" height="200" alt=""></a>
+                    <img src="" width="200" height="200" alt=""></a>
                 </div>
             </div>
 
             <div class="goods-item">
-                <p class="desc">价格: {{$sku->price}}</p>
-                <p class="desc">型号: </p><p>{{$sku->attr}}</p>
-                <p class="desc">颜色: {{$sku->color}}</p>
+                <p class="desc">价格: </p>
+                <p class="desc">型号: </p><p></p>
+                <p class="desc">颜色: </p>
             </div>
 
             <ul class="goods-list clearfix" id="J_goodsList">
@@ -88,18 +88,18 @@
             </ul>
         </div>
     </div>
-    <input type="hidden" name="good_id" value="{{$sku->good->id}}">
+    <input type="hidden" name="good_id" value="">
     {{csrf_field()}}
     <div class="section-bar clearfix">
         <div class="fr">
-            <input type="hidden" name="order_id" value="{{$order_id}}">
+            <input type="hidden" name="order_id" value="">
             <button href="" class="btn btn-primary" id="J_checkoutToPay" data-stat-id="4773f7ffc10003b8" >发表评论
             </button>
         </div>
     </div>
 </form>
 </body>
-
+</html>
 <script type="text/javascript">
     $(function() {
 

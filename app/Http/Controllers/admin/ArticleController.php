@@ -25,21 +25,27 @@ class ArticleController extends Controller
 
         // $rs = $res->article_cates;
 
-        // dump($rs);
+        // dump($rs);   
 
-         // $result = Article_cates::all()->toArray();
+         $result = Article_cates::all()->toArray();
 
-         // foreach ($result as $key => $value) {
-         //     $res[$key] = Article_cates::find($value['articlecate_id']);
-         //     $rs[$key] = $res[$key]->article_cates;
-         // }
+         foreach ($result as $key => $value) {
+             $res[$key] = Article_cates::find($value['articlecate_id']);
+             $rs[$key] = $res[$key]->article_cates->toArray();
+             foreach ($rs[$key] as $k => $v) {
+                 $rs[$key][$k]['articlecate_name'] = $value['articlecate_name'];
+             }
+             
+         }
        
 
 
 
         // echo "11111";
         return view('admin.article.index',[
-                 'res'=>$res
+                 'res'=>$res,
+                 'rs'=>$rs,
+                 'result'=>$result  
             ]);
 
     }
@@ -53,8 +59,8 @@ class ArticleController extends Controller
     {
         // echo '111';//日常测试
         //添加分类
-        // $res = DB::raw('*,concat(article_path,article_id) as article_paths')
-        //  ->orderBy('article_paths')
+        // $res = DB::raw('*,concat(articlecate_id,article_id) as articlecate_id')
+        //  ->orderBy('articlecate_id')
         //  ->get();
 
         // foreach ($res as $key => $value){
@@ -84,9 +90,9 @@ class ArticleController extends Controller
             'article_content.required'=>'帮助内容不能为空'
         ]);
 
-        // 接收表单传入的值  由于是get传值
+        // // 接收表单传入的值  由于是get传值
         $res = $request->except('_token');
-        // dump($res);检查表单值是否接收到`
+        // dump($res);//检查表单值是否接收到
 
         // echo '111'; 
 

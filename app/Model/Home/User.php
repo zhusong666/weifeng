@@ -11,9 +11,16 @@ class User extends Model
     protected $primaryKey = 'user_id';
     public $timestamps = false;
 
+
     public function order()
     {
     	return $this->hasMany('App\Model\Home\Order','user_id');
+    }
+
+
+    public function comments()
+    {
+    	return $this->hasMany(\App\Model\Home\Comments::class,'user_id','user_id');
     }
 
 }

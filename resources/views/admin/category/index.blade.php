@@ -14,7 +14,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 		<a class="btn btn-primary radius" onclick="system_category_add('添加资讯','system-category-add.html')" href="/admin/category/create"> <i class="Hui-iconfont">&#xe600;</i> 添加分类</a>
-		<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+		
 		
 		</span>
 		<!-- <span class="r">共有数据：<strong>54</strong> 条</span> -->
@@ -23,7 +23,7 @@
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
 			<thead>
 				<tr class="text-c">
-					<th width="25"><input type="checkbox" name="" value=""></th>
+					
 					<th width="80">ID</th>
 					<th width="80">分类名</th>
 					<th width="80">父级类别</th>
@@ -36,7 +36,7 @@
 			<tbody>
 				@foreach($res as $k => $v)
 				<tr class="@if($k % 2 == 0)  odd @else even @endif">
-					<td><input type="checkbox" name="" value=""></td>
+					
 					<td>{{$v->cate_id}}</td>
 					<td>{{$v->cate_name}}</td>
 					<td>{{getTypeName($v->cate_pid)}}</td>

@@ -10,7 +10,7 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>帮助名称：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" name="article_name" class="input-text" value="" placeholder="" id="articletitle" >
+						<input type="text" name="article_title" class="input-text" value="" placeholder="" id="articletitle" >
 					</div>
 				</div>
 

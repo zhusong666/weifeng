@@ -8,6 +8,7 @@ use DB;
 use App\Model\Home\Goods_img;
 use App\Model\Home\Goods;
 use App\Model\Home\CateGory;
+use App\Model\Home\ArticleCate;
 use Config;
 class IndexController extends Controller
 {
@@ -38,7 +39,22 @@ class IndexController extends Controller
          //随机获取笔记本分类下的8个商品
          $bjb = Goods::with('goodsimg')->where('cates_id',3)->orderBy(\DB::raw('RAND()'))->take(8)->get();
 
-		return view('/home/index',['data'=>$data,'img'=>$img,'shouji'=>$shouji,'bjb'=>$bjb]);
+         //轮播图
+        $res = DB::table('wf_lunbo')->get();
+        //文章分类
+        // $rs = DB::table('wf_articlecates')->get();
+        //  //文章内容
+        // $ress = DB::table('wf_article')->get();
+        // dd($ress);
+        // foreach ($ress as $key => $value) {
+        //     $art = Article::with('article_content')->where('article_id',$value['article_id'])->first();
+        // }
+        // dd($art);
+        $ress = ArticleCate::with('articles')->get();
+		return view('/home/index',['data'=>$data,'img'=>$img,'shouji'=>$shouji,'bjb'=>$bjb,'res'=>$res,
+            'ress'=>$ress
+
+            ]);
     }
 
 

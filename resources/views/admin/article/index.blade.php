@@ -31,7 +31,7 @@
 						<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 							<thead>
 								<tr class="text-c">
-									<th width="25"><input type="checkbox" name="" value=""></th>
+									
 									<th width="80">ID</th>
 									<th width="80">标题</th>
 									<th width="80">分类</th>
@@ -45,27 +45,28 @@
 								</tr>
 							</thead>
 							<tbody>
-							
-							@foreach($res as $k => $v)
-								<tr class="text-c">
-									<td><input type="checkbox" value="" name=""></td>
-									<td>{{$v->article_id}}</td>
-									<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">{{$v->article_title}}</u></td>
-									<td>请选择</td>
-									<td>{{$v->article_content}}</td>
+	
+							@foreach($rs as $key => $values)
+								@foreach($values as $k => $v)
+			
+
+									<tr class="text-c">
+									
+									<td>@php echo $v['article_id'];@endphp</td>
+									<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">{{$v['article_title']}}</u></td>
+									<td>{{$v['articlecate_name']}}</td>
+									<td>{{$v['article_content']}}</td>
 									<td class="td-status"><span class="label label-success radius">已发布</span></td>
 									<td class="f-14 td-manage">
-										<a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架">
-											<i class="Hui-iconfont">&#xe6de;</i>
-										</a> 
+										
 										<!-- 修改 -->
-										<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="/admin/article/{{$v->article_id}}/edit" title="编辑">
+										<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="/admin/article/{{$v['article_id']}}/edit" title="编辑">
 											<i class="Hui-iconfont">&#xe6df;</i>
 										</a> 
 
 										<!-- 删除 -->
 
-										<form action="/admin/article/{{$v->article_id}}" method="post" style="display:inline"> 
+										<form action="/admin/article/{{$v['article_id']}}" method="post" style="display:inline"> 
 											{{csrf_field()}}
 											{{method_field("DELETE")}}
 											<!-- <a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"></a> -->
@@ -79,7 +80,10 @@
 
 									</td>
 								</tr>
+								@endforeach		
 							@endforeach	
+
+		
 							</tbody>
 						</table>
 					</div>

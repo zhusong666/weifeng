@@ -34,4 +34,9 @@ class Goods extends Model
     {
         return $this->hasOne('App\Model\Admin\Details','goodss_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(\App\Model\Home\Comment:class,'goods_id','goods_id');
+    }
 }

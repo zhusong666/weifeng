@@ -134,13 +134,30 @@
                 </ul>
             </div>
             <div class="footer-links clearfix">
+
                 <dl class="col-links col-links-first">
                     <dt></dt>
                     <dd>
                         <a rel="nofollow" href=""   target="_blank"></a>
                     </dd>
+
+
+            @foreach($ress as $k=>$v)
+                <div>
+                <dl class="col-links col-links-first">
+                    
+                    <dt>{{$v->articlecate_name}}</dt>
+                        @foreach($v->articles as $k1=>$v1)
+                        <dd>
+
+                            <a rel="nofollow" href="/home/help/help"   target="_blank">{{$v1->article_title}}</a>
+                        </dd>
+                        @endforeach
+                    
+
                 </dl>
- 
+                </div>
+            @endforeach
 
                 <div class="col-contact">
                     <p class="phone">400-100-5678</p>
