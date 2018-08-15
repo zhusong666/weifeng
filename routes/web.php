@@ -86,6 +86,12 @@ Route::any('/dorepass','Home\LoginController@dorepass');
 //商品列表
 Route::any('goodlist/{id}','GoodController@goodList');
 
+//帮助模块
+Route::any('/home/help','Home\HelpController@help');
+//评论模块
+Route::resource('/comments','Home\CommentController');
+
+
 });
 
 
