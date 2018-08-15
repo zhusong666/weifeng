@@ -2,6 +2,20 @@
 
 
 @section('content')	
+<script type="text/javascript" src="/homes/common/js/jquery-1.9.1.min.js"></script>
+<style type="text/css">
+	.xxoo{
+		border:1px solid #a5b6c8;background:#eef3f7;
+		cursor: pointer;
+		margin-left:310px;
+		margin-top:10px;
+		width: 100px;
+	}
+	#div2{
+		 display: none;
+	}
+
+</style>
 <article class="cl pd-20" style="overflow-y:scroll;height:2000px">
 		
 	<form action="/admins/goods" method="post" class="form form-horizontal" id="form-admin-add"  enctype='multipart/form-data' novalidate="novalidate">
@@ -36,15 +50,40 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>价格：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="" class="input-text" autocomplete="off" value="" placeholder="商品价格" id="password" name="goods_price">
+				<input  class="input-text" autocomplete="off" value="" placeholder="商品价格"  name="goods_price">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>库存：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="" class="input-text" autocomplete="off" placeholder="商品库存" id="password2" name="goods_count">
+				<input  class="input-text" autocomplete="off" placeholder="商品库存"  name="goods_count">
 			</div>
 		</div>
+
+
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品版本：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="" class="input-text" autocomplete="off" placeholder="商品版本" style="width:250px"  name="type_name">
+				价格: <input type="" class="input-text" autocomplete="off" placeholder="商品价格" style="width:200px"  name="tprice">
+				颜色: <input type="" class="input-text" autocomplete="off" placeholder="商品颜色" style="width:200px"  name="colour">
+			</div>
+		</div>
+		
+		
+
+		<div class="row cl"  id="div2">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商品版本：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="" class="input-text" autocomplete="off" placeholder="商品版本" style="width:250px"  name="types_name">
+				价格: <input type="" class="input-text" autocomplete="off" placeholder="商品价格" style="width:200px"  name="tprices">
+				颜色: <input type="" class="input-text" autocomplete="off" placeholder="商品颜色" style="width:200px"  name="colours">
+			</div>
+		</div>
+
+
+		<div  id="div1" style="" class="xxoo" >再添加一个版本</div>
 
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">描述：</label>
@@ -52,6 +91,7 @@
 				<textarea name="goods_selecnt" cols="" rows="" class="textarea" placeholder="商品描述" dragonfly="true" ></textarea>
 			</div>
 		</div>
+
 
 
 		<div class="row cl">
@@ -98,6 +138,12 @@
 	</form>
 
 </article>
+<script type="text/javascript">
+	$('#div1').click(function(){
+		$('#div2').css('display','block');
+		// alert('wer');
+	})
+</script>
 
 @stop
 

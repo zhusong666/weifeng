@@ -12,7 +12,6 @@ use Config;
 class IndexController extends Controller
 {
     
-
     public function index()
     {	
     	//查询category数据
@@ -28,10 +27,8 @@ class IndexController extends Controller
          foreach ($data as $k => $v) {
          	foreach ($v['goods'] as  $kk =>$vv) { 
          		$img = Goods::with('goodsimg')->where('goods_id',$vv['goods_id'])->first();
-
+                //定义一个下标把图片赋给$data
          		$v['goods'][$kk]['imgs'] = $img->goodsimg->goods_img;
-                
-                
          	}
          }
          //查询10条销量最大的数据

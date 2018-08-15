@@ -8,6 +8,7 @@ use DB;
 use App\Model\Admin\CateGory;
 use App\Model\Admin\Goods;
 use App\Model\Admin\Goods_img;
+use App\Model\Admin\Types;
 use Config;
 class GoodsController extends Controller
 {
@@ -75,28 +76,49 @@ class GoodsController extends Controller
     {
        
 
-       
-       // $this->validate($request, [
-       //      'goods_price' => 'required|max:1|regex:/^\w{1,11}$/',
-       //  ],[
-       //      'goods_price.required' => '用户名不能为空',
-       //      'goods_price.regex'=>'用户名格式不正确',
-       //  ]);
-
-
-
         $res = $request->except('_token','goods_img');
-        // //插入时间
-        $res['goods_time'] = time();
-        // //添加数据
-        $res = Goods::create($res);
+        //商品
+        $good['cates_id'] = $request->input('cate_id');
+        $good['goods_name'] = $request->input('goods_name');
+        $good['goods_price'] = $request->input('goods_price');
+        $good['goods_count'] = $request->input('goods_count');
+        $good['goods_selecnt'] = $request->input('goods_selecnt');
+        $good['goods_status'] = $request->input('goods_status');
+        $good['goods_time'] = time();
+       
+
+
+        // dump($good);
+        
+        //插入时间
+        //添加数据
+        $res = Goods::create($good);
         $gid = $res->goods_id;
+        //商品类型
+        $type['gid'] = $gid;
+        $type['type_name'] = $request->input('type_name');
+        $type['tprice'] = $request->input('tprice');
+        $type['colour'] = $request->input('colour');
+
+
+        $types['gid'] = $gid;
+        $types['type_name'] = $request->input('types_name');
+        $types['tprice'] = $request->input('tprices');
+        $types['colour'] = $request->input('colours');
+        if(!empty($types['type_name'])){
+            Types::create($types);
+            Types::create($type);
+        }else{
+
+            Types::create($type);
+        }
+
 
         if(!$gid){
             return back('/admins/goods/create')->with('error','获取id失败');
         }
 
-        // // dump($gid);
+        // dump($gid);
         //图片上传
         if($request->hasFile('goods_img')){
 
@@ -104,24 +126,17 @@ class GoodsController extends Controller
            $gs = $request->file('goods_img');
            $gr = [];
            foreach($gs as $k => $v){
-
                  $gd = [];
-
                   //gid
                  $gd['good_id'] = $gid;
-                 
                  //设置名字
                  $name = str_random(10).time();
-
                  //获取后缀
                  $suffix = $v->getClientOriginalExtension();
-
                 //移动
                  $v->move(Config::get('webconfig.goodsimg'),$name.'.'.$suffix);
-
                  //gimg
                  $gd['goods_img'] = '/uploads/goodsimg/'.$name.'.'.$suffix;
-
                  $gr[] = $gd;
              }         
             
@@ -140,6 +155,8 @@ class GoodsController extends Controller
              return back()->with('error','添加失败');
 
          }
+
+
 
 
          

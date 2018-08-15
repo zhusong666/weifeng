@@ -60,6 +60,14 @@ Route::group([],function(){
 Route::any('/','Home\IndexController@index');
 // 商品搜索
 Route::get('/home/search','Home\SearchController@search');
+// 搜索分类下的商品
+Route::get('/home/dosearch','Home\SearchController@dosearch');
+//商品详情
+Route::get('/home/details/{id}','Home\GoodsController@details');
+//显示购物车页
+Route::get('/home/cart','Home\CartController@index');
+//商品加入购物车
+Route::get('/home/addcart/{id}','Home\CartController@addcart');
 
 Route::any('/login','Home\LoginController@login');
 Route::any('/dologin','Home\LoginController@dologin');

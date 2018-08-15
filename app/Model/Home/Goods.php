@@ -16,4 +16,9 @@ class Goods extends Model
     {
     	return $this->hasOne('App\Model\Home\Goodsimg','good_id');
     }
+
+    public function goodsimgs()
+    {
+    	return $this->hasMany('App\Model\Home\Goodsimg','good_id');
+    }
 }

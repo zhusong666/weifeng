@@ -8,7 +8,7 @@
 <div class="site-category"> 
    <ul id="J_categoryList" class="site-category-list clearfix"> 
     @foreach ($data as $catek => $catev)
-    <li class="category-item"> <a class="title" href="//www.mi.com/p/3469.html?client_id=180100041086&amp;masid=17409.0245" data-stat-id="886b68ab740e29bb" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-886b68ab740e29bb', '//www.mi.com/p/3469.htmlclient_id=180100041086&amp;masid=17409.0245', 'pcpid', '']);">{{$catev->cate_name}}<i class="iconfont"></i></a> 
+    <li class="category-item"> <a class="title" href="/home/search?cates_id={{$catev->cate_id}}" data-stat-id="886b68ab740e29bb" onclick="_msq.push(['trackEvent', '81190ccc4d52f577-886b68ab740e29bb', '//www.mi.com/p/3469.htmlclient_id=180100041086&amp;masid=17409.0245', 'pcpid', '']);">{{$catev->cate_name}}<i class="iconfont"></i></a> 
     <div class="children clearfix children-col-3"  >
         <ul class="children-list children-list-col children-list-col-1" style=" width:1000px;">
             @foreach ($catev['goods'] as $goodsk => $goodsv)

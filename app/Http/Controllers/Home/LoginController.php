@@ -24,10 +24,12 @@ class LoginController extends Controller
     {
 
     	$res = $request->except('_token');
+
+
 		//获取输入的用户名
 		$name = $request->input('username');
 		$res = DB::table('wf_home_user')->where('username',$name)->first();
-
+        
         //如果查询不到,返回
 		if(!$res){
 
@@ -37,8 +39,12 @@ class LoginController extends Controller
 		//判断密码是否正确 用查询到的用户名来获取它的密码
 		$pass = $request->input('password');
 
+
+        // dd($pass);die;
 		//解密密码
 		$user_password = decrypt($res->user_password);
+
+        dd($pass);
 
 		//如果输入的密码不等于数据库的密码
 		if($pass != $user_password){
