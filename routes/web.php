@@ -17,17 +17,19 @@ Route::get('/article/list', function () {
     return view('admin.article.list');
 });
 
-//后台首页
-Route::get('/admin/index', function () {
-    return view('admin.layouts.default');
-});
+
 
 //登录模块
 Route::any('/admin/login','Admin\LoginController@login');
 Route::any('/admin/dologin','Admin\LoginController@dologin');
 Route::any('/admin/captcha','Admin\LoginController@captcha');
-//威锋网后台  'middleware'=>'login'
-Route::group([],function(){
+//威锋网后台  
+Route::group(['middleware'=>'login'],function(){
+//后台首页
+Route::get('/admin/index', function () {
+    return view('admin.layouts.default');
+});
+	
 //退出
 Route::any('/admin/logout', 'Admin\LoginController@logout');
 // 用户状态
