@@ -41,8 +41,9 @@
                             </div>
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
+                                    <li>
+                                        <a href="/user/details">个人中心</a>
+                                    </li>
                                     <li>
                                         <a href="/user/address">收货地址</a>
                                     </li>
@@ -61,12 +62,11 @@
                             <div class="more clearfix">
                                 <ul class="filter-list J_orderType">
                                     <li class="first"><a href="/user/order" >全部有效订单</a></li>
-                                    <li><a id="J_unpaidTab" href="/user/order?s=0" data-type="0">待支付{{ $order->where('order_status',0)->count() }}</a></li>
-                                    <li><a id="J_unpaidTab" href="/user/order?s=1" data-type="1">待发货{{ $order->where('order_status',1)->count() }}</a></li>
-                                    <li><a id="J_sendTab" href="/user/order?s=2" data-type="2">待收货{{ $order->where('order_status',2)->count() }}</a></li><!--
+                                    <li><a id="J_unpaidTab" href="/user/order?s=0" data-type="0">待支付{{$res->where('order_status',0)->count() }}</a></li>
+                                    <li><a id="J_unpaidTab" href="/user/order?s=1" data-type="1">待发货{{$res->where('order_status',1)->count() }}</a></li>
+                                    <li><a id="J_sendTab" href="/user/order?s=2" data-type="2">待收货{{$res->where('order_status',2)->count() }}</a></li><!--
                                     <li><a href="http://dami.com/user/order?s=10" data-type="5">已关闭</a></li> -->
                                 </ul>
-                                
                             </div>
                         </div>
                         <div class="box-bd">
@@ -75,7 +75,7 @@
                                 @if(session('info')) {{session('info')}} @endif
                             </div>
                             <div id="J_orderListPages">
-                                {!!$info!!}
+                               {!!$info!!}
                             </div>
                         </div>
                     </div>

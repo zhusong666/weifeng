@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 // use App\Http\Requests\RegisterRequest;
 use App\Model\Home\User;
 use Mail;
+use Hash;
 
 
 class RegisterController extends Controller
@@ -24,7 +25,7 @@ class RegisterController extends Controller
 
     	//获取表单的值
     	$res = $request->only('username','');
-    	$res['user_password'] = encrypt($request->input('password'));
+    	$res['user_password'] = Hash::make($request->input('password'));
     	$res['user_email'] = $request->input('email');
     	$res['user_phone'] = $request->input('phone');
     	$res['user_status'] = 0;

@@ -48,7 +48,7 @@
             @if(session('username'))
             <div class="topbar-info" id="J_userInfo">
                 <span class="user">
-                    <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
+                    <a rel="nofollow" class="user-name" href="/user/details" target="_blank">
                         <span class="name">{{session('username')}}</span> <i class="iconfont"></i>
                     </a>
                     <ul class="user-menu" style="display: none;">
@@ -87,9 +87,6 @@
      <input type="submit" class="search-btn iconfont" value="" /> 
     </form> 
    </div> 
-
-
-
 
   </div>
 </div>

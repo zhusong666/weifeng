@@ -17,6 +17,10 @@ Route::get('/article/list', function () {
     return view('admin.article.list');
 });
 
+//后台首页
+Route::get('/admin/index', function () {
+    return view('admin.layouts.default');
+});
 
 //登录模块
 Route::any('/admin/login','Admin\LoginController@login');
@@ -60,6 +64,7 @@ Route::group([],function(){
 Route::any('/','Home\IndexController@index');
 // 商品搜索
 Route::get('/home/search','Home\SearchController@search');
+
 // 搜索分类下的商品
 Route::get('/home/dosearch','Home\SearchController@dosearch');
 //商品详情
@@ -68,6 +73,9 @@ Route::get('/home/details/{id}','Home\GoodsController@details');
 Route::get('/home/cart','Home\CartController@index');
 //商品加入购物车
 Route::get('/home/addcart/{id}','Home\CartController@addcart');
+
+
+//前台登录
 
 Route::any('/login','Home\LoginController@login');
 Route::any('/dologin','Home\LoginController@dologin');
@@ -93,6 +101,16 @@ Route::any('/repass','Home\LoginController@repass');
 Route::any('/dorepass','Home\LoginController@dorepass');
 //商品列表
 Route::any('goodlist/{id}','GoodController@goodList');
+
+//用户详情
+	Route::any('/user/details','Home\UserController@details');
+	Route::any('/user/comment','Home\UserController@comment');
+//用户详情修改
+	Route::any('/user/doedit/{id}','Home\UserController@update');
+//用户收货地址
+	Route::any('/user/address','Home\UserController@address');
+//用户个人订单
+	Route::any('/user/order','Home\UserController@order');
 
 });
 

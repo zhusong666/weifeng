@@ -44,8 +44,9 @@
                             </div>
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
-
-                                    
+                                    <li>
+                                        <a href="/user/details">个人资料</a>
+                                    </li>
                                     <li class="active">
                                         <a href="/user/address">收货地址</a>
                                     </li>

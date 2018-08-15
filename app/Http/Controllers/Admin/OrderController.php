@@ -54,40 +54,6 @@ class OrderController extends Controller
             ->where('goods_id',$v)
             ->first();
         }
-        // dump($good);
-
-
-
-        //数量
-        $aa = [];
-        foreach($res as $k => $v) {
-           
-           $aa[] = $v->details_cnt;
-
-           // $aa[] = $bb;
-        }
-
-        // dd($aa);
-
-        // $b = implode(',',$aa);
-
-        // foreach ($aa as $v) {
-            
-        //     $good = $v->0;
-        // }
-        // dump($res);
-       // dump($res->[0].details_cnt);
-        // dd($res);
-
-
-        /*$details = DB::table('wf_orders_details')
-            ->join('wf_goods_img','goodss_id','=','good_id')
-            ->join('wf_goods','goodss_id','=','goods_id')
-            ->join('wf_shop_orders','orderss_id','=','order_id')
-            ->select('wf_orders_details.*','wf_goods_img.goods_img','wf_goods.goods_name','wf_shop_orders.order_id')
-            ->get();*/
-
-        // dd($details);
 
     	return view('/admin/order/detail',['title'=>'订单详情','good'=>$good]);
     }
