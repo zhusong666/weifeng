@@ -50,9 +50,10 @@ class IndexController extends Controller
         //     $art = Article::with('article_content')->where('article_id',$value['article_id'])->first();
         // }
         // dd($art);
-        $ress = ArticleCate::with('articles')->get();
+        $rs = ArticleCate::with('articles')->get();
+        // dd($ress);
 		return view('/home/index',['data'=>$data,'img'=>$img,'shouji'=>$shouji,'bjb'=>$bjb,'res'=>$res,
-            'ress'=>$ress
+            'rs'=>$rs
 
             ]);
     }

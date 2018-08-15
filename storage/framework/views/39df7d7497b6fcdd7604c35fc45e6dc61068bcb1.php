@@ -8,19 +8,19 @@
     <meta name="description" content="小米商城-直营小米公司旗下所有产品，囊括小米手机、红米手机、小米电视、智能硬件、配件及小米生活周边，同时提供小米客户服务及售后支持。" />
     <meta name="keywords" content="小米,小米官网,小米手机,小米官网首页,小米商城" />
     <meta name="viewport" content="width=1226" />
-    @section('css')
+    <?php $__env->startSection('css'); ?>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/homes/common/css/base.min.css" />
-    @show
-    @section('myCss')
-    @show
+    <?php echo $__env->yieldSection(); ?>
+    <?php $__env->startSection('myCss'); ?>
+    <?php echo $__env->yieldSection(); ?>
 </head>
 <style type="text/css">
     
 
 </style>
 <body>
-@section('header')
+<?php $__env->startSection('header'); ?>
     <div class="site-topbar">
         <div class="container">
             <div class="topbar-nav">
@@ -32,24 +32,24 @@
                     购物车
                     <span class="cart-mini-num J_cartNum"></span>
                 </a>
-                {{--<div class="cart-menu" id="J_miniCartMenu">--}}
-                    {{--<div class="loading">--}}
-                        {{--<div class="loader"></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                
+                    
+                        
+                    
+                
             </div>
-            @if(!session('username'))
+            <?php if(!session('username')): ?>
             <div class="topbar-info" id="J_userInfo">
                 <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
                 <span class="sep">|</span>
                 <a  rel="nofollow" class="link" href="/register" >注册</a>
             </div>
-            @endif
-            @if(session('username'))
+            <?php endif; ?>
+            <?php if(session('username')): ?>
             <div class="topbar-info" id="J_userInfo">
                 <span class="user">
                     <a rel="nofollow" class="user-name" href="/user/details" target="_blank">
-                        <span class="name">{{session('username')}}</span> <i class="iconfont"></i>
+                        <span class="name"><?php echo e(session('username')); ?></span> <i class="iconfont"></i>
                     </a>
                     <ul class="user-menu" style="display: none;">
 
@@ -64,7 +64,7 @@
                 <span class="sep">|</span>
                 <a rel="nofollow" class="link link-order" href="/user/order/" target="_blank">我的订单</a>
             </div>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 
@@ -93,10 +93,10 @@
 
 
 
-@show
-@section('content')
+<?php echo $__env->yieldSection(); ?>
+<?php $__env->startSection('content'); ?>
 
-@show
+<?php echo $__env->yieldSection(); ?>
     <div class="site-footer">
         <div class="container">
             <div class="footer-service">
@@ -135,22 +135,22 @@
             </div>
             <div class="footer-links clearfix">
 
-            @foreach($rs as $k=>$v)
+            <?php $__currentLoopData = $rs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div>
                 <dl class="col-links col-links-first">
                     
-                    <dt>{{$v->articlecate_name}}</dt>
-                        @foreach($v->articles as $k1=>$v1)
+                    <dt><?php echo e($v->articlecate_name); ?></dt>
+                        <?php $__currentLoopData = $v->articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k1=>$v1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <dd>
 
-                            <a rel="nofollow" href="/home/help"   target="_blank">{{$v1->article_title}}</a>
+                            <a rel="nofollow" href="/home/help"   target="_blank"><?php echo e($v1->article_title); ?></a>
                         </dd>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     
 
                 </dl>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                 <div class="col-contact">
                     <p class="phone">400-100-5678</p>
@@ -213,16 +213,16 @@
             <img alt="" src="//c1.mifile.cn/f/i/2014/cn/qr.png" width="375" height="375" />
         </div>
     </div>
-    @section('js')
+    <?php $__env->startSection('js'); ?>
     <script src="/homes/common/myjs/jquery.min.js"></script>
     <script src="/data/indexNav.js"></script>
     <script src="/data/indexData.js"></script>
     <script src="/homes/common/myjs/jquery.SuperSlide.js"></script>
     <script src="/homes/common/myjs/common.js"></script>
     <script src="/homes/common/myjs/index.js"></script>
-    @show
-    @section('LDjs')
-    @show
+    <?php echo $__env->yieldSection(); ?>
+    <?php $__env->startSection('LDjs'); ?>
+    <?php echo $__env->yieldSection(); ?>
 </body>
 </html>
    
