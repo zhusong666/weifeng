@@ -84,10 +84,8 @@ class GoodsController extends Controller
         $good['goods_count'] = $request->input('goods_count');
         $good['goods_selecnt'] = $request->input('goods_selecnt');
         $good['goods_status'] = $request->input('goods_status');
+        $good['goods_content'] = $request->input('goods_content');
         $good['goods_time'] = time();
-       
-
-
         // dump($good);
         
         //插入时间

@@ -23,4 +23,9 @@ class Carts extends Model
      * @var array
      */
     protected $fillable = ['uid','gid','tname','colour','price','num'];
+
+    public function goods()
+    {
+        return $this->belongsTo('App\Model\Home\Goods','goods_id','gid');
+    }
 }

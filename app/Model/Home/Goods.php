@@ -31,4 +31,9 @@ class Goods extends Model
     {
         return $this->hasMany(\App\Model\Home\Comment::class,'goods_id','goods_id');
     }
+
+     public function carts()
+    {
+        return $this->belongsTo('App\Model\Home\Goods','gid','goods_id');
+    }
 }
