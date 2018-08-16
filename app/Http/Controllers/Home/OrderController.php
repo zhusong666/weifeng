@@ -56,7 +56,7 @@ class OrderController extends Controller
     	$res = DB::table('wf_shop_orders')->where('order_id',$id)->update(['order_status'=>3]);
 
     	if($res){
-    		return redirect('/user/comment?filter=1');
+    		return redirect('/user/comment');//?filter=1
     	} else {
     		return back()->with('error','确认收货失败');
     	}

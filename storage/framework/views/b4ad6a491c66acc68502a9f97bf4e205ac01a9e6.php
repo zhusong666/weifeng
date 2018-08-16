@@ -1,12 +1,11 @@
-@extends('layout.index')
-@section('title','我的订单')
-@section('css')
+<?php $__env->startSection('title','我的订单'); ?>
+<?php $__env->startSection('css'); ?>
 
 <link rel="stylesheet" href="/homes/common/css/base.min.css" />
 <link rel="stylesheet" href="/homes/common/css/main.min.css" />
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="breadcrumbs">
     <div class="container">
         <a href="//www.mi.com/index.html">首页</a><span class="sep">&gt;</span><span>交易订单</span>
@@ -60,10 +59,10 @@
                             <div class="more clearfix">
                                 <ul class="filter-list J_orderType">
                                     <li class="first"><a href="/user/order" >全部有效订单</a></li>
-                                    <li><a id="J_unpaidTab" href="/user/order?s=0" data-type="0">待支付{{$order->where('order_status',0)->count() }}</a></li>
-                                    <li><a id="J_unpaidTab" href="/user/order?s=1" data-type="1">待发货{{$order->where('order_status',1)->count() }}</a></li>
-                                    <li><a id="J_sendTab" href="/user/order?s=2" data-type="2">待收货{{$order->where('order_status',2)->count() }}</a></li>
-                                    <!-- <li><a id="J_sendTab" href="/user/order?s=3" data-type="3">待评价{{$order->where('order_status',3)->count() }}</a></li> -->
+                                    <li><a id="J_unpaidTab" href="/user/order?s=0" data-type="0">待支付<?php echo e($order->where('order_status',0)->count()); ?></a></li>
+                                    <li><a id="J_unpaidTab" href="/user/order?s=1" data-type="1">待发货<?php echo e($order->where('order_status',1)->count()); ?></a></li>
+                                    <li><a id="J_sendTab" href="/user/order?s=2" data-type="2">待收货<?php echo e($order->where('order_status',2)->count()); ?></a></li>
+                                    <!-- <li><a id="J_sendTab" href="/user/order?s=3" data-type="3">待评价<?php echo e($order->where('order_status',3)->count()); ?></a></li> -->
                                     <!--
                                     <li><a href="http://dami.com/user/order?s=10" data-type="5">已关闭</a></li> -->
                                 </ul>
@@ -72,11 +71,12 @@
                         <div class="box-bd">
                             <div id="J_orderList">
                                 <div class="loading hide"><div class="loader"></div></div>
-                                @if(session('error')) {{session('error')}} @endif
-                                @if(session('success')) {{session('success')}} @endif
+                                <?php if(session('error')): ?> <?php echo e(session('error')); ?> <?php endif; ?>
+                                <?php if(session('success')): ?> <?php echo e(session('success')); ?> <?php endif; ?>
                             </div>
                             <div id="J_orderListPages">
-                               {!!$info!!}
+                               <?php echo $info; ?>
+
                             </div>
                         </div>
                     </div>
@@ -131,10 +131,11 @@
     color:#fff;
 }
 </style>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script src="/homes/common/myjs/jquery.min.js"></script>
 <script src="/data/indexNav.js"></script>
 <script src="/data/indexData.js"></script>
 <script src="/homes/common/myjs/common.js"></script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,12 +1,11 @@
-@extends('layout.index')
-@section('title','我的地址')
-@section('css')
+<?php $__env->startSection('title','我的地址'); ?>
+<?php $__env->startSection('css'); ?>
 <link rel="stylesheet" href="/homes/common/css/base.min.css" />
 <link rel="stylesheet" href="/homes/common/css/main.min.css" />
 <link rel="stylesheet" href="/homes/common/css/address-edit.min.css" />
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
 
@@ -69,32 +68,40 @@
                                     <div class="address-item address-item-new" data-type="" id="J_newAddress"> <i class="iconfont">&#xe609;</i>
                                         添加新地址
                                     </div>
-                                    @if(!empty($address))
-                                    @foreach($address as $k=>$v)
+
+                                   <!--  <div data-toggle="distpicker">
+                                     <select name="sheng">w</select>
+                                     <select name="shi">w</select>
+                                     <select name="xian">w</select>
+                                   </div>
+                                    -->
+                                    <?php if(!empty($address)): ?>
+                                    <!-- <?php $__currentLoopData = $address; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="address-item J_addressItem" 
-                                     data-address_id='{{$v->id}}'
-                                     data-consignee='{{$v->consignee}}'
-                                     data-tel='{{$v->tel}}'
-                                     data-province_name='{{$v->province}}'
-                                     data-city_name='{{$v->city}}'
-                                     data-district_name='{{$v->district}}'
-                                     data-address='{{$v->address}}'
+                                     data-address_id='<?php echo e($v->id); ?>'
+                                     data-consignee='<?php echo e($v->consignee); ?>'
+                                     data-tel='<?php echo e($v->tel); ?>'
+                                     data-province_name='<?php echo e($v->province); ?>'
+                                     data-city_name='<?php echo e($v->city); ?>'
+                                     data-district_name='<?php echo e($v->district); ?>'
+                                     data-address='<?php echo e($v->address); ?>'
                                     >
                                         <dl>
                                             <dt>
-                                                <span class="tag"></span> <em class="uname">{{$v->consignee}}</em>
+                                                <span class="tag"></span> <em class="uname"><?php echo e($v->consignee); ?></em>
                                             </dt>
-                                            <dd class="utel">{{$v->tel}}</dd>
+                                            <dd class="utel"><?php echo e($v->tel); ?></dd>
                                             <dd class="uaddress">
-                                                {{$v->province}}  {{$v->city}}  {{$v->district}}
-                                                <br>{{$v->address}}</dd>
+                                                <?php echo e($v->province); ?>  <?php echo e($v->city); ?>  <?php echo e($v->district); ?>
+
+                                                <br><?php echo e($v->address); ?></dd>
                                         </dl>
                                         <div class="actions">
-                                            <a href="javascript:void(0);" data-id="{{$v->id}}" class="modify J_addressModify">修改</a><a href="javascript:void(0);" class="modify J_addressDel">删除</a>
+                                            <a href="javascript:void(0);" data-id="<?php echo e($v->id); ?>" class="modify J_addressModify">修改</a><a href="javascript:void(0);" class="modify J_addressDel">删除</a>
                                         </div>
                                     </div>
-                                    @endforeach
-                                    @endif
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> -->
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -107,14 +114,16 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script src="/homes/common/myjs/jquery.min.js"></script>
 <script src="/homes/common/js/address_all.js"></script>        
 <script src="/homes/common/myjs/address.js"></script>
 <script src="/data/indexNav.js"></script>
 <script src="/data/indexData.js"></script>
 <script src="/homes/common/myjs/common.js"></script>
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

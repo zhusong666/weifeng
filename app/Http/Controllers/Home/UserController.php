@@ -18,16 +18,21 @@ class UserController extends Controller
 	{
 		$username = session('username');
 
+        if(!$username){
+
+            return redirect('/login')->with('error','请先登录');
+        }
+
 		$res = DB::table('wf_home_user')->where('username',$username)->first();
 
 		return view('home.user.details',['res'=>$res]);
 	}
     
-    public function comment()
+    /*public function comment()
     {
 
     	return view('home.user.comment');
-    }
+    }*/
 
     //用户详情修改
     public function update(Request $request, $id)
@@ -133,14 +138,12 @@ class UserController extends Controller
                 $action ='
                         <td class="order-actions">
                             <a class="btn btn-small btn-primary" href="/user/pay?id='.$val->order_id.'" target="_blank">立即支付</a>
-                            <!--<a class="btn btn-small btn-line-gray" href="user/orderView?id='.$val->order_id.'">订单详情</a>-->
                         </td>';
             }elseif($status == 6) {
                 $class = 'uc-order-item-shipping';
                 $samaury = '<div class="order-summary"> <div class="order-status">已退款</div>   </div>';
                 $action ='
                         <td class="order-actions">
-                            <!--<a class="btn btn-small btn-line-gray" href="user/orderView?id='.$val->order_id.'">订单详情</a>-->
                         </td>';
             }else{
                 $class = 'uc-order-item-finish';
@@ -168,10 +171,13 @@ class UserController extends Controller
                         <td class="order-actions">
                             <!--<a class="btn btn-small btn-line-gray" href="user/orderView?id='.$val->id.'">订单详情</a>-->';
                 $action .= $status==2? '<a class="btn btn-small  btn-primary" href="/user/paysuccess?id='.$val->order_id.'">确认收货</a>':''; 
-                if($status==3){
-                    
-                }               
+                if($status == 3){
+                        
+                }
+
                 $action .='</td>';
+
+
             }
             $str .='<li class="uc-order-item '.$class.'">
                     <div class="order-detail">';   

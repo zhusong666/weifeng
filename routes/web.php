@@ -107,7 +107,6 @@ Route::any('goodlist/{id}','GoodController@goodList');
 
 //用户详情
 	Route::any('/user/details','Home\UserController@details');
-	Route::any('/user/comment','Home\UserController@comment');
 //用户详情修改
 	Route::any('/user/doedit/{id}','Home\UserController@update');
 //用户收货地址
