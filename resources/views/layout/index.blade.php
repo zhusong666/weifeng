@@ -54,7 +54,7 @@
                     <ul class="user-menu" style="display: none;">
 
                         <li>
-                            <a rel="nofollow" href="/user/comment" target="_blank">评价晒单</a>
+                            <a rel="nofollow" href="/comments" target="_blank">评价晒单</a>
                         </li>
                         <li>
                             <a rel="nofollow" href="/logout">退出登录</a>

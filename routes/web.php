@@ -122,7 +122,7 @@ Route::any('goodlist/{id}','GoodController@goodList');
 	Route::any('/user/paysuccess','Home\OrderController@paysuccess');
 
 //帮助模块
-Route::any('/home/help','Home\HelpController@help');
+Route::resource('/home/help','Home\HelpController');
 //评论模块
 Route::resource('/comments','Home\CommentController');
 
