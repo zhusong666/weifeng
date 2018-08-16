@@ -78,9 +78,9 @@
                         </div>
                     </div>
                     <div class="enter-area img-code-area">
-                        <input name="Vcode" style="width: 150px;float:left;" type="text" class="enter-item first-enter-item" placeholder="请输入验证码">
+                        <input name="code" style="width: 150px;float:left;" type="text" class="enter-item first-enter-item" placeholder="请输入验证码">
                         <i class="placeholder">验证码</i>
-                        <img src="/captcha" alt="captcha" style="margin-left:20px;height: 46px; " onclick="this.src='/captcha?'+Math.random()" />
+                        <img src="/home/captcha" alt="" onclick="this.src = this.src +='?1'" style="margin-left:10px;margin-top:5px">
                     </div>
                     {{csrf_field()}}
                     <input type="submit" name="submit" class="button orange" value="立即登录" id="qqq">
@@ -152,12 +152,12 @@
             }
         })
 
-        //邮箱
-        $('input[name=Vcode]').focus(function(){
+        //密码
+        $('input[name=code]').focus(function(){
 
         })
 
-        $('input[name=Vcode]').blur(function(){
+        $('input[name=code]').blur(function(){
 
             var yxx = $(this).val();
 

@@ -72,7 +72,7 @@
   </div>
 
 <div style="text-align:center;">
-<p><a href="#" style="text-">威锋网欢迎您的到来!!!</a></p>
+<p><a href="#" style="text-">小米米欢迎您的到来!!!</a></p>
 </div>
 </body>
 </html>

@@ -16,7 +16,7 @@ class LoginController extends Controller
 	public function login()
 	{
 
-		return view('/admin/user/login',['title'=>'威锋网后台登录']);
+		return view('/admin/login',['title'=>'威锋网后台登录']);
 	}
 
 	public function dologin(Request $request)

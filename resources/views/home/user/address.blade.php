@@ -7,6 +7,10 @@
 @endsection
 
 @section('content')
+<script src="/homes/SJLD/js/distpicker.data.js"></script>
+<script src="/homes/SJLD/js/distpicker.js"></script>
+<script src="/homes/SJLD/js/main.js"></script>
+
 
     <div class="breadcrumbs">
         <div class="container">
@@ -70,8 +74,21 @@
                                     <div class="address-item address-item-new" data-type="" id="J_newAddress"> <i class="iconfont">&#xe609;</i>
                                         添加新地址
                                     </div>
+
+                                    <div data-toggle="distpicker" id="#distpicker">
+                                        <select name="sheng"></select>
+                                        <select name="shi"></select>
+                                        <select name="xian"></select>
+                                   </div>
+
+                                   <!--  <div data-toggle="distpicker">
+                                     <select name="sheng">w</select>
+                                     <select name="shi">w</select>
+                                     <select name="xian">w</select>
+                                   </div>
+                                    -->
                                     @if(!empty($address))
-                                    @foreach($address as $k=>$v)
+                                    <!-- @foreach($address as $k=>$v)
                                     <div class="address-item J_addressItem" 
                                      data-address_id='{{$v->id}}'
                                      data-consignee='{{$v->consignee}}'
@@ -91,10 +108,10 @@
                                                 <br>{{$v->address}}</dd>
                                         </dl>
                                         <div class="actions">
-                                            <!-- <a href="javascript:void(0);" data-id="{{$v->id}}" class="modify J_addressModify">修改</a> --><a href="javascript:void(0);" class="modify J_addressDel">删除</a>
+                                            <a href="javascript:void(0);" data-id="{{$v->id}}" class="modify J_addressModify">修改</a><a href="javascript:void(0);" class="modify J_addressDel">删除</a>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    @endforeach -->
                                     @endif
                                     
                                 </div>
@@ -104,7 +121,9 @@
                 </div>
 
                 <div id="J_modalEditAddress" class="modal fade modal-hide modal-edit-address">
-                    <div class="modal-body"></div>
+                    <div class="modal-body">
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,6 +131,8 @@
 @endsection
 
 @section('js')
+
+
 <script src="/homes/common/myjs/jquery.min.js"></script>
 <script src="/homes/common/js/address_all.js"></script>        
 <script src="/homes/common/myjs/address.js"></script>

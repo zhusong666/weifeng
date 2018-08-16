@@ -59,30 +59,37 @@
                         <td>{{$v->order_address}}</td>
                         <td>{{$v->order_phone}}</td>
                         <td>
-                            @if($v->pay_status == 0) 
+                            @if($v->order_status == 0) 
                                 未付款
                             @endif
-                            @if($v->pay_status == 1) 
+                            @if($v->order_status == 1) 
                                 已付款
+                            @endif
+                            @if($v->order_status == 2) 
+                                未收货
+                            @endif
+                            @if($v->order_status == 3) 
+                                已收货
                             @endif
                         </td>
                         <td>{{$v->order_msg}}</td>
                         <td class="td-manage">
                             @if($v->order_status == 0) 
-                                <a href="javascript:;" style="text-decoration:none">未付款</a>|
+                                <a href="javascript:;" style="text-decoration:none">不给货</a>|
                             @endif
                             @if($v->order_status == 1) 
                                 <a href="javascript:;" onclick="status_show({{$v->order_id}})" style="text-decoration:none">发货</a>|
                             @endif
-                            
                             @if($v->order_status == 2) 
                                 <a style="text-decoration:none" href="javascript:;">已发货</a>|
                             @endif
                             
                             @if($v->order_status == 3)
+                                <a style="text-decoration:none" href="javascript:;">待评价</a>|
+                            @endif
+                            @if($v->order_status == 6)
                                 <a style="text-decoration:none" href="javascript:;">完成</a>|
                             @endif
-                           
                             <a href="/admin/detail/{{$v->order_id}}" style="text-decoration:none">订单详情</a>
                     </tr>
                   @endforeach

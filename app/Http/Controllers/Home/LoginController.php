@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
+use Gregwar\Captcha\PhraseBuilder;
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use App\Model\Home\User;
@@ -47,8 +49,8 @@ class LoginController extends Controller
         }
 
         //验证码
-        $Vcode = $request->input('Vcode');
-        if(session('Vcode')!=$Vcode){
+        $code = $request->input('code');
+        if(session('code')!=$code){
             return back()->with('error','验证码有误!');
         }
 
@@ -65,20 +67,30 @@ class LoginController extends Controller
     }
 
     //验证码
-    public function getCaptcha()
+    public function captcha()
     {
-        //生成验证码图片的Builder对象，配置相应属性
-        $builder = new CaptchaBuilder;
-        //可以设置图片宽高及字体
-        $builder->build($width = 100, $height = 40, $font = null);
-        //获取验证码的内容
+        $phrase = new PhraseBuilder;
+        // 设置验证码位数
+        $code = $phrase->build(4);
+        // 生成验证码图片的Builder对象，配置相应属性
+        $builder = new CaptchaBuilder($code, $phrase);
+        // 设置背景颜色
+        $builder->setBackgroundColor(123, 203, 230);
+        $builder->setMaxAngle(25);
+        $builder->setMaxBehindLines(0);
+        $builder->setMaxFrontLines(0);
+        // 可以设置图片宽高及字体
+        $builder->build($width = 90, $height = 36, $font = null);
+        // 获取验证码的内容
         $phrase = $builder->getPhrase();
+        // 把内容存入session
+        // \Session::flash('code', $phrase);
 
-        //把内容存入session
-        Input::session()->flash('Vcode', $phrase);
-        //生成图片
+        session(['code'=>$phrase]);
+
+        // 生成图片
         header("Cache-Control: no-cache, must-revalidate");
-        header('Content-Type: image/jpeg');
+        header("Content-Type:image/jpeg");
         $builder->output();
     }
     

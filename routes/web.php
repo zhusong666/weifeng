@@ -84,6 +84,7 @@ Route::any('/dologin','Home\LoginController@dologin');
 Route::any('/captcha','Home\LoginController@getCaptcha');
 //登录ajax 查询用户名
 Route::any('/checkname','Home\LoginController@checkname');
+Route::any('/home/captcha','Home\LoginController@captcha');
 //退出
 Route::any('/logout','Home\LoginController@logout');
 //注册
@@ -113,6 +114,12 @@ Route::any('goodlist/{id}','GoodController@goodList');
 	Route::any('/user/address','Home\UserController@address');
 //用户个人订单
 	Route::any('/user/order','Home\UserController@order');
+//订单支付
+	Route::any('/user/pay','Home\OrderController@pay');
+//支付成功
+	Route::any('/user/success/{id}','Home\OrderController@success');
+//收货
+	Route::any('/user/paysuccess','Home\OrderController@paysuccess');
 
 //帮助模块
 Route::any('/home/help','Home\HelpController@help');

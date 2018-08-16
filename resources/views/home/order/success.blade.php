@@ -17,6 +17,13 @@
     </div>
 @endsection
 @section('content')
+@if(session('error')) 
+    <script>
+        var error = "{{session('error')}}";
+        swal(error);
+    </script>
+   
+@endif
     <div class="page-main">
         <div class="container confirm-box">
             <form target="_blank" action="#" id="J_payForm" method="post">
@@ -24,7 +31,7 @@
                     <div class="order-info clearfix">
                         <div class="fl">
                         <h2 class="title" style="padding-top:10px;">交易完成~ 谢谢.您的光临</h2>
-                        <h4><em id="asd">10</em>s之后自动跳转回<a href="/user/order">我的订单</a></h4>
+                        <h4><em id="asd">3</em>s之后自动跳转回<a href="/user/order">我的订单</a></h4>
                         </div>
                         <div class="fr">
                            
@@ -38,13 +45,16 @@
     </div>
 </div>
 <script>
-var n = 0;
+var n = 3;
 var asd = document.getElementById('asd');
 setInterval(function(){
-    n++;
-    asd.innerHTML = 10-n;
-    if(n==10){
+    n--;
+    asd.innerHTML = n;
+
+    if(n==0){
         window.location.href = '/user/order';
+        // clearInterval(time);
+        
     }
 },1000)
 </script>

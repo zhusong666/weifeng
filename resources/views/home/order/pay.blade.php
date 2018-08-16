@@ -28,26 +28,29 @@
                                 现在支付，预计2-3天送达
                                 <span class="beta">Beta</span>
                             </p>
-                            <p class="order-time">
+                            <!-- <p class="order-time">
                                 请在
-                                <span class="pay-time-tip">{{$countTime}}</span>
+                                <span class="pay-time-tip"></span>
                                 内完成支付, 超时后将取消订单
-                            </p>
+                            </p> -->
+                            <li class="clearfix" style="margin-top:10px;margin-bottom:10px">
+                                <div class="label">订单号：<span class="order-num">{{$order->order_id}}</span></div>
+                                    
+                            </li>
                             <p class="post-info" id="J_postInfo">
-                                收货信息：{{$order->consignee}} {{$order->phone}} &nbsp;&nbsp;
-                            {{$order->province}}&nbsp;&nbsp;{{$order->city}}&nbsp;&nbsp;{{$order->district}}&nbsp;&nbsp;{{$order->address}}
+                                收货信息：{{$order->order_linkman}} {{$order->order_phone}} &nbsp;&nbsp;{{$order->order_address}}&nbsp;&nbsp;
                             </p>
                         </div>
                         <div class="fr">
                             <p class="total">
                                 应付总额：
-                                <span class="money"> <em>{{$order->total_price}}</em>
+                                <span class="money"> <em>{{$order->order_total}}</em>
                                     元
                                 </span>
                             </p>
-                            <a href="javascript:void(0);" class="show-detail" id="J_showDetail">
+                            <!-- <a href="javascript:void(0);" class="show-detail" id="J_showDetail">
                                 订单详情 <i class="iconfont">&#xe61c;</i>
-                            </a>
+                            </a> -->
                         </div>
                     </div> <i class="iconfont icon-right">&#x221a;</i>
                     <div class="order-detail">
@@ -55,33 +58,14 @@
                             <li class="clearfix">
                                 <div class="label">订单号：</div>
                                 <div class="content">
-                                    <span class="order-num">{{$order->order_num}}</span>
+                                    <span class="order-num">{{$order->order_id}}</span>
                                 </div>
                             </li>
                             <li class="clearfix">
-                                <div class="label">收货信息：</div>
                                 <div class="content">
-                                    收货信息：{{$order->consignee}} {{$order->phone}} &nbsp;&nbsp;
-                            {{$order->province}}&nbsp;&nbsp;{{$order->city}}&nbsp;&nbsp;{{$order->district}}&nbsp;&nbsp;{{$order->address}}
+                                    收货信息：{{$order->order_linkman}} {{$order->order_phone}} &nbsp;&nbsp;{{$order->order_addr}}&nbsp;&nbsp;
                                 </div>
                             </li>
-                            <li class="clearfix">
-                                <div class="label">商品名称：</div>
-                                <div class="content">
-                                    @foreach($order->orderGoods as $k=>$v)
-                                        {{$v->goods_name}} <br/>
-                                    @endforeach
-                                    
-                                </div>
-                            </li>
-                            <!-- <li class="clearfix">
-                                <div class="label">配送时间：</div>
-                                <div class="content">不限送货时间</div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="label">发票信息：</div>
-                                <div class="content">个人电子发票</div>
-                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -107,30 +91,35 @@
                         <span class="desc"></span>
                     </div>
                     <div class="payment-body">
+                        <!-- <form action=""> -->
                         <ul class="clearfix payment-list J_paymentList J_linksign-customize">
                             <li id="J_weixin" >
-                                <img src="//c1.mifile.cn/f/i/15/pay/wechat0715.jpg" alt="" style="margin-left: 0;"/>
+                                <a href="/user/success/{{$order->order_id}}">
+                                    <img src="//c1.mifile.cn/f/i/15/pay/wechat0715.jpg" alt="" style="margin-left: 0;"/>
+                                </a>
                             </li>
                             <li class="J_bank">
-                                <a href="/order/payfor?method=qg" id="PayByqg">网络支付</a>
+                                <a href="/user/success/{{$order->order_id}}">  
+                                    <img src="//c1.mifile.cn/f/i/15/pay/alipay-0718-1.png" alt="" style="margin-left: 0;"/>
+                                </a>
                             </li>
                             <li class="J_bank">
-                                <input type="radio" name="payOnlineBank" id="alipay" value="alipay" />
-                                <a href="/order/pay"><img src="//c1.mifile.cn/f/i/15/pay/alipay-0718-1.png" alt="" style="margin-left: 0;"/>
+                                <a href="/user/success/{{$order->order_id}}">
+                                    <img src="//s01.mifile.cn/i/banklogo/unionpay.png?ver2015" alt="" style="margin-left: 0;"/>
+                                </a>
                             </li>
                             <li class="J_bank">
-                                <input type="radio" name="payOnlineBank" id="unionpay" value="unionpay" />
-                                <img src="//s01.mifile.cn/i/banklogo/unionpay.png?ver2015" alt="" style="margin-left: 0;"/>
+                                <a href="/user/success/{{$order->order_id}}">
+                                    <img src="//s01.mifile.cn/i/banklogo/cft.png" alt="" style="margin-left: 0;"/>
+                                </a>
                             </li>
                             <li class="J_bank">
-                                <input type="radio" name="payOnlineBank" id="cft" value="cft" />
-                                <img src="//s01.mifile.cn/i/banklogo/cft.png" alt="" style="margin-left: 0;"/>
-                            </li>
-                            <li class="J_bank">
-                                <input type="radio" name="payOnlineBank" id="micash" value="micash" />
-                                <img src="//s01.mifile.cn/i/banklogo/micash.png?ver2015" alt="" style="margin-left: 0;"/>
+                                <a href="/user/success/{{$order->order_id}}">
+                                    <img src="//s01.mifile.cn/i/banklogo/micash.png?ver2015" alt="" style="margin-left: 0;"/>
+                                </a>
                             </li>
                         </ul>
+                        <!-- </form> -->
                         <div class="event-desc">
                             <p>微信支付：关注小米手机微信公众号，支付成功后可领取3-10元电影票红包。</p>
                             <p>支 付 宝：支付宝扫码支付满38元，参与赢取1999元红包</p>
