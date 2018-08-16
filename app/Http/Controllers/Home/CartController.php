@@ -11,41 +11,35 @@ class CartController extends Controller
 {	
 
 
-
 	public function index(Request $request)
 	{	
 		$uid = session('user_id');
-    	
+		if(empty($uid)){
+				echo "<script> alert('请登入!');parent.location.href='/login'; </script>"; 
+			}else{
+			$cart = DB::table('wf_goods_carts')
+	            ->join('wf_goods', 'gid', '=', 'goods_id')
+	            ->select('wf_goods_carts.*', 'wf_goods.*')
+	            ->where('uid',$uid)
+	            ->get();
+	        $carts = [];
+	        foreach($cart as $k => $v){
+	        	 foreach($v as $kk => $vv){
+	        	 	// dump($vv);
+	        	 	$carts[] = $vv;
+	        	 }
+	        }
+	         $res = [];
+	        foreach ($cart as $k => $v) {
+	        	 $res[] = DB::table('wf_goods_img')->where('good_id',$v->goods_id)->first();
+	        }
+	       
+	 	
+			return view('/home/cart',['cart'=>$cart,'res'=>$res]);
 
-		$cart = DB::table('wf_goods_carts')
-            ->join('wf_goods', 'gid', '=', 'goods_id')
-            ->select('wf_goods_carts.*', 'wf_goods.*')
-            ->get();
-        $carts = [];
-        foreach($cart as $k => $v){
-        	 foreach($v as $kk => $vv){
-        	 	// dump($vv);
-        	 	$carts[] = $vv;
-        	 }
-        }
-         $res = [];
-        foreach ($cart as $k => $v) {
-        	 $res[] = DB::table('wf_goods_img')->where('good_id',$v->goods_id)->first();
-        }
-        $price = 0;
-        foreach($cart as $k => $v){
-        	 $price += $v->price;
-        	
-        }
- 		// dd($a);
-   //      dump($cart);
-        // dump($carts[$k]->price);
-		return view('/home/cart',['cart'=>$cart,'res'=>$res,'price'=>$price]);
-
-
+		}
 
 	}
-
 
 
 	public function addcart(Request $request,$id)
@@ -54,7 +48,7 @@ class CartController extends Controller
 		$uid = session('user_id');
 		// dump($uid);
 		if(empty($uid)){
-			echo  "<script language=javascript>alert('请登入！');history.back();</script>";
+			echo "<script> alert('请登入!');parent.location.href='/login'; </script>"; 
 		}else{
 		// $good['goods_name'] = $request->input('goods_name');
 			$cart['uid'] = $uid;
