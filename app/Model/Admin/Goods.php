@@ -37,6 +37,6 @@ class Goods extends Model
 
     public function comments()
     {
-        return $this->hasMany(\App\Model\Home\Comment:class,'goods_id','goods_id');
+        return $this->hasMany('\App\Model\Home\Comment:class','goods_id','goods_id');
     }
 }

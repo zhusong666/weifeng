@@ -22,5 +22,5 @@ class Carts extends Model
      *
      * @var array
      */
-    protected $fillable = ['gid','uid'];
+    protected $fillable = ['uid','gid','tname','colour','price','num'];
 }
