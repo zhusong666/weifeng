@@ -74,7 +74,7 @@ Route::get('/home/details/{id}','Home\GoodsController@details');
 //显示购物车页
 Route::get('/home/cart','Home\CartController@index');
 //商品加入购物车
-Route::get('/home/addcart/{id}','Home\CartController@addcart');
+Route::any('/home/addcart/{id}','Home\CartController@addcart');
 
 
 //前台登录

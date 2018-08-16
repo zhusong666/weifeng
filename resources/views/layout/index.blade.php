@@ -28,7 +28,7 @@
 
             </div>
             <div class="topbar-cart" id="J_miniCartTrigger">
-                <a rel="nofollow" class="cart-mini" id="J_miniCartBtn" href="/cart/"> <i class="iconfont">&#xe60c;</i>
+                <a rel="nofollow" class="cart-mini" id="J_miniCartBtn" href="/home/cart"> <i class="iconfont">&#xe60c;</i>
                     购物车
                     <span class="cart-mini-num J_cartNum"></span>
                 </a>
