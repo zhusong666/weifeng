@@ -1,7 +1,6 @@
-@extends('layout.index')
-@section('title','小米商城')
+<?php $__env->startSection('title','小米商城'); ?>
 
-@section('css')
+<?php $__env->startSection('css'); ?>
     <title>小米商城</title>
     <style type="text/css">
         img{
@@ -45,11 +44,11 @@
     <link rel="icon" href="http://s01.mifile.cn/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/homes/common/css/base.min.css" />
     <link rel="stylesheet" type="text/css" href="/homes/common/css/goods-detail.min.css" />
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- E 面包屑 -->
 <div class="goods-detail">
     <div class="goods-detail-info  clearfix J_goodsDetail">
@@ -59,9 +58,9 @@
                     <div class="goods-pic-box  " style="min-height: 530px;" id="J_mi_goodsPicBox">
                         
                         <div id="small" class="goods-big-pic J_bigPicBlock">
-                            @foreach($imgs as $k=>$v)
-                            <img src="{{$v->goods_img}}"  class="J_goodsBigPic" id="smallImg" />
-                            @endforeach
+                            <?php $__currentLoopData = $imgs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <img src="<?php echo e($v->goods_img); ?>"  class="J_goodsBigPic" id="smallImg" />
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                        
                         <div class="goods-pic-loading">
@@ -70,9 +69,9 @@
                         <div class="goods-small-pic clearfix">
                         
                             <ul id="uls">
-                                @foreach($imgs as $k=>$v)
-                                <li class="current"  style="cursor: pointer;" ><img src="{{$v->goods_img}}" /> </li>
-                                @endforeach
+                                <?php $__currentLoopData = $imgs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li class="current"  style="cursor: pointer;" ><img src="<?php echo e($v->goods_img); ?>" /> </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
                     </div>
@@ -81,56 +80,58 @@
                 </div>
                 <div class="span7 goods-info-rightbox">
                     <div class="goods-info-leftborder"></div>
-                    @foreach($goods as $k=>$v)
-                    <form action="/home/addcart/{{$v->goods_id}}" method="post" id="yourformid">
+                    <?php $__currentLoopData = $goods; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <form action="/home/addcart/<?php echo e($v->goods_id); ?>" method="post" id="yourformid">
                         <dl class="goods-info-box ">
                         <dt class="goods-info-head">
                         <dl id="J_goodsInfoBlock">
                             <dt id="goodsName" class="goods-name" name="goods_name">
-                                {{$v->goods_name}}
+                                <?php echo e($v->goods_name); ?>
+
                             </dt>
-                            <p class="sale-desc" id="J_desc" name="" >{{$v->goods_selecnt}}</p>
+                            <p class="sale-desc" id="J_desc" name="" ><?php echo e($v->goods_selecnt); ?></p>
                             <dd class="goods-phone-type">
                                 <p> </p>
                             </dd>
                             <dd class="goods-info-head-price clearfix">
-                                <b class="J_mi_goodsPrice">{{$v->goods_price}}</b>
+                                <b class="J_mi_goodsPrice"><?php echo e($v->goods_price); ?></b>
                                 <i>&nbsp;元</i>
                                 <del>
                                     <span class="J_mi_marketPrice"></span>
                                 </del>
                             </dd>
                            
-                            {{--遍历版本    --}}
+                            
                             <dd style="margin-top: 15px;">
                                 <span >选择 版本</span>
                                 <div class="clearfix">
-                                    @foreach($type as $kk=>$vv)
-                                    <div class="attr" name="attr" title="{{$vv->type_name}}" id="attr" price="{{$vv->tprice}}">
-                                        {{$vv->type_name}}
+                                    <?php $__currentLoopData = $type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kk=>$vv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="attr" name="attr" title="<?php echo e($vv->type_name); ?>" id="attr" price="<?php echo e($vv->tprice); ?>">
+                                        <?php echo e($vv->type_name); ?>
+
                                     </div>
 
-                                     @endforeach
+                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </dd>
                             <!--颜色-->
-                             @foreach($type as $kk=>$vv)
+                             <?php $__currentLoopData = $type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kk=>$vv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php  
                                 $len = explode(",", $vv->colour);  
                             ?>
                                 <dd class="goods-info-head-colors clearfix" >
-                                    <div class="hidden" num="{{$vv->type_name}}" name="hidden">
+                                    <div class="hidden" num="<?php echo e($vv->type_name); ?>" name="hidden">
                                         <span class="goods-info-head-colors clearfix">选择 颜色</span >
-                                    @foreach($len as $kl => $vl)
+                                    <?php $__currentLoopData = $len; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kl => $vl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div  class="float">
                                             <div>
-                                                <a href="" class="smallAttr" name="color" title="{{$vl}}" data-stat-id="bd7cb1fe26f82654" id="color">{{$vl}}</a>
+                                                <a href="" class="smallAttr" name="color" title="<?php echo e($vl); ?>" data-stat-id="bd7cb1fe26f82654" id="color"><?php echo e($vl); ?></a>
                                             </div>
                                         </div>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                 </dd>
-                                 @endforeach
+                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <!--颜色-->
                                
 
@@ -156,9 +157,10 @@
                         </dt>
 
                     </dl>
-                    {{csrf_field()}}
+                    <?php echo e(csrf_field()); ?>
+
                     </form>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>
@@ -169,18 +171,19 @@
             <ul class="detail-list J_detailNav J_originNav">
                 <li class="current detail-nav"> <a data-href="#goodsDesc" data-index="0" class="J_scrollHref" data-stat-id="2f27371406a047cd" >详情描述</a> </li>
                 <li class="detail-nav"> <a data-href="#goodsParam" data-index="1" class="J_scrollHref" data-stat-id="bbde2caff4f4853c" href="#info">规格参数</a> </li>
-                <li class="detail-nav"> <a data-href="#goodsComment" data-index="2" class="J_scrollHref" data-stat-id="158b28b83a4cca1a" href="{{route('comments.show',['goods_id'=>$goods_id])}}">评价晒单 </a> </li>
+                <li class="detail-nav"> <a data-href="#goodsComment" data-index="2" class="J_scrollHref" data-stat-id="158b28b83a4cca1a" href="<?php echo e(route('comments.show',['goods_id'=>$goods_id])); ?>">评价晒单 </a> </li>
             </ul>
         </div>
     </div>
     <div class="full-screen-border"></div>
     <div class="goods-detail-desc J_itemBox" id="goodsDesc">
         <div class="container" >
-            @foreach($goods as $k=>$v)
+            <?php $__currentLoopData = $goods; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="shape-container" >
-                {!!$v->goods_content!!}
+                <?php echo $v->goods_content; ?>
+
             </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
     <div class="goods-detail-nav-name-block J_itemBox" id="goodsParam">
@@ -302,16 +305,16 @@
                                     <dt class="user-comment-content J_commentContent">
                                     <p class="content-detail"> <a href="http://order.mi.com/comment/commentDetail/comment_id/134117576" target="_blank"> </a> </p>
                                     </dt>
-                                    {{--<dd class="user-comment-self-input">--}}
-                                        {{--<div class="input-block">--}}
-                                            {{--<input type="text" placeholder="回复楼主" class="J_commentAnswerInput" />--}}
-                                            {{--<a href="javascript:void(0);" class="btn  answer-btn J_commentAnswerBtn" data-commentid="134117576">回复</a>--}}
-                                        {{--</div>--}}
-                                    {{--</dd>--}}
-                                    {{--<dd class="user-comment-answer">--}}
-                                        {{--<img class="self-image" src="/homes/common/image/head_4.png" alt="" />--}}
-                                        {{--<p>和我换- <span class="answer-user-name">268707921</span> </p>--}}
-                                    {{--</dd>--}}
+                                    
+                                        
+                                            
+                                            
+                                        
+                                    
+                                    
+                                        
+                                        
+                                    
                                 </dl>
                             </li>
                             <!--******评价结束********-->
@@ -349,16 +352,16 @@
     </div>
 </div>
 </body>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 
 <script src="/data/indexNav.js"></script>
 <script src="/data/indexData.js"></script>
 
 <script src="/homes/common/myjs/common.js"></script>
 
-@show
-@section('LDjs')
+<?php echo $__env->yieldSection(); ?>
+<?php $__env->startSection('LDjs'); ?>
 <script type="text/javascript">
     $('[name="attr"]').click(function () {
         var attr = $(this).attr('title');
@@ -403,4 +406,5 @@
         };
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

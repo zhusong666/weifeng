@@ -19,6 +19,7 @@ class GoodsController extends Controller
     	  	  }
           }
 
+
       $type = DB::table('wf_goods_type')->where('gid',$id)->get();
       // dump($type->colour);
       // $type = [];
