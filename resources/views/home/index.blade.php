@@ -58,19 +58,19 @@
                     <div class="ui-controls ui-has-pager ui-has-controls-direction">
                         <div class="ui-pager ui-default-pager">
                             <div class="ui-pager-item">
-                                <a href="javascript:void(0);" class="ui-pager-link">1</a>
+                                <a href="/home/search" class="ui-pager-link">1</a>
                             </div>
                             <div class="ui-pager-item">
-                                <a href="javascript:void(0);" class="ui-pager-link">2</a>
+                                <a href="/home/search" class="ui-pager-link">2</a>
                             </div>
                             <div class="ui-pager-item">
-                                <a href="javascript:void(0);" class="ui-pager-link">3</a>
+                                <a href="/home/search" class="ui-pager-link">3</a>
                             </div>
                             <div class="ui-pager-item">
-                                <a href="javascript:void(0);" class="ui-pager-link active">4</a>
+                                <a href="/home/search" class="ui-pager-link active">4</a>
                             </div>
                             <div class="ui-pager-item">
-                                <a href="javascript:void(0);" class="ui-pager-link">5</a>
+                                <a href="/home/search" class="ui-pager-link">5</a>
                             </div>
                         </div>
                     </div>

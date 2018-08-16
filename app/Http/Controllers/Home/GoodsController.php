@@ -18,6 +18,7 @@ class GoodsController extends Controller
     	  		$imgs[] = $vv;
     	  	  }
           }
+
       $type = DB::table('wf_goods_type')->where('gid',$id)->get();
       // dump($type->colour);
       // $type = [];
@@ -31,6 +32,6 @@ class GoodsController extends Controller
         // dump($type);
 
 
-    	return view('/home/detail',['goods'=>$goods,'imgs'=>$imgs,'type'=>$type]);
+    	return view('/home/detail',['goods'=>$goods,'imgs'=>$imgs,'type'=>$type,'goods_id'=>$id]);
     }
 }

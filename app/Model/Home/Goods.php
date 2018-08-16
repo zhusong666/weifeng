@@ -26,4 +26,9 @@ class Goods extends Model
     {
     	return $this->hasMany('App\Model\Home\Goodsimg','good_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(\App\Model\Home\Comment::class,'goods_id','goods_id');
+    }
 }

@@ -5,9 +5,9 @@
 		'upload'=>'./uploads/',
 
 
-		'goodsimg'=>'./uploads/goodsimg/'
+		'goodsimg'=>'./uploads/goodsimg/',
 
 
-
+		'show_user_face' => '/uploads/'
 
 	];

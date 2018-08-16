@@ -1,5 +1,5 @@
 @extends('layout.index')
-@section('title',$article->helpCate->name)
+@section('title')
 @section('myCss')
 <link rel="stylesheet" href="/homes/common/css/exchange/index.min.css" />
 <link rel="stylesheet" href="/homes/common/css/exchange/serviceList.min.css" />
@@ -11,9 +11,9 @@
         <div class="breadcrumbs">
             <a href="/">首页</a>
             <span class="sep">/</span>
-            <a href="//www.mi.com/service/buy/">{{$article->helpCate->name}}</a>
+            <a href="//www.mi.com/service/buy/">帮助中心</a>
             <span class="sep">/</span>
-            <a href="//www.mi.com/service/buy/buytime/">{{$article->helpCate->helpArticle()->find($request->input('id'))->title}}</a>
+            <a href="//www.mi.com/service/buy/buytime/"></a>
 
         </div>
     </div>
@@ -25,16 +25,19 @@
                     <div class="content">
                         <div class="xm-sidebar-content">
                             <div class="nav-list" id="serviceMenuList">
-                                <h3>{{$article->helpCate->name}}</h3>
+                            @foreach($rs as $k=>$v)
+                                <h3>{{$v->articlecate_name}}</h3>
                                 <ul class="uc-nav-list">
-                                @foreach($article->helpCate->helpArticle()->where('status',1)->get() as $k=>$v)
-                                    <li @if($v->id==$article->id) class="cur" @endif>
-                                        <a href="/help/article?id={{$v->id}}" >{{$v->title}}</a>
+                                <!-- 遍历侧边栏 -->
+                                @foreach($v->articles as $k1=>$v1)
+                                    <li >
+                                        <a href="" >{{$v1->article_title}}</a>
                                     </li>
                                 @endforeach
+                                <!-- 结束 -->
                                 </ul>
                                 <span class="line"></span>
-
+                            @endforeach
                             </div>
                         </div>
                     </div>
@@ -46,9 +49,9 @@
                 .service-right img{max-width: 856px;}
                 </style>
                     <div class="service-right">
-                        <h2>{{$article->title}}</h2>
+                        <h2>小标题</h2>
                         <div class="service-right-section">
-                            {!!$article->content!!}
+                            内容
                         </div>
 
                     </div>
