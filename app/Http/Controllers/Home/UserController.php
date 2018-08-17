@@ -115,7 +115,7 @@ class UserController extends Controller
 
     	$info = $this->dealTmp($orders);
 
-    	return view('home.user.order',['orders'=>$orders,'info'=>$info,'order'=>$order]);
+    	return view('home.user.order',['orders'=>$orders,'info'=>$info,'order'=>$order,'dd'=>'fdfd']);
     }
 
     private function dealTmp($orders)

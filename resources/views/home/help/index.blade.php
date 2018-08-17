@@ -49,11 +49,14 @@
                 .service-right img{max-width: 856px;}
                 </style>
                     <div class="service-right">
-                        <h2>小标题</h2>
+                   @foreach($rs as $k=>$v)
+                   @foreach($v->articles as $k1=>$v1)
+                        <h2>{{$v1->article_title}}</h2>
                         <div class="service-right-section">
-                            内容
+                            {{$v1->article_content}}
                         </div>
-
+                    @endforeach
+                    @endforeach
                     </div>
                 </div>
             </div>

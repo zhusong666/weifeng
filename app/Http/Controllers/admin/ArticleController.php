@@ -17,7 +17,7 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        $res = DB::select("select * from wf_article");
+        // $res = DB::select("select * from wf_article");
 
         // $res = Article_cates::find(2);
 
@@ -37,8 +37,6 @@ class ArticleController extends Controller
              }
              
          }
-       
-
 
 
         // echo "11111";

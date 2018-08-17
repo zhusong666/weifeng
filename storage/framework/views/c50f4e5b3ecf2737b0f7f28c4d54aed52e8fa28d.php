@@ -48,11 +48,15 @@
                 .service-right img{max-width: 856px;}
                 </style>
                     <div class="service-right">
-                        <h2>小标题</h2>
+                   <?php $__currentLoopData = $rs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                   <?php $__currentLoopData = $v->articles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k1=>$v1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <h2><?php echo e($v1->article_title); ?></h2>
                         <div class="service-right-section">
-                            内容
-                        </div>
+                            <?php echo e($v1->article_content); ?>
 
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>

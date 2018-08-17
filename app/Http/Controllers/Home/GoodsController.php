@@ -32,7 +32,8 @@ class GoodsController extends Controller
       //   }
         // dump($type);
 
-
-    	return view('/home/detail',['goods'=>$goods,'imgs'=>$imgs,'type'=>$type,'goods_id'=>$id]);
+       $good = Goods::find($id);
+       $comments = $good->comments;
+    	return view('/home/detail',['goods'=>$goods,'imgs'=>$imgs,'type'=>$type,'goods_id'=>$id,'comments'=>$comments]);
     }
 }

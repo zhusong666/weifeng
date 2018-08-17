@@ -83,7 +83,7 @@
             <div class="cart-goods-list">
                 
                 <div class="list-head clearfix">
-                     <div class="col col-check"> <input style="margin-top:24px" type="checkbox" id="ches" >
+                     <div class="col col-check"> <input style="margin-top:24px" type="checkbox" id="selectAll" value="true" >
                         全选
                     </div>
                     <div class="col col-img">&nbsp;</div>
@@ -101,7 +101,7 @@
                         <div class="item-table J_cartGoods" data-sid="" >
                             <div class="item-row clearfix">
                                 <div  class="col col-check"> 
-                                    <input type="checkbox" class='ches' id="xxoo" gid="<?php echo e($v->gid); ?>">
+                                    <input type="checkbox" name="checked" class='ches' id="xxoo" gid="<?php echo e($v->gid); ?>">
                                 </div>
                                 <div class="col col-img">
                                     <a href="//item.mi.com/1151900011.html" target="_blank">
@@ -119,14 +119,14 @@
                                         <a href="javascript:void(0)" class="minus">
                                             <i class="iconfont"></i>
                                         </a>
-                                        <input tyep="text" name="" value="<?php echo e($v->num); ?>"  autocomplete="off" class="qty">
+                                        <input tyep="text" name="" id="num" value="<?php echo e($v->num); ?>"  autocomplete="off" class="qty">
                                         <a href="javascript:void(0)" class="plus">
                                             <i class="iconfont"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col col-total">
-                                    <p id="xiaoji" style="margin:0;font-size:12px;color:#b0b0b0;"><?php echo e($v->price); ?></p>元
+                                    <p id="xiaoji" style="margin:0;font-size:12px;color:#b0b0b0;"><?php echo e($v->price * $v->num); ?></p>元
                                 </div>    
                                 <div class="col col-action">
                                     <a id="2151900016_0_buy" data-msg="确定删除吗？" href="javascript:void(0);" title="删除" class="del J_delGoods">
@@ -145,14 +145,14 @@
         <div class="cart-bar clearfix" id="J_cartBar">
                 <div class="section-left">
                     <a href="//list.mi.com/0" class="back-shopping J_goShoping" data-stat-id="cb50063b4f1b9ef0" onclick="_msq.push(['trackEvent', '5df97b551662ffe7-cb50063b4f1b9ef0', '//list.mi.com/0', 'pcpid', '']);">继续购物</a>
-                    <span class="cart-total">共 <i id="J_cartTotalNum">1</i> 件商品，已选择 <i id="J_selTotalNum">1</i> 件</span>
+                    <span class="cart-total">共 <i id="unselectnum">0</i> 件商品，已选择 <i id="selectnum">0</i> 件</span>
                     <span class="cart-coudan hide" id="J_coudanTip">
                         ，还需 <i id="J_postFreeBalance">0.00</i> 元即可免邮费  <a href="javascript:void(0);" id="J_showCoudan" data-stat-id="bb6e0fb00a971e12" onclick="_msq.push(['trackEvent', '5df97b551662ffe7-bb6e0fb00a971e12', 'javascript:void0', 'pcpid', '']);">立即凑单</a>
                     </span>
                 </div>
                 
                 <span class="total-price">
-                    合计（不含运费）： <em id="J_cartTotalPrice"><?php echo e($price); ?></em>
+                    合计（不含运费）： <em id="sum">0</em>
                     元
                 </span>
                  
@@ -186,33 +186,146 @@
     })
 </script>
 <script type="text/javascript">
+
+    //  全选  
+     var swith_All=true; 
+     $('#selectAll').click(function(){
+         if(swith_All){
+             $('input[name="checked"]').attr('checked',true);
+         }else{
+             $('input[name="checked"]').attr('checked',false);
+         }
+         swith_All = !swith_All;
+         tols();
+         all();  
+     });
+
+
+    //  加1
     $('.plus').click(function(){
-        alert(111);
+        //  获取数量
+        var num = $(this).prev('#num').val();
+        // console.log(num);
+        num++;
+        $(this).prev('#num').val(num);
+
+        //  获取单价
+        var price = $(this).parents('.item-row').find('.col-price').text();
+        
+        function accMul(arg1, arg2) {
+
+            var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+
+            try { m += s1.split(".")[1].length } catch (e) { }
+
+            try { m += s2.split(".")[1].length } catch (e) { }
+
+            return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+
+        }
+        //让小计发生改变   数量*单价
+        $(this).parents('.item-row').find('#xiaoji').text(accMul(num,price));
+        tols();
+        all();
     })
 
+    //  减1
     $('.minus').click(function(){
+        var num = $(this).next('#num').val();
+        // console.log(typeof num);
+        num--;
 
+        if(num <=1){
+            num = 1;
+        }
+
+        $(this).next('#num').val(num);
+
+        //获取的是单价
+        var price = $(this).parents('.item-row').find('.col-price').text();
+
+        function accMul(arg1, arg2) {
+
+            var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+
+            try { m += s1.split(".")[1].length } catch (e) { }
+
+            try { m += s2.split(".")[1].length } catch (e) { }
+
+            return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+
+        }
+
+        //让小计发生改变   数量*单价
+        $(this).parents('.item-row').find('#xiaoji').text(accMul(num,price));
+        tols();
+        all();
     })
 
+   //让总计发生改变
     $('.ches').click(function(){
-        var sum = 0;
-        $(':checkbox:checked').each(function(){
-            prs = parseFloat($(this).parents('div').find('#xiaoji').text());
-            sum +=prs;
-        })
-        // function accAdd(arg1,arg2){  
-        //     var r1,r2,m;  
-        //     try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}  
-        //     try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}  
-        //     m=Math.pow(10,Math.max(r1,r2))  
-        //     return (arg1*m+arg2*m)/m  
-        //     }
-        // console.log(sum);
-        // console.log(accAdd(sum,prs));
-        // console.log(sum);
-       
 
+        tols();
+        all();
     })
+
+
+    //封装
+    function tols()
+    {
+        var sum = 0;
+        var cnt = 0;
+        //判断多选框有没有选中
+        $('.ches:checked').each(function(){
+            //获取小计
+            prs = parseFloat($(this).parents('.item-row').find('#xiaoji').text());
+
+            //  获取数量
+            num = $(this).parents('.item-row').find('#num').val();
+            // console.log(num);
+
+
+            function accAdd(arg1,arg2){  
+            var r1,r2,m;  
+            try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}  
+            try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}  
+            m=Math.pow(10,Math.max(r1,r2))  
+            return (arg1*m+arg2*m)/m  
+            }
+
+            sum = accAdd(sum, prs);
+            cnt = accAdd(cnt,num);
+        })
+
+        $('#sum').text(sum);
+        $('#selectnum').text(cnt);
+    }
+
+    function all()
+    {
+        var shu = 0;
+         $('.ches').each(function(){
+            //  获取数量
+            num = $(this).parents('.item-row').find('#num').val();
+            // console.log(num);
+
+            function accAdd(arg1,arg2){  
+            var r1,r2,m;  
+            try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}  
+            try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}  
+            m=Math.pow(10,Math.max(r1,r2))  
+            return (arg1*m+arg2*m)/m  
+            }
+            
+            shu = accAdd(shu,num);
+            // console.log(shu);
+        })
+         $('#unselectnum').text(shu);
+
+    }
+
+
+     
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

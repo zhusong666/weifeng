@@ -287,11 +287,11 @@
                             </div>
                         </div>
                         <ul class="comment-box-list" id="J_supComment">
-
+                        <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <!--******评价********-->
                             <li class="item-rainbow-1" data-id="134117576">
                                 <div class="user-image">
-                                    <img src="" alt="" />
+                                    <img src="<?php echo e($value->user->user_face); ?>" alt="" />
                                 </div>
                                 <div class="user-emoj">
                                     喜欢
@@ -303,21 +303,22 @@
 
                                 <dl class="user-comment">
                                     <dt class="user-comment-content J_commentContent">
-                                    <p class="content-detail"> <a href="http://order.mi.com/comment/commentDetail/comment_id/134117576" target="_blank"> </a> </p>
+                                    <p class="content-detail"> <?php echo e($value->content); ?><a href="http://order.mi.com/comment/commentDetail/comment_id/134117576" target="_blank"> </a> </p>
                                     </dt>
-                                    
-                                        
-                                            
-                                            
-                                        
-                                    
-                                    
-                                        
-                                        
-                                    
+                                    <dd class="user-comment-self-input">
+                                        <div class="input-block">
+                                            <input type="text" placeholder="回复楼主" class="J_commentAnswerInput" />
+                                            <a href="javascript:void(0);" class="btn  answer-btn J_commentAnswerBtn" data-commentid="134117576">回复</a>
+                                        </div>
+                                    </dd>
+                                    <dd class="user-comment-answer">
+                                        <img class="self-image" src="/homes/common/image/head_4.png" alt="" />
+                                        <p>和我换- <span class="answer-user-name">268707921</span> </p>
+                                    </dd>
                                 </dl>
                             </li>
                             <!--******评价结束********-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             
 
 

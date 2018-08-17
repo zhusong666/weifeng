@@ -109,9 +109,10 @@
 
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
 
-                {{$res->appends($request->all())->links()}}
+                
                
             </div>
+            {{$res->appends($request->all())->links()}}
 		</div>
 
 

@@ -11,6 +11,7 @@
         <a href="//www.mi.com/index.html">首页</a><span class="sep">&gt;</span><span>交易订单</span>
     </div>
 </div>
+<?php echo e($dd); ?>
 
 <div class="page-main user-main">
     <div class="container">
@@ -28,7 +29,7 @@
                                     </li>
                                     
                                     <li>
-                                        <a href="/user/comment/">评价晒单</a>
+                                        <a href="/comments">评价晒单</a>
                                     </li>
                                     
                                 </ul>
@@ -41,7 +42,7 @@
                             <div class="box-bd">
                                 <ul class="uc-nav-list">
                                     <li>
-                                        <a href="/user/details">个人中心</a>
+                                        <a href="/user/details">个人资料</a>
                                     </li>
                                     <li>
                                         <a href="/user/address">收货地址</a>
@@ -62,6 +63,7 @@
                                     <li><a id="J_unpaidTab" href="/user/order?s=0" data-type="0">待支付<?php echo e($order->where('order_status',0)->count()); ?></a></li>
                                     <li><a id="J_unpaidTab" href="/user/order?s=1" data-type="1">待发货<?php echo e($order->where('order_status',1)->count()); ?></a></li>
                                     <li><a id="J_sendTab" href="/user/order?s=2" data-type="2">待收货<?php echo e($order->where('order_status',2)->count()); ?></a></li>
+                                    <!-- <li><a id="J_sendTab" href="/user/order?s=3" data-type="3">待评价<?php echo e($order->where('order_status',3)->count()); ?></a></li> -->
                                     <!--
                                     <li><a href="http://dami.com/user/order?s=10" data-type="5">已关闭</a></li> -->
                                 </ul>

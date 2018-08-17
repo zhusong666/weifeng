@@ -30,7 +30,7 @@
                                             <a href="/user/order/">我的订单</a>
                                         </li>
                                         
-                                        <li>
+                                        <li class="active">
                                             <a href="/user/comment/">评价晒单</a>
                                         </li>
                                         
@@ -45,7 +45,7 @@
                                     <ul class="uc-nav-list">
                                         
                                         
-                                        <li class="active">
+                                        <li >
                                             <a href="/user/address">收货地址</a>
                                         </li>
                                     </ul>
@@ -59,80 +59,73 @@
             <!-- 评论模块 -->
                     <div class="span16">
 
-                        <div class="row">
-                            <div class="span13 h-comment-main  m-comment-main J_commentCon">
-                                <div class="comment-top">
-                                    <h2 class="m-tit">热门评价</h2>
-                                       
+                        <div class="uc-box uc-main-box">
+                            <div class="uc-content-box">
+                                <div class="box-hd">
+                                    <h1 class="title">商品评价</h1>
+                                    <div class="more clearfix">
+                                        <ul class="filter-list J_addrType">
+                                            <li class="first ">
+                                                <a href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;待评价商品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                            </li>
+                                            <li >
+                                                <a href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已评价商品</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-
-                                <div class="m-comment-box J_commentList">
-                                    <ul class="m-comment-list J_listBody">
-                                    <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
-                                        <li class="com-item J_resetImgCon J_canZoomBox" data-id="156841065">
-                                            <a class="user-img" href="/comment/user?user_id=1159681005" data-stat-id="d4f60288c1a24306" onclick="_msq.push(['trackEvent', '59306e6a924b745c-d4f60288c1a24306', '/comment/useruser_id=1159681005', 'pcpid', '']);">
-                                                <img src="<?php echo e($v->user->user_face); ?>">
-                                            </a>
-
-                                            <div class="comment-info">
-                                                <a class="user-name" href="/comment/user?user_id=1159681005" data-stat-id="7a1200dcfda8b153" onclick="_msq.push(['trackEvent', '59306e6a924b745c-7a1200dcfda8b153', '/comment/useruser_id=1159681005', 'pcpid', '']);"><?php echo e($v->user->username); ?></a>
-                                                <p class="time">日期:<?php echo e($v->created_at); ?></p>
+                                <div class="box-bd">
+                                    <div class="xm-goods-list-wrap">
+                                        
+                                        <ul class="xm-goods-list clearfix">
+                                        
+                                        <?php $__currentLoopData = $ready_com; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div style="">
+                                                
+                                            <li class="xm-goods-item">
+                                            <span ><?php echo e($v->goods_name); ?></span>
+                                                <div class="figure figure-img" style="margin-top:20px;">
+                                                    <a href="" target="_blank">
+                                                        <img src="<?php echo e($v->goods_img); ?>" />
+                                                    </a>
+                                                </div>
+                                                <h3 class="title">
+                                                    <a href=""></a>
+                                                </h3>
+                                                <p class="price"><?php echo e($v->goods_price); ?>元</p>
+                                                <div class="actions">
+                                                    <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/comments/create">去评价</a>
+                                                </div>
+                                            </li>
                                             </div>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        
+                                        
+                                        <?php $__currentLoopData = $not_com; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <div style="">
                                             
-                                            <div class="comment-txt">
-                                                <a href="/comment/detail?comment_id=156841065" target="_blank" data-stat-id="7c19ad84787f2671" onclick="_msq.push(['trackEvent', '59306e6a924b745c-7c19ad84787f2671', '/comment/detailcomment_id=156841065', 'pcpid', '']);"><?php echo e($v->content); ?></a>
-                                            </div>
-
-                                            <div class="m-img-list clearfix h-img-list">
-                                                <div class="img-item img-item1  showimg">
-                                                    <img data-src="//i1.mifile.cn/a2/1533950871_7000458_s756_1008wh.jpg" class="J_resetImgItem J_canZoom" data-index="0" src="//i1.mifile.cn/a2/1533950871_7000458_s756_1008wh.jpg" data-width="756" data-height="1008" style="width: 160px; margin-top: -26.6667px;">
-                                                    <div class="loader loader-gray"></div>
+                                            <li class="xm-goods-item">
+                                                <span ><?php echo e($v->goods_name); ?></span>
+                                                <div class="figure figure-img"  style="margin-top:20px;">
+                                                    <a href="" target="_blank">
+                                                        <img src="<?php echo e($v->goods_img); ?>" />
+                                                    </a>
                                                 </div>
-                                                <div class="img-item img-item2  showimg">
-                                                    <img data-src="//i1.mifile.cn/a2/1533950871_4632659_s864_1152wh.jpg" class="J_resetImgItem J_canZoom" data-index="1" src="//i1.mifile.cn/a2/1533950871_4632659_s864_1152wh.jpg" data-width="864" data-height="1152" style="width: 160px; margin-top: -26.6667px;">
-                                                    <div class="loader loader-gray"></div>
-                                                </div>
-                                                <div class="J_zoomImgList" style="display: none;">
-                                                    <span data-src="//i1.mifile.cn/a2/1533950871_7000458_s756_1008wh.jpg"></span>
-                                                    <span data-src="//i1.mifile.cn/a2/1533950871_4632659_s864_1152wh.jpg"></span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="comment-input">
-                                                <input type="text" placeholder="回复楼主" class="J_commentAnswerInput">
-                                                <a href="javascript:void(0);" class="btn  answer-btn J_commentAnswerBtn" data-commentid="156841065" data-stat-id="aa3322089cd30d48" onclick="_msq.push(['trackEvent', '59306e6a924b745c-aa3322089cd30d48', 'javascript:void0', 'pcpid', '']);">回复</a></div>
-                                            <div class="comment-answer">
+                                                <h3 class="title">
+                                                    <a href=""></a>
+                                                </h3>
+                                                <p class="price"><?php echo e($v->goods_price); ?>元</p>
                                                 
-                                                <div class="answer-item">
-                                                    <a class="answer-img" href="/comment/user?user_id=70556052" data-stat-id="d053d4b2b6f0db45" onclick="_msq.push(['trackEvent', '59306e6a924b745c-d053d4b2b6f0db45', '/comment/useruser_id=70556052', 'pcpid', '']);">
-                                                        <img src="https://s1.mi-img.com/mfsv2/avatar/s008/p01X4nUw0qD8/NrTffttrNMptK9.jpg"></a>
-                                                    <div class="answer-content">
-                                                        <h3 class=""><?php echo e($v->user->username); ?></h3>
-                                                        <p><?php echo e($v->content); ?></p>
-                                                    </div>
-                                                </div>
-                                                
-                                                
-                                            </div>
-                                            <div class="J_canZoomData">
-                                                <div class="h-userInfo" data-username="于大大" data-showtime="星期六" data-txt="111111" data-avatar="https://cdn.cnbj0.fds.api.mi-img.com/b2c-data-mishop/c52c11c915d43e0ac3286161eec4fcaf.jpg" data-upnum="268" data-commentid="156841065"></div>
-                                                <div class="h-answerInfo">
-                                                    <div class="answer-item" data-name="官方回复" data-txt="22222" data-upnum="545" data-office="true"></div>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                                    </ul>
-                                    <div class="comment-more">
-                                        <a class="load-more J_loadMore" href="javascript:;" data-stat-id="6976d3572d4ed38f" onclick="_msq.push(['trackEvent', '59306e6a924b745c-6976d3572d4ed38f', 'javascript:', 'pcpid', '']);" style="display: block;">加载更多</a>
+                                            </li>
+                                            </div>    
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
+                                           
+                                        </ul>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-                            
                     </div>
             <!-- 模块结束     -->
             
