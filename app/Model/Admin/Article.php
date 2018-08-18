@@ -20,9 +20,12 @@ class Article extends Model
      *
      * @var array
      */
-    protected $fillable = ['article_id','articlecate_id','article_title','article_content','article_status','article_url','created_at','updated_at'];
+    protected $guarded = [];
 
-    //与文章分类表关联
+    public function cate()
+    {
+        return $this->belongsTo(\App\Model\Admin\Article_cates::class,'articlecate_id','articlecate_id');
+    }
 
     
 }

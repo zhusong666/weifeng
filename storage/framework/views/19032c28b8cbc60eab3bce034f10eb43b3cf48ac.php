@@ -79,36 +79,34 @@
                                         
                                         <ul class="xm-goods-list clearfix">
                                         
-                                        <?php $__currentLoopData = $ready_com; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $not_com; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div style="">
                                                 
                                             <li class="xm-goods-item">
                                             <span ><?php echo e($v->goods_name); ?></span>
                                                 <div class="figure figure-img" style="margin-top:20px;">
                                                     <a href="" target="_blank">
-                                                        <img src="<?php echo e($v->goods_img); ?>" />
+                                                        <img src="<?php echo e($v->goodsimg->goods_img); ?>" />
                                                     </a>
                                                 </div>
-                                                <h3 class="title">
-                                                    <a href=""></a>
-                                                </h3>
+                                               
                                                 <p class="price"><?php echo e($v->goods_price); ?>元</p>
                                                 <div class="actions">
-                                                    <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/comments/create">去评价</a>
+                                                    <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/comments/create/<?php echo e($v->goods_id); ?>">去评价</a>
                                                 </div>
                                             </li>
                                             </div>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         
                                         
-                                        <?php $__currentLoopData = $not_com; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $ready_com; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div style="">
                                             
                                             <li class="xm-goods-item">
                                                 <span ><?php echo e($v->goods_name); ?></span>
                                                 <div class="figure figure-img"  style="margin-top:20px;">
                                                     <a href="" target="_blank">
-                                                        <img src="<?php echo e($v->goods_img); ?>" />
+                                                        <img src="<?php echo e($v->goodsimg->goods_img); ?>" />
                                                     </a>
                                                 </div>
                                                 <h3 class="title">

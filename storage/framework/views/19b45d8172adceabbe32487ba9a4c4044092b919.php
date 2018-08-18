@@ -39,7 +39,7 @@
                         <div id="J_homeSlider" class="xm-slider" data-stat-title="焦点图轮播" style="width: auto; position: relative;">
                         <?php $__currentLoopData = $res; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="slide loaded">
-                                <a href="/" >
+                                <a href="/home/details/56" >
                                    <img src="<?php echo e($v->lunbo_img); ?>" srcset="">
                                 </a>
                             </div>

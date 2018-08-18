@@ -302,16 +302,19 @@
                                     <dt class="user-comment-content J_commentContent">
                                     <p class="content-detail"> {{$value->content}}<a href="http://order.mi.com/comment/commentDetail/comment_id/134117576" target="_blank"> </a> </p>
                                     </dt>
+
                                     <dd class="user-comment-self-input">
                                         <div class="input-block">
-                                            <input type="text" placeholder="回复楼主" class="J_commentAnswerInput" />
-                                            <a href="javascript:void(0);" class="btn  answer-btn J_commentAnswerBtn" data-commentid="134117576">回复</a>
+                                            <input type="text" placeholder="回复楼主" value="" class="J_commentAnswerInput" />
+                                            <a href="javascript:;" onclick="getInfo(this);return false" class="btn  answer-btn J_commentAnswerBtn" data-commentid="{{$value->id}}" user-id="{{session('user_id')}}" user-name="{{session('username')}}">回复</a>
                                         </div>
                                     </dd>
+                                    @foreach($value->replys as $reply)
                                     <dd class="user-comment-answer">
                                         <img class="self-image" src="/homes/common/image/head_4.png" alt="" />
-                                        <p>和我换- <span class="answer-user-name">268707921</span> </p>
+                                        <p><span class="answer-user-name" >{{$reply->user->username}}</span>-{{$reply->content}}</p>
                                     </dd>
+                                    @endforeach
                                 </dl>
                             </li>
                             <!--******评价结束********-->
@@ -403,5 +406,22 @@
             }
         };
 
+</script>
+
+<script>
+    function getInfo(o)
+    {
+        var _that = $(o);
+        var content = $(o).prev().val();
+        var comment_id = $(o).attr('data-commentid');
+        var goods_id = {{$goods_id}};
+        var user_id = $(o).attr('user-id');
+        var username = $(o).attr('user-name');
+        $.post('/comments/storeReply',{'_token':"{{csrf_token()}}",'content':content,'comment_id':comment_id,'goods_id':goods_id,'user_id':user_id},function(data){
+            if(data.code == '1') {
+                _that.parent().parent().after('<dd class="user-comment-answer"><img class="self-image" src="/homes/common/image/head_4.png" alt="" /><p><span class="answer-user-name" >'+username+'</span>-'+content+'</p></dd>');
+            }
+        });
+    }
 </script>
 @endsection

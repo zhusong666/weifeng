@@ -22,7 +22,7 @@ class Article_cates extends Model
      */
     protected $fillable = ['articlecate_id','articlecate_name','articlecate_pid','articlecate_show','articlecate_path','articlecate_status','articlecate_created_at','articlecate_updated_at'];
 
-    public function article_cates()
+    public function articles()
     {
         return $this->hasMany('App\Model\Admin\Article','articlecate_id','articlecate_id');
     }

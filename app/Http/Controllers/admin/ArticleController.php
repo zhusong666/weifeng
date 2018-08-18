@@ -27,24 +27,21 @@ class ArticleController extends Controller
 
         // dump($rs);   
 
-         $result = Article_cates::all()->toArray();
+         // $result = Article_cates::all()->toArray();
 
-         foreach ($result as $key => $value) {
-             $res[$key] = Article_cates::find($value['articlecate_id']);
-             $rs[$key] = $res[$key]->article_cates->toArray();
-             foreach ($rs[$key] as $k => $v) {
-                 $rs[$key][$k]['articlecate_name'] = $value['articlecate_name'];
-             }
+         // foreach ($result as $key => $value) {
+         //     $res[$key] = Article_cates::find($value['articlecate_id']);
+         //     $rs[$key] = $res[$key]->article_cates->toArray();
+         //     foreach ($rs[$key] as $k => $v) {
+         //         $rs[$key][$k]['articlecate_name'] = $value['articlecate_name'];
+         //     }
              
-         }
+         // }
 
+        //总结性操作
+        $data = Article::with('cate')->paginate(5);
 
-        // echo "11111";
-        return view('admin.article.index',[
-                 'res'=>$res,
-                 'rs'=>$rs,
-                 'result'=>$result  
-            ]);
+        return view('admin.article.index',compact('data'));
 
     }
 
@@ -78,7 +75,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         //表单验证
         $this->validate($request, [
             'article_title' => 'required|max:255',
@@ -140,9 +137,8 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        // echo '1111';
         // 接收在页面修改后的数据
+    
         $res = $request->except('_token','_method');
 
         // dd($res);

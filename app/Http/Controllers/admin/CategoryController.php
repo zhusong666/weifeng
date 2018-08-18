@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $res = Category::select(DB::raw('*,concat(cate_path,cate_id) as cate_paths'))
          ->where('cate_name','like','%'.$request->input('cate_name').'%')
          ->orderBy('cate_paths')
-         ->paginate($request->input('num',10));
+         ->paginate($request->input('num',5));
 
         foreach ($res as $key => $value){
             //根据path进行缩进

@@ -80,36 +80,34 @@
                                         
                                         <ul class="xm-goods-list clearfix">
                                         
-                                        @foreach ($ready_com as $k=>$v)
+                                        @foreach ($not_com as $k=>$v)
                                         <div style="">
                                                 
                                             <li class="xm-goods-item">
                                             <span >{{$v->goods_name}}</span>
                                                 <div class="figure figure-img" style="margin-top:20px;">
                                                     <a href="" target="_blank">
-                                                        <img src="{{$v->goods_img}}" />
+                                                        <img src="{{$v->goodsimg->goods_img}}" />
                                                     </a>
                                                 </div>
-                                                <h3 class="title">
-                                                    <a href=""></a>
-                                                </h3>
+                                               
                                                 <p class="price">{{$v->goods_price}}元</p>
                                                 <div class="actions">
-                                                    <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/comments/create">去评价</a>
+                                                    <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/comments/create/{{$v->goods_id}}">去评价</a>
                                                 </div>
                                             </li>
                                             </div>
                                         @endforeach
                                         
                                         
-                                        @foreach ($not_com as $k=>$v)
+                                        @foreach ($ready_com as $k=>$v)
                                             <div style="">
                                             
                                             <li class="xm-goods-item">
                                                 <span >{{$v->goods_name}}</span>
                                                 <div class="figure figure-img"  style="margin-top:20px;">
                                                     <a href="" target="_blank">
-                                                        <img src="{{$v->goods_img}}" />
+                                                        <img src="{{$v->goodsimg->goods_img}}" />
                                                     </a>
                                                 </div>
                                                 <h3 class="title">

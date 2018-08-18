@@ -7,7 +7,7 @@
 			<div class="page-container">
 	<form action="/admin/category" method="get">
 		<div class="text-c">
-			<input type="text"  name="cate_name"  value='{{$request->input("cate_name")}}' placeholder="分类名称、id" style="width:250px" class="input-text">
+			<input type="text"  name="cate_name"  value='' placeholder="分类名称、id" style="width:250px" class="input-text">
 			<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 		</div>
 	</form>
@@ -24,28 +24,25 @@
 			<thead>
 				<tr class="text-c">
 					
-					<th width="80">ID</th>
-					<th width="80">分类名</th>
-					<th width="80">父级类别</th>
-					<th width="80">路径</th>
-					<th width="80">状态</th>
-					<th width="80">操作</th>
+					<th width="70">评论ID</th>
+					<th width="80">用户名称</th>
+					<th width="150">评论内容</th>
+					<th width="3">操作</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				@foreach($res as $k => $v)
-				<tr class="@if($k % 2 == 0)  odd @else even @endif">
+				@foreach($comments as $comment)
+				<tr class="">
 					
-					<td>{{$v->cate_id}}</td>
-					<td>{{$v->cate_name}}</td>
-					<td>{{getTypeName($v->cate_pid)}}</td>
-					<td>{{$v->cate_path}}</td>
-					<td>{{$v->cate_status ? '启动' : '禁用'}}</td>
+					<td>{{$comment->id}}</td>
+					<td>{{$comment->user->username}}</td>
+					<td>{{$comment->content}}</td>
+					
+					
 					<td class="f-14">
-						<a title="编辑" href="/admin/category/{{$v->cate_id}}/edit" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 						
-					<form action="/admin/category/{{$v->cate_id}}" method="post" style="display:inline-block">
+					<form action="/admin/comment/{{$comment->id}}" method="post" style="display:inline-block">
 			
 						{{csrf_field()}}<!-- 防止表单伪造 防止跨站提交 -->
             			{{method_field('DELETE')}}
@@ -53,23 +50,20 @@
 					
 					</form>
 				</tr>
+				@endforeach
 				<script>
 				function fun1(obj){
 					var fm = obj.parentNode;
 					fm.submit();	
 				}
 				</script>
-				@endforeach
+				
 
 			</tbody>
 		</table>
 	</div>
 </div>
 		<style>
-		.pagination{
-							margin-top: 30px;
-							margin-left: 40%;
-						}
                 .pagination li{
 
                     float: left;
@@ -116,7 +110,7 @@
                 
                
             </div>
-            {{$res->appends($request->all())->links()}}
+            
 		</div>
 
 

@@ -56,7 +56,7 @@
 
 </head>
 <body>
-<form action="/comment/insert" method="post">
+<form action="/comments" method="post">
     <div class="section section-goods">
         <div class="section-header clearfix">
             <h3 class="title">亲,留个评价吧!</h3>
@@ -77,9 +77,11 @@
             </div>
 
             <div class="goods-item">
-                <p class="desc">价格: </p>
-                <p class="desc">型号: </p><p></p>
-                <p class="desc">颜色: </p>
+                <p class="desc">商品名称: {{$goods->goods_name}} </p>
+                <p class="desc">商品价格: {{$goods->goods_price}} 元</p>
+                <p class="desc">商品图片: 
+                    <img src="{{$goods->goodsimg->goods_img}}" width="150px" alt="">
+                </p>
             </div>
 
             <ul class="goods-list clearfix" id="J_goodsList">
@@ -88,11 +90,10 @@
             </ul>
         </div>
     </div>
-    <input type="hidden" name="good_id" value="">
+    <input type="hidden" name="goods_id" value="{{$goods->goods_id}}">
     {{csrf_field()}}
     <div class="section-bar clearfix">
         <div class="fr">
-            <input type="hidden" name="order_id" value="">
             <button href="" class="btn btn-primary" id="J_checkoutToPay" data-stat-id="4773f7ffc10003b8" >发表评论
             </button>
         </div>

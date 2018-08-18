@@ -1,13 +1,11 @@
-@extends('admin.layouts.default')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<section class="Hui-article-box">
 		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">分类管理</span><span class="c-999 en">&gt;</span><span class="c-666">浏览分类</span></nav>
 		<div class="Hui-article">
 			<div class="page-container">
 	<form action="/admin/category" method="get">
 		<div class="text-c">
-			<input type="text"  name="cate_name"  value='{{$request->input("cate_name")}}' placeholder="分类名称、id" style="width:250px" class="input-text">
+			<input type="text"  name="cate_name"  value='<?php echo e($request->input("cate_name")); ?>' placeholder="分类名称、id" style="width:250px" class="input-text">
 			<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 		</div>
 	</form>
@@ -34,21 +32,22 @@
 			</thead>
 			
 			<tbody>
-				@foreach($res as $k => $v)
-				<tr class="@if($k % 2 == 0)  odd @else even @endif">
+				<?php $__currentLoopData = $res; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+				<tr class="<?php if($k % 2 == 0): ?>  odd <?php else: ?> even <?php endif; ?>">
 					
-					<td>{{$v->cate_id}}</td>
-					<td>{{$v->cate_name}}</td>
-					<td>{{getTypeName($v->cate_pid)}}</td>
-					<td>{{$v->cate_path}}</td>
-					<td>{{$v->cate_status ? '启动' : '禁用'}}</td>
+					<td><?php echo e($v->cate_id); ?></td>
+					<td><?php echo e($v->cate_name); ?></td>
+					<td><?php echo e(getTypeName($v->cate_pid)); ?></td>
+					<td><?php echo e($v->cate_path); ?></td>
+					<td><?php echo e($v->cate_status ? '启动' : '禁用'); ?></td>
 					<td class="f-14">
-						<a title="编辑" href="/admin/category/{{$v->cate_id}}/edit" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a title="编辑" href="/admin/category/<?php echo e($v->cate_id); ?>/edit" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 						
-					<form action="/admin/category/{{$v->cate_id}}" method="post" style="display:inline-block">
+					<form action="/admin/category/<?php echo e($v->cate_id); ?>" method="post" style="display:inline-block">
 			
-						{{csrf_field()}}<!-- 防止表单伪造 防止跨站提交 -->
-            			{{method_field('DELETE')}}
+						<?php echo e(csrf_field()); ?><!-- 防止表单伪造 防止跨站提交 -->
+            			<?php echo e(method_field('DELETE')); ?>
+
 						<a title="删除" href="javascript:void(0)" onclick="fun1(this)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 					
 					</form>
@@ -59,7 +58,7 @@
 					fm.submit();	
 				}
 				</script>
-				@endforeach
+				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 			</tbody>
 		</table>
@@ -116,9 +115,11 @@
                 
                
             </div>
-            {{$res->appends($request->all())->links()}}
+            <?php echo e($res->appends($request->all())->links()); ?>
+
 		</div>
 
 
 	</section>
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

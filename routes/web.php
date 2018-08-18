@@ -45,9 +45,10 @@ Route::resource('/admins/goods','Admin\GoodsController');
 
 //文章管理
 Route::resource('/admin/article','Admin\ArticleController');
-
 //轮播图管理
 Route::resource('/admin/lunbo','Admin\LunboController');
+//评论后台管理
+Route::resource('/admin/comment','Admin\CommentController');
 
 //订单管理
 Route::any('/admin/order','Admin\OrderController@index');
@@ -123,7 +124,10 @@ Route::any('goodlist/{id}','GoodController@goodList');
 //帮助模块
 Route::resource('/home/help','Home\HelpController');
 //评论模块
+Route::get('/comments/create/{goods_id}','Home\CommentController@create');
+Route::post('/comments/storeReply','Home\CommentController@storeReply');
 Route::resource('/comments','Home\CommentController');
+
 
 
 });

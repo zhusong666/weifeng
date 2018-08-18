@@ -10,11 +10,12 @@
 					 <span class="select-box inline">
 						<select name="" class="select">
 							<option value="0">全部分类</option>
-							<option value="1">购物指南</option>
-							<option value="11">账户管理</option>
-							<option value="12">用户权益</option>
-							<option value="13">售后服务</option>
-							<option value="14">关于商城</option>
+							<option value="1">常见问题</option>
+							<option value="2">账户管理</option>
+							<option value="3">购物指南</option>
+							<option value="4">订单操作</option>
+							<option value="5">技术支持</option>
+							<option value="6">售后服务</option>
 						</select>
 						</span> 
 						<input type="text" name="" id="" placeholder=" 资讯名称" style="width:250px" class="input-text">
@@ -43,28 +44,27 @@
 								</tr>
 							</thead>
 							<tbody>
-	
-							<?php $__currentLoopData = $rs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $values): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-								<?php $__currentLoopData = $values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+								<?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 			
 
 									<tr class="text-c">
 									
-									<td><?php echo $v['article_id'];?></td>
-									<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看"><?php echo e($v['article_title']); ?></u></td>
-									<td><?php echo e($v['articlecate_name']); ?></td>
-									<td><?php echo e($v['article_content']); ?></td>
+									<td><?php echo e($v->article_id); ?></td>
+									<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看"><?php echo e($v->article_title); ?></u></td>
+									<td><?php echo e($v->cate->articlecate_name); ?></td>
+
+									<td><?php echo e(str_limit($v->article_content,30,'......')); ?></td>
 									<td class="td-status"><span class="label label-success radius">已发布</span></td>
 									<td class="f-14 td-manage">
 										
 										<!-- 修改 -->
-										<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="/admin/article/<?php echo e($v['article_id']); ?>/edit" title="编辑">
+										<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="/admin/article/<?php echo e($v->article_id); ?>/edit" title="编辑">
 											<i class="Hui-iconfont">&#xe6df;</i>
 										</a> 
 
 										<!-- 删除 -->
 
-										<form action="/admin/article/<?php echo e($v['article_id']); ?>" method="post" style="display:inline"> 
+										<form action="/admin/article/<?php echo e($v->article_id); ?>" method="post" style="display:inline"> 
 											<?php echo e(csrf_field()); ?>
 
 											<?php echo e(method_field("DELETE")); ?>
@@ -81,11 +81,55 @@
 									</td>
 								</tr>
 								<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>		
-							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>	
-
-		
 							</tbody>
 						</table>
+						<style>
+						.pagination{
+							margin-top: 30px;
+							margin-left: 40%;
+						}
+                .pagination li{
+
+                    float: left;
+                    height: 25px;
+                    padding: 0 10px;
+                    display: block;
+                    font-size: 15px;
+                    line-height: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                    outline: none;
+                    background-color: skyblue;
+                    
+                    text-decoration: none;
+                        border-right: 0px solid rgba(0, 0, 0, 0);
+                    border-left: 1px solid rgba(255, 255, 255, 0.15);
+                        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+
+                }
+
+                .pagination li a{
+                    color: azure;
+                }
+
+
+                .pagination .active{
+
+                    background-color: whlie;
+                    color: slategray;
+                    border: none;
+                    background-image: none;
+                    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+                }
+
+                .pagination{
+                    padding:0 auto;
+                    margin:50 auto;
+                }
+
+            </style>
+						<?php echo e($data->links()); ?>
+
 					</div>
 				</div>
 
