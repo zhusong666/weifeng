@@ -22,10 +22,10 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="product-brand.html" title="品牌管理">品牌管理</a></li>
+					
 					<li><a href="/admin/category/create" title="分类管理">分类管理</a></li>
 					<li><a href="/admin/category" title="浏览分类">浏览分类</a></li>
-					<li><a href="product-list.html" title="产品管理">产品管理</a></li>
+					
 				</ul>
 			</dd>
 		</dl>
@@ -42,8 +42,8 @@
 			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="http://h-ui.duoshuo.com/admin/" title="评论列表">评论列表</a></li>
-					<li><a href="feedback-list.html" title="意见反馈">意见反馈</a></li>
+					<li><a href="/admin/comment" title="评论列表">评论列表</a></li>
+					
 				</ul>
 			</dd>
 		</dl>

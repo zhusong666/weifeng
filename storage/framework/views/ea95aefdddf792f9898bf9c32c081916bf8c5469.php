@@ -17,7 +17,6 @@
 					<label class="form-label col-xs-4 col-sm-2"><!-- <span class="c-red">*</span> -->分类栏目：</label>
 					<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 						<select name="articlecate_id" class="select">
-							<option value="0">全部分类</option>
 							<option value="1">常见问题</option>
 							<option value="2">账户管理</option>
 							<option value="3">购物指南</option>
