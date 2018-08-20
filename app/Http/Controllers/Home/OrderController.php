@@ -13,6 +13,7 @@ class OrderController extends Controller
     public function pay(Request $request)
     {
 
+        // dd(session('order_id'));
     	$order_id = $request->id;
     	
         //查询订单数据库

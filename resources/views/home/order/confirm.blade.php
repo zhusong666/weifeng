@@ -341,7 +341,7 @@
         
          $.post('/home/count',{add:add},function(data){
            if(data){
-                location.replace('/user/pay');
+                location.replace('/user/pay?id={{session("order_id")}}');
             }else{
                 location.href = location.href;
                 layer.msg(data.msg, {icon: 5});

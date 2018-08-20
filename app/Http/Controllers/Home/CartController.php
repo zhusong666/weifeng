@@ -142,6 +142,7 @@ class CartController extends Controller
 		$order_linkman = $add[0][0];
 		$order_address = $add[0][1];
 		$order_phone   = $add[0][2];
+		session(['order_id'=>$order_id]);
 		$order_data = [
 			'order_id'=>$order_id,
 			'order_type' => 1,
@@ -183,8 +184,9 @@ class CartController extends Controller
 
          }
 
+        
+        return '1';
 
-         return '1';
 
 
 	

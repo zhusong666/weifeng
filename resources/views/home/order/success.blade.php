@@ -5,6 +5,7 @@
     <link rel="icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="//s01.mifile.cn/css/base.min.css?v2016d22" />
     <link rel="stylesheet" type="text/css" href="//s01.mifile.cn/css/pay-confirm.min.css?v=2016063001" />
+    <script src="/homes/common/myjs/jquery.min.js"></script>
 @endsection
 @section('header')
     <div class="site-header site-mini-header">
@@ -47,13 +48,15 @@
 <script>
 var n = 3;
 var asd = document.getElementById('asd');
-setInterval(function(){
+var time = setInterval(function(){
     n--;
     asd.innerHTML = n;
-
+console.log(n);
     if(n==0){
-        window.location.href = '/user/order';
+        // console.log(n);
         // clearInterval(time);
+        window.location.replace('/user/order');
+        clearInterval(time);
         
     }
 },1000)

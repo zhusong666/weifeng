@@ -12,7 +12,6 @@
         <a href="//www.mi.com/index.html">首页</a><span class="sep">&gt;</span><span>交易订单</span>
     </div>
 </div>
-{{$dd}}
 <div class="page-main user-main">
     <div class="container">
         <div class="row">

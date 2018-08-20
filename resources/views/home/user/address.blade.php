@@ -105,7 +105,7 @@
                                                 <dt>
                                                     <span class="tag"></span> <em class="uname">{{$v->address_name}}</em>
                                                 </dt>
-                                                <dd class="utel">{{$v->address_phone}}</dd>
+                                                <dd class="utel">{{$nphone}}</dd>
                                                 <dd class="uaddress">
                                                     {{$v->address_sheng}}  {{$v->address_shi}}  {{$v->address_xian}}
                                                     <br>{{$v->address_details}}<br>{{$v->address_zcode}}</dd>
