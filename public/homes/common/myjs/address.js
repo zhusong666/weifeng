@@ -254,7 +254,7 @@ var inpData = {};
             return e = regInput($(this)),e ? void 0 : !1;
         });
         if(e&&inpData.province&&inpData.city&&inpData.country){
-            $.ajax({
+            $.post({
                 url:'/address/add',
                 data:inpData,
                 dataType:'json',

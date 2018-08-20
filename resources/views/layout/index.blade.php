@@ -62,7 +62,7 @@
                     </ul>
                 </span>
                 <span class="sep">|</span>
-                <a rel="nofollow" class="link link-order" href="/user/order/" target="_blank">我的订单</a>
+                <a rel="nofollow" class="link link-order" href="/user/order" target="_blank">我的订单</a>
             </div>
             @endif
         </div>

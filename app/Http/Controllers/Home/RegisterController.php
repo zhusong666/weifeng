@@ -32,6 +32,8 @@ class RegisterController extends Controller
     	$res['user_token'] = str_random(60);
     	$res['user_addtime'] = time();
 
+        $res['user_face'] = '/img.jpg';
+
     	//注册
     	$data = User::insertGetId($res);
 

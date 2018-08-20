@@ -20,19 +20,13 @@ class UserController extends Controller
 
         if(!$username){
 
-            return redirect('/login')->with('error','请先登录');
+            return redirect('/login')->with('error','系统检测到您还没有登录,请先登录');
         }
 
 		$res = DB::table('wf_home_user')->where('username',$username)->first();
 
 		return view('home.user.details',['res'=>$res]);
 	}
-    
-    /*public function comment()
-    {
-
-    	return view('home.user.comment');
-    }*/
 
     //用户详情修改
     public function update(Request $request, $id)
@@ -72,16 +66,15 @@ class UserController extends Controller
         }
     }
 
-    //用户地址
-    public function address()
-    {
-    	return view('/home.user.address');
-    }
-
     //用户订单
     public function order(Request $request){
 
     	$uid = session('user_id');
+
+        if(!$uid){
+
+            return redirect('/login')->with('系统检测到您还没有登录,请先登录');
+        }
 
     	//获取订单数据
     	// $orders = Order::where('uid','=',$uid)->get();
@@ -212,7 +205,6 @@ class UserController extends Controller
                                         <ul class="goods-list">';
                                         foreach($val->details as $kk=>$vv){
                                         		
-                                        	
                                             
                                             $str .='<li>
                                                 <div class="figure figure-thumb">
@@ -220,7 +212,8 @@ class UserController extends Controller
                                                         <img src="'.$vv->goodsimg['goods_img'].'" width="80" height="80" alt="'.$vv->goods['goods_name'].'"></a>
                                                 </div>
                                                 <p class="name">
-                                                    <a target="_blank" href="">'.$vv->goods['goods_name'].'</a>
+                                                    <a target="_blank" href="">'.$vv->goods['goods_name'].'</a><br>
+                                                    <a target="_blank" href="">'.$vv->carts['tname'].'</a>
                                                 </p>
                                                 <p class="price">'.$vv['details_price'].'元 × '.$vv['details_cnt'].'</p>
                                             </li>';
@@ -237,8 +230,5 @@ class UserController extends Controller
         $str .='</ul>';
         return $str;
     }
-
-    
-
 
 }
