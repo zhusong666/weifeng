@@ -142,6 +142,7 @@ class CartController extends Controller
 		$order_linkman = $add[0][0];
 		$order_address = $add[0][1];
 		$order_phone   = $add[0][2];
+		//订单号存session
 		session(['order_id'=>$order_id]);
 		$order_data = [
 			'order_id'=>$order_id,
@@ -184,17 +185,8 @@ class CartController extends Controller
 
          }
 
-        
-        return '1';
 
-
-
-	
-       // return $cart;
-
-        // order_id order_type uid order_time order_linkman order_total order_cnt order_address order_phone pay_stytus 
-        // order_msg order_addtime
-
+         return '1';
 
 
 

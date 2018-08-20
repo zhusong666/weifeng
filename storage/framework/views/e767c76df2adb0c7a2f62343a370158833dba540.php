@@ -1,25 +1,23 @@
-@extends('admin.layouts.default')
+<?php $__env->startSection('title',$title); ?>
 
-@section('title',$title)
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
-@if(session('success')) 
+<?php if(session('success')): ?> 
     <script>
-        var success = "{{session('success')}}";
+        var success = "<?php echo e(session('success')); ?>";
         swal(success);
     </script>
    
-@endif
+<?php endif; ?>
 
-@if(session('error')) 
+<?php if(session('error')): ?> 
     <script>
-        var error = "{{session('error')}}";
+        var error = "<?php echo e(session('error')); ?>";
         swal(error);
     </script>
    
-@endif
+<?php endif; ?>
 
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a><span class="maincolor">&gt;</span><a href="/admin/order" class="maincolor">订单管理</a><span class="c-999 en">&gt;</span><span class="c-666">订单详情</span></nav>
@@ -35,20 +33,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($res as $k=>$v) 
+                    <?php $__currentLoopData = $res; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
                        
                     <tr class="text-c">
-                        <td>{{$v->cname}}</td>
-                        <td><img src="{{$v->goodsimg->goods_img}}" alt="" width="150"></td>
-                        <td>{{$v->details_price}}(元)</td>
-                        <td>{{$v->details_cnt}}</td>
-                        <td>{{$v->details_price*$v->details_cnt}}(元)</td>
+                        <td><?php echo e($v->cname); ?></td>
+                        <td><img src="<?php echo e($v->goodsimg->goods_img); ?>" alt="" width="150"></td>
+                        <td><?php echo e($v->details_price); ?>(元)</td>
+                        <td><?php echo e($v->details_cnt); ?></td>
+                        <td><?php echo e($v->details_price*$v->details_cnt); ?>(元)</td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
 
             
 </div>  
 </section>
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

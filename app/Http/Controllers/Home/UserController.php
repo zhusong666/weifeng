@@ -218,8 +218,7 @@ class UserController extends Controller
                                                         <img src="'.$vv->goodsimg['goods_img'].'" width="80" height="80" alt="'.$vv->goods['goods_name'].'"></a>
                                                 </div>
                                                 <p class="name">
-                                                    <span>'.$vv->goods['goods_name'].'</span>
-                                                    <span>'.$vv->carts['tname'].'</span>
+                                                    <span>'.$vv['cname'].'</span>
                                                 </p>
                                                 <p class="price">'.$vv['details_price'].'元 × '.$vv['details_cnt'].'</p>
                                             </li>';
