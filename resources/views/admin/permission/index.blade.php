@@ -3,7 +3,7 @@
 @section('content')
 
 
- <section class="Hui-article-box">
+ <section class="Hui-article-box" style="overflow-y:scroll;height:1000px">
 		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">商品管理</span></nav>
 		<article class="cl pd-20">
 		
@@ -23,7 +23,7 @@
 			<a class="btn btn-primary radius"  href="/admins/permission/create">
 			<i class="Hui-iconfont"></i> 添加权限</a></span> <span class="r"></span> </div>
 
-			<div class="mt-20">
+			<div class="mt-20" style="overflow-y:scroll;height:1000px">
 				<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
 					<div class="dataTables_length" id="DataTables_Table_0_length">
 						</div>
@@ -78,56 +78,12 @@
 
 	    			</script>
 	    		
-    			<style>
-                .pagination li{
-
-                    float: left;
-                    height: 20px;
-                    padding: 0 10px;
-                    display: block;
-                    font-size: 12px;
-                    line-height: 20px;
-                    text-align: center;
-                    cursor: pointer;
-                    outline: none;
-                    background-color: #444444;
-                    
-                    text-decoration: none;
-                        border-right: 1px solid rgba(0, 0, 0, 0.5);
-                    border-left: 1px solid rgba(255, 255, 255, 0.15);
-                        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
-
-                }
-
-                .pagination li a{
-                    color: #fff;
-                }
-
-
-                .pagination .active{
-
-                    background-color: #88a9eb;
-                    color: #323232;
-                    border: none;
-                    background-image: none;
-                    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
-                }
-
-                .pagination{
-                    padding:0px;
-                    margin:0px;
-                }
-
-            </style>
-
-            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-
-               
-            </div>
+    		
 
 				</div>
 			</div>
 			</div>
 			{{csrf_field()}}
 	</section>
+	
 @stop
