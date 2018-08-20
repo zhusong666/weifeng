@@ -305,7 +305,7 @@
 
                                     <dd class="user-comment-self-input">
                                         <div class="input-block">
-                                            <input type="text" placeholder="回复楼主" value="" class="J_commentAnswerInput" />
+                                            <input type="text" placeholder="请说点什么吧" value="" class="J_commentAnswerInput" />
                                             <a href="javascript:;" onclick="getInfo(this);return false" class="btn  answer-btn J_commentAnswerBtn" data-commentid="{{$value->id}}" user-id="{{session('user_id')}}" user-name="{{session('username')}}">回复</a>
                                         </div>
                                     </dd>

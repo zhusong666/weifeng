@@ -40,7 +40,7 @@ class GoodsController extends Controller
                 
 
             })
-        ->paginate($request->input('num', 4));
+        ->paginate($request->input('num', 8));
         $res = Category::select(DB::raw('*,concat(cate_path,cate_id) as paths'))->orderBy('paths')->get();
         // $res = Goods::with('CateGory')->where('cate_id',)
 
