@@ -27,6 +27,11 @@ class Details extends Model
         return $this->hasMany('App\Model\Admin\Goods','goods_id');
     }
 
+    public function goodsimg()
+    {
+        return $this->hasOne('App\Model\Admin\Goods_img','good_id','goodss_id');
+    }
+
 
     public function shop_orders()
     {

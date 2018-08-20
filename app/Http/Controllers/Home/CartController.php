@@ -124,7 +124,7 @@ class CartController extends Controller
     public function count(Request $request)
     {   
     	$add = $request->input('add');
-    	
+    	$uid = session('user_id');
     	$cart = Session::get('res');
     	// dd($cart);die;
     	//$a = [];
@@ -142,11 +142,11 @@ class CartController extends Controller
 		$order_linkman = $add[0][0];
 		$order_address = $add[0][1];
 		$order_phone   = $add[0][2];
+		//订单号存session
 		session(['order_id'=>$order_id]);
 		$order_data = [
 			'order_id'=>$order_id,
-			'order_type' => 1,
-			'uid' => 1,
+			'uid' => $uid,
 			'order_time'=>time(),
 			'order_linkman'=>$order_linkman,//收货人姓名
 			'order_address'=>$order_address,//收货人地址
@@ -184,9 +184,8 @@ class CartController extends Controller
 
          }
 
-        
-        return '1';
 
+         return '1';
 
 
 	

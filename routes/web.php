@@ -87,6 +87,8 @@ Route::group([],function(){
 	Route::get('/home/cart','Home\CartController@index');
 	//商品加入购物车
 	Route::any('/home/addcart/{id}','Home\CartController@addcart');
+	// 购物车提交
+	Route::any('/home/ajaxcart','Home\CartController@ajaxcart');
 	//前台登录
 	Route::any('/login','Home\LoginController@login');
 	Route::any('/dologin','Home\LoginController@dologin');
@@ -94,6 +96,12 @@ Route::group([],function(){
 	//登录ajax 查询用户名
 	Route::any('/checkname','Home\LoginController@checkname');
 	Route::any('/home/captcha','Home\LoginController@captcha');
+	//购物车提交
+	Route::any('/home/order','Home\CartController@order');
+	//购物车结算
+	Route::any('/home/count','Home\CartController@count');
+
+	
 	//退出
 	Route::any('/logout','Home\LoginController@logout');
 	//注册
