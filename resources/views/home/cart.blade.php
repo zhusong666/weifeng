@@ -28,6 +28,7 @@
       
 
 </style>
+<meta name="csrf-token" content="{{ csrf_token() }}"> 
 <div class="site-header site-mini-header">
     <div class="container">
         <div class="header-logo">
@@ -102,7 +103,7 @@
                         <div class="item-table J_cartGoods" data-sid="" >
                             <div class="item-row clearfix">
                                 <div  class="col col-check"> 
-                                    <input type="checkbox" name="checked" class='ches' id="xxoo" gid="{{$v->gid}}">
+                                    <input type="checkbox" name="checked" class='ches' id="xxoo" cart_id="{{$v->cart_id}}" gid="{{$v->gid}}" uid="{{$v->uid}}">
                                 </div>
                                 <div class="col col-img">
                                     <a href="//item.mi.com/1151900011.html" target="_blank">
@@ -111,7 +112,7 @@
                                 <div class="col col-name">
                                     <div class="tags"></div>
                                     <h3 class="name">
-                                        <a href="/home/details/{{$v->goods_id}}" target="_blank">{{$v->goods_name}}&nbsp;&nbsp;{{$v->tname}}&nbsp;&nbsp;{{$v->colour}}</a>
+                                        <a href="/home/details/{{$v->goods_id}}" id="tname" target="_blank">{{$v->goods_name}}&nbsp;&nbsp;{{$v->tname}}&nbsp;&nbsp;{{$v->colour}}</a>
                                     </h3>
                                 </div>
                                 <div class="col col-price">{{$v->price}}</div>
@@ -120,17 +121,17 @@
                                         <a href="javascript:void(0)" class="minus">
                                             <i class="iconfont"></i>
                                         </a>
-                                        <input tyep="text" name="" id="num" value="{{$v->num}}"  autocomplete="off" class="qty">
+                                        <input tyep="text" name="" id="num" value="{{$v->num}}"  autocomplete="off" class="numss  qty">
                                         <a href="javascript:void(0)" class="plus">
                                             <i class="iconfont"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col col-total">
-                                    <p id="xiaoji" style="margin:0;font-size:12px;color:#b0b0b0;">{{$v->price * $v->num}}</p>元
+                                    <p id="xiaoji"  style="margin:0;font-size:12px;color:#b0b0b0;">{{$v->price * $v->num}}</p>元
                                 </div>    
                                 <div class="col col-action">
-                                    <a id="2151900016_0_buy" data-msg="确定删除吗？" href="javascript:void(0);" title="删除" class="del J_delGoods">
+                                    <a id="2151900016_0_buy" onclick="DelGood({{$v->gid}})" href="javascript:void(0);" title="删除" class="del J_delGoods">
                                         <i class="iconfont"></i>
                                     </a>
                                 </div>
@@ -140,24 +141,25 @@
                       
                 </div>
                 @endforeach
- 
+    
 
               
         <div class="cart-bar clearfix" id="J_cartBar">
                 <div class="section-left">
                     <a href="//list.mi.com/0" class="back-shopping J_goShoping" data-stat-id="cb50063b4f1b9ef0" onclick="_msq.push(['trackEvent', '5df97b551662ffe7-cb50063b4f1b9ef0', '//list.mi.com/0', 'pcpid', '']);">继续购物</a>
-                    <span class="cart-total">共 <i id="unselectnum">0</i> 件商品，已选择 <i id="selectnum">0</i> 件</span>
+                    <span class="cart-total">共 <i id="unselectnum">0</i> 件商品，已选择 <i class="sb" id="selectnum">0</i> 件</span>
+
                     <span class="cart-coudan hide" id="J_coudanTip">
                         ，还需 <i id="J_postFreeBalance">0.00</i> 元即可免邮费  <a href="javascript:void(0);" id="J_showCoudan" data-stat-id="bb6e0fb00a971e12" onclick="_msq.push(['trackEvent', '5df97b551662ffe7-bb6e0fb00a971e12', 'javascript:void0', 'pcpid', '']);">立即凑单</a>
                     </span>
                 </div>
                 
                 <span class="total-price">
-                    合计（不含运费）： <em id="sum">0</em>
+                    合计（不含运费）： <em id="sum" class="number">0</em>
                     元
                 </span>
                  
-                <a href="javascript:void(0);" class="btn btn-a btn btn-primary" id="J_goCheckout" data-stat-id="cbf6ab939b361639" onclick="_msq.push(['trackEvent', '5df97b551662ffe7-cbf6ab939b361639', 'javascript:void0', 'pcpid', '']);">去结算</a>
+                <a href="javascript:void(0);" id="J_Go" class="btn btn-a btn btn-primary"   >去结算</a>
 
                 <div class="no-select-tip hide" id="J_noSelectTip">
                     请勾选需要结算的商品
@@ -175,7 +177,29 @@
 <script>
 </script>
 <script src="/homes/common/myjs/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/layer-v3.1.1/layer/theme/default/layer.css" />
+<script type="text/javascript" src="/layer-v3.1.1/layer/layer.js"></script>
 <!-- <script src="/homes/common/myjs/cart.js"></script> -->
+<script>
+        function DelGood(gid){
+            //询问框
+            layer.confirm('是否确认删除？', {
+            btn: ['确定','取消'] //按钮
+            }, function(){
+            $.post("{{url('/home/del/')}}/"+gid,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+             if(data.status == 0){
+                location.href = location.href;
+                layer.msg(data.msg, {icon: 6});
+            }else{
+                location.href = location.href;
+                layer.msg(data.msg, {icon: 5});
+                }
+             });
+                }, function(){
+            });
+        }
+
+</script>
 <script>
     //鼠标滑过显示个人中心菜单效果
     $('#J_userInfo').on('mouseenter','.user',function(){
@@ -324,8 +348,48 @@
          $('#unselectnum').text(shu);
 
     }
+    $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    $('#J_Go').click(function(){
+    var arr = [];
+    var brr = [];
+        $('.ches:checked').each(function(){
+            //获取id
+            var cart_id = $(this).attr('cart_id');
+            //获取商品id
+            var gid = $(this).attr('gid');
+            //获取用户id
+            var uid = $(this).attr('uid');
+            //获取数量
+            var num = $(this).parents('.item-row').find('.numss').val();
+            //获取总数量
+            var order_cnt =  $('.sb').text();
+            //获取总价
+            var prs = $(this).parents('div').find('.number').text();
+            //获取商品名称
+            var tname = $(this).parents('.item-row').find('#tname').text();
+            //获取商品单价
+            var price = $(this).parents('.item-row').find('.col-price').text();
 
+            arr.push([cart_id,gid,uid,num,order_cnt,prs,tname,price]);
+            brr.push([cart_id]);
 
-     
+        })
+        $.post('/home/ajaxcart',{arr:arr,id:brr},function(data){
+            //console.log();
+            if(data){
+                location.replace('/home/order');
+            }else{
+                location.href = location.href;
+                layer.msg(data.msg, {icon: 5});
+            }
+        })
+
+       
+    })
+   
 </script>
+
+
+
+
 @endsection

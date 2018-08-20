@@ -42,6 +42,19 @@ Route::resource('/admin/category','Admin\CategoryController');
 Route::resource('/admin/user','Admin\UserController');
 //商品管理
 Route::resource('/admins/goods','Admin\GoodsController');
+//角色管理
+Route::resource('/admins/role','Admin\RoleController');
+Route::any('/admins/role_per/{id}','Admin\RoleController@role_per');
+Route::any('/admins/do_role_per','Admin\RoleController@do_role_per');
+
+//权限管理
+Route::resource('/admins/permission','Admin\PermissionController');
+//用户管理
+Route::any('/admin/user_role/{id}','Admin\UserController@user_role');
+Route::any('/admin/do_user_role','Admin\UserController@do_user_role');
+
+
+
 
 //文章管理
 Route::resource('/admin/article','Admin\ArticleController');
@@ -75,6 +88,18 @@ Route::get('/home/details/{id}','Home\GoodsController@details');
 Route::get('/home/cart','Home\CartController@index');
 //商品加入购物车
 Route::any('/home/addcart/{id}','Home\CartController@addcart');
+//删除购物车商品
+Route::any('/home/del/{id}','Home\CartController@delete');
+// 购物车提交
+Route::any('/home/ajaxcart','Home\CartController@ajaxcart');
+//购物车提交
+Route::any('/home/order','Home\CartController@order');
+//购物车结算
+Route::any('/home/count','Home\CartController@count');
+
+
+
+
 
 
 //前台登录

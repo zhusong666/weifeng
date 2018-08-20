@@ -4,16 +4,16 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Role extends Model
 {
      /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'wf_users';
+    protected $table = 'role';
 
-    protected $primaryKey = 'admin_id';
+    protected $primaryKey = 'id';
 
     public $timestamps = false;
 
@@ -23,12 +23,9 @@ class User extends Model
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * 获得此用户的角色。
-     */
-    public function roles()
+    public function permissions()
     {
-        return $this->belongsToMany('App\Model\Admin\Role', 'user_role', 'user_id', 'role_id');
+        return $this->belongsToMany('App\Model\Admin\Permission', 'role_permission', 'role_id','permission_id');
     }
+   
 }

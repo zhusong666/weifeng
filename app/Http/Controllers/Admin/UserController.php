@@ -8,9 +8,88 @@ use DB;
 use Hash;
 use Config;
 use App\Http\Requests\FormRequest;
-
+use App\Model\Admin\User;
+use App\Model\Admin\Role;
 class UserController extends Controller
-{
+{   
+
+
+
+    /**
+    *    用户添加角色的页面
+    *
+    *   @return \Illuminate\Http\Response
+    */
+    public function user_role($id)
+    {
+         //获取用户名
+        $uname = User::find($id);
+        //获取所有的角色
+        $roles = Role::get();
+
+        //把用户相对应的角色查出来
+        //第一种方式
+         $u_role = $uname->roles;
+         // dd($u_role);
+        $uarr = [];
+        foreach($u_role as $k => $v){
+
+            $uarr[] = $v->id;
+        }
+
+        //组成数组 
+        //第二种方式
+        
+
+        //dd($roles);
+        return view('admin.user.user_role',[
+            'title'=>'用户添加角色页面',
+            'uname'=>$uname,
+            'roles'=>$roles,
+            'uarr'=>$uarr
+        ]);
+    }
+
+    /**
+    *    处理添加角色的方法
+    *
+    *   @return \Illuminate\Http\Response
+    */
+    public function do_user_role(Request $request)
+    {
+        //用户id
+        $uid = $request->input('id');
+
+        //角色id
+        $role_id = $request->input('roles');
+
+        //删除用户原来的角色
+        DB::table('user_role')->where('user_id',$uid)->delete();
+
+
+        $user_roles= [];
+        foreach($role_id as $k => $v){
+            $ur = [];
+            $ur['user_id'] = $uid;
+            $ur['role_id'] = $v;
+
+            $user_roles[] = $ur;
+        }
+
+        //往数据表里面添加数据   user_role
+        $data = DB::table('user_role')->insert($user_roles);
+
+        if($data){
+
+            return redirect('/admin/user');
+        } else {
+
+            return back();
+        }
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *

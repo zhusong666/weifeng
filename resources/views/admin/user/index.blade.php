@@ -80,6 +80,7 @@
 						<td><img src="{{$v->admin_pic}}" alt="" width="150"></td>
 						<td>{{date('Y-m-d H:i:s',$v->admin_addtime)}}</td>
 						<td class="td-manage">
+							<a title="添加角色" href="/admin/user_role/{{$v->admin_id}}" class="ml-5 " style="text-decoration:none"><i class="Hui-iconfont">&#xe62d;</i></a>
 							@if($v->admin_status == 0)
 								<a href="javascript:;" onclick="member_show({{$v->admin_id}})" style="text-decoration:none" title="启用"><i class="Hui-iconfont">&#xe631;</i></a>
 							@endif
