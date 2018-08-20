@@ -1,12 +1,11 @@
-@extends('layout.index')
-@section('css')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<?php $__env->startSection('css'); ?>
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <link rel="icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/homes/common/css/base.min.css" />
     <link rel="stylesheet" href="/homes/common/css/checkout.min.css" />
     <link rel="stylesheet" href="/homes/common/css/address-edit.min.css" />
-@endsection
-@section('header')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('header'); ?>
 
     <div class="site-header site-mini-header">
         <div class="container">
@@ -16,9 +15,9 @@
             <div class="header-title" id="J_miniHeaderTitle"><h2>确认支付</h2></div>
         </div>
     </div>
-@endsection
-@section('content')   
-<meta name="csrf-token" content="{{ csrf_token() }}">  
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>   
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">  
     <div class="page-main">
         <div class="container">
             <div class="checkout-box">
@@ -29,15 +28,16 @@
                     </div>
                     <div class="section-body clearfix" id="J_addressList">
                      
-                        @foreach($res as $k=>$v)
+                        <?php $__currentLoopData = $res; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="address-item">
                             <dl>
                                 <dt>
                                     <span class="tag"></span>
-                                    <em class="uname" id="xm">{{$v->address_name}}</em>
+                                    <em class="uname" id="xm"><?php echo e($v->address_name); ?></em>
                                 </dt>
-                                <dd class="utel">{{$v->address_phone}}</dd>
-                                <dd class="uaddress">{{$v->address_sheng}}{{$v->address_shi}} {{$v->address_xian}}{{$v->address_details}}
+                                <dd class="utel"><?php echo e($v->address_phone); ?></dd>
+                                <dd class="uaddress"><?php echo e($v->address_sheng); ?><?php echo e($v->address_shi); ?> <?php echo e($v->address_xian); ?><?php echo e($v->address_details); ?>
+
                                 </dd>
                             </dl>
                             <div class="actions">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                 </div>
 
@@ -73,53 +73,54 @@
                         </div>
                     </div>
                     
-                    @foreach($carts as $k=>$v)
+                    <?php $__currentLoopData = $carts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="section-body">
                         <ul class="goods-list" id="J_goodsList">
                             <li class="clearfix">
                                 <div class="col col-img">
-                                    <img src="{{$v[0]->goods_img}}" width="30" height="30">
+                                    <img src="<?php echo e($v[0]->goods_img); ?>" width="30" height="30">
                                 </div>
                                 <div class="col col-name">
-                                    <a href="//item.mi.com/1161000034.html" target="_blank" data-stat-id="5df49956c521d07e">{{$v['tname']}}</a>
+                                    <a href="//item.mi.com/1161000034.html" target="_blank" data-stat-id="5df49956c521d07e"><?php echo e($v['tname']); ?></a>
                                 </div>
-                                <div class="col col-price">{{$v['price']}}元&nbsp;x&nbsp;{{$v['num']}}</div>
+                                <div class="col col-price"><?php echo e($v['price']); ?>元&nbsp;x&nbsp;<?php echo e($v['num']); ?></div>
                               
-                                <div class="col col-total">{{$v['price']*$v['num']}}元</div>
+                                <div class="col col-total"><?php echo e($v['price']*$v['num']); ?>元</div>
                             </li>
                            
                         </ul>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     
                 </div>     
                            
                 <div class="section section-count clearfix">
-                    @foreach($carts as $k=>$v)
+                    <?php $__currentLoopData = $carts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="money-box" id="J_moneyBox">
                         <ul>
                             <li class="clearfix">
                                 <label>商品件数：</label>
-                                <span class="val">{{$v['order_cnt']}}件</span>
+                                <span class="val"><?php echo e($v['order_cnt']); ?>件</span>
                             </li>
                             <li class="clearfix">
                                 <label>金额合计：</label>
-                                <span class="val">{{$v['prs']}}元</span>
+                                <span class="val"><?php echo e($v['prs']); ?>元</span>
                             </li>
                            
                             <li class="clearfix total-price">
                                 <label>应付总额：</label>
                                 <span class="val">
                                     <em id="J_totalPrice">
-                                        {{$v['prs']}}
+                                        <?php echo e($v['prs']); ?>
+
                                     </em>
                                     元
                                 </span>
                             </li>
                         </ul>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
 
                 <div class="section-bar clearfix">
@@ -317,9 +318,9 @@
     <a class="btn btn-gray" data-dismiss="modal" aria-hidden="true">取消</a>
 </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script>
 
 </script>
@@ -351,4 +352,5 @@
     })
 
 </script>    
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

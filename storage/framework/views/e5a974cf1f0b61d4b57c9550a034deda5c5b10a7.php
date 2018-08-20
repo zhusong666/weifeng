@@ -1,13 +1,12 @@
-@extends('layout.index')
-@section('title','购物车')
-@section('css')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<?php $__env->startSection('title','购物车'); ?>
+<?php $__env->startSection('css'); ?>
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/homes/common/css/base.min.css" />
     <link rel="stylesheet" href="/homes/common/css/cart.min.css" />
-@endsection  
+<?php $__env->stopSection(); ?>  
 
-@section('header')
+<?php $__env->startSection('header'); ?>
 <style type="text/css">
      #xxoo{
         /*去除浏览器默认样式*/
@@ -28,7 +27,7 @@
       
 
 </style>
-<meta name="csrf-token" content="{{ csrf_token() }}"> 
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>"> 
 <div class="site-header site-mini-header">
     <div class="container">
         <div class="header-logo">
@@ -69,8 +68,8 @@
         </div>
     </div>
 </div>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="page-main">
 
     <div class="container">
@@ -96,42 +95,42 @@
                     <div class="col col-action">操作</div>
                 </div>
                 
-              @foreach($cart as $k=>$v)
+              <?php $__currentLoopData = $cart; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="list-body" id="J_cartListBody">
                      
                     <div class="item-box" data-cid="">
                         <div class="item-table J_cartGoods" data-sid="" >
                             <div class="item-row clearfix">
                                 <div  class="col col-check"> 
-                                    <input type="checkbox" name="checked" class='ches' id="xxoo" cart_id="{{$v->cart_id}}" gid="{{$v->gid}}" uid="{{$v->uid}}">
+                                    <input type="checkbox" name="checked" class='ches' id="xxoo" cart_id="<?php echo e($v->cart_id); ?>" gid="<?php echo e($v->gid); ?>" uid="<?php echo e($v->uid); ?>">
                                 </div>
                                 <div class="col col-img">
                                     <a href="//item.mi.com/1151900011.html" target="_blank">
-                                    <img alt="" src="{{$res[$k]->goods_img}}" width="80" height="80"></a>
+                                    <img alt="" src="<?php echo e($res[$k]->goods_img); ?>" width="80" height="80"></a>
                                 </div>
                                 <div class="col col-name">
                                     <div class="tags"></div>
                                     <h3 class="name">
-                                        <a href="/home/details/{{$v->goods_id}}" id="tname" target="_blank">{{$v->goods_name}}&nbsp;&nbsp;{{$v->tname}}&nbsp;&nbsp;{{$v->colour}}</a>
+                                        <a href="/home/details/<?php echo e($v->goods_id); ?>" id="tname" target="_blank"><?php echo e($v->goods_name); ?>&nbsp;&nbsp;<?php echo e($v->tname); ?>&nbsp;&nbsp;<?php echo e($v->colour); ?></a>
                                     </h3>
                                 </div>
-                                <div class="col col-price">{{$v->price}}</div>
+                                <div class="col col-price"><?php echo e($v->price); ?></div>
                                 <div class="col col-num">
                                     <div class="change-goods-num clearfix J_changeGoodsNum">
                                         <a href="javascript:void(0)" class="minus">
                                             <i class="iconfont"></i>
                                         </a>
-                                        <input tyep="text" name="" id="num" value="{{$v->num}}"  autocomplete="off" class="numss  qty">
+                                        <input tyep="text" name="" id="num" value="<?php echo e($v->num); ?>"  autocomplete="off" class="numss  qty">
                                         <a href="javascript:void(0)" class="plus">
                                             <i class="iconfont"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col col-total">
-                                    <p id="xiaoji"  style="margin:0;font-size:12px;color:#b0b0b0;">{{$v->price * $v->num}}</p>元
+                                    <p id="xiaoji"  style="margin:0;font-size:12px;color:#b0b0b0;"><?php echo e($v->price * $v->num); ?></p>元
                                 </div>    
                                 <div class="col col-action">
-                                    <a id="2151900016_0_buy" onclick="DelGood({{$v->gid}})" href="javascript:void(0);" title="删除" class="del J_delGoods">
+                                    <a id="2151900016_0_buy" onclick="DelGood(<?php echo e($v->gid); ?>)" href="javascript:void(0);" title="删除" class="del J_delGoods">
                                         <i class="iconfont"></i>
                                     </a>
                                 </div>
@@ -140,7 +139,7 @@
                     </div>
                       
                 </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     
 
               
@@ -172,8 +171,8 @@
 </div>
 </div>
 
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script>
 </script>
 <script src="/homes/common/myjs/jquery.min.js"></script>
@@ -186,7 +185,7 @@
             layer.confirm('是否确认删除？', {
             btn: ['确定','取消'] //按钮
             }, function(){
-            $.post("{{url('/home/del/')}}/"+gid,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+            $.post("<?php echo e(url('/home/del/')); ?>/"+gid,{'_method':'DELETE','_token':"<?php echo e(csrf_token()); ?>"},function(data){
              if(data.status == 0){
                 location.href = location.href;
                 layer.msg(data.msg, {icon: 6});
@@ -392,4 +391,5 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
