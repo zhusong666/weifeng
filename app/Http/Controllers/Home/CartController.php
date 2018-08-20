@@ -62,7 +62,7 @@ class CartController extends Controller
 	 public function delete($id)
     {   
        
-        $re =  Carts::where('tname',$id)->delete();
+        $re =  Carts::where('cart_id',$id)->delete();
         //   return($re);
        //    0表示成功 其他表示失败
         if($re){
@@ -124,7 +124,7 @@ class CartController extends Controller
     public function count(Request $request)
     {   
     	$add = $request->input('add');
-    	
+    	$uid = session('user_id');
     	$cart = Session::get('res');
     	// dd($cart);die;
     	//$a = [];
@@ -144,8 +144,7 @@ class CartController extends Controller
 		$order_phone   = $add[0][2];
 		$order_data = [
 			'order_id'=>$order_id,
-			'order_type' => 1,
-			'uid' => 1,
+			'uid' => $uid,
 			'order_time'=>time(),
 			'order_linkman'=>$order_linkman,//收货人姓名
 			'order_address'=>$order_address,//收货人地址
@@ -167,6 +166,7 @@ class CartController extends Controller
 	        		'orderss_id' => $order_id,
 	        		'goodss_id'  => $cartItem['gid'],
 	        		'cates_id'   => 0,
+	        		'cname'      => $cartItem['tname'],
 	        		'details_price' => $cartItem['price'],
 	        		'details_cnt' => $cartItem['num']
 	        	];

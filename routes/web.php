@@ -44,14 +44,12 @@ Route::resource('/admin/category','Admin\CategoryController');
 Route::resource('/admin/user','Admin\UserController');
 //商品管理
 Route::resource('/admins/goods','Admin\GoodsController');
-
 //文章管理
 Route::resource('/admin/article','Admin\ArticleController');
 //轮播图管理
 Route::resource('/admin/lunbo','Admin\LunboController');
 //评论后台管理
 Route::resource('/admin/comment','Admin\CommentController');
-
 //订单管理
 Route::any('/admin/order','Admin\OrderController@index');
 //订单状态(发货,收货,完成)
@@ -67,9 +65,8 @@ Route::resource('/admins/role','Admin\RoleController');
 Route::any('/admins/role_per/{id}','Admin\RoleController@role_per');
 Route::any('/admins/do_role_per','Admin\RoleController@do_role_per');
 
-//权限管理
+//权限管理//用户管理
 Route::resource('/admins/permission','Admin\PermissionController');
-//用户管理
 Route::any('/admin/user_role/{id}','Admin\UserController@user_role');
 Route::any('/admin/do_user_role','Admin\UserController@do_user_role');
 
@@ -91,16 +88,13 @@ Route::get('/home/cart','Home\CartController@index');
 //商品加入购物车
 Route::any('/home/addcart/{id}','Home\CartController@addcart');
 //删除购物车商品
-Route::any('/home/del/{id}','Home\CartController@delete');
+Route::any('/cart/del/{id}','Home\CartController@delete');
 // 购物车提交
 Route::any('/home/ajaxcart','Home\CartController@ajaxcart');
 //购物车提交
 Route::any('/home/order','Home\CartController@order');
 //购物车结算
 Route::any('/home/count','Home\CartController@count');
-
-
-
 
 
 

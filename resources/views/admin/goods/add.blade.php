@@ -1,5 +1,5 @@
 @extends('admin.layouts.default')
-
+@section('title',$title)
 
 @section('content')	
 <script type="text/javascript" src="/homes/common/js/jquery-1.9.1.min.js"></script>

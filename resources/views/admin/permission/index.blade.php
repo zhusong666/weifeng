@@ -4,7 +4,7 @@
 
 
  <section class="Hui-article-box" style="overflow-y:scroll;height:1000px">
-		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">商品管理</span></nav>
+		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">权限管理</span></nav>
 		<article class="cl pd-20">
 		
 		<div class="cl pd-5 bg-1 bk-gray mt-20"> 

@@ -1,7 +1,7 @@
 
 
 @extends('admin.layouts.default')
-
+@section('title',$title)
 
 @section('content')
 

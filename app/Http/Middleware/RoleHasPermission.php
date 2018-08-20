@@ -52,7 +52,7 @@ class RoleHasPermission
             return $next($request);
 
         } else {
-            return redirect('/admin/index');
+            return view('/admin/index');
         }
 
     }

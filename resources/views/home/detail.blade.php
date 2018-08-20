@@ -2,7 +2,6 @@
 @section('title','小米商城')
 
 @section('css')
-    <title>小米商城</title>
     <style type="text/css">
         img{
             width: auto;
@@ -55,20 +54,19 @@
     <div class="goods-detail-info  clearfix J_goodsDetail">
         <div class="container">
             <div class="row">
+
                 <div class="span13  J_mi_goodsPic_block goods-detail-left-info">
-                    <div class="goods-pic-box  " style="min-height: 530px;" id="J_mi_goodsPicBox">
+                    <div class="goods-pic-box  " style="min-height: 483px;" id="J_mi_goodsPicBox">
                         
                         <div id="small" class="goods-big-pic J_bigPicBlock">
                             @foreach($imgs as $k=>$v)
                             <img src="{{$v->goods_img}}"  class="J_goodsBigPic" id="smallImg" />
                             @endforeach
                         </div>
-                       
                         <div class="goods-pic-loading">
                             <div class="loader loader-gray"></div>
                         </div>
                         <div class="goods-small-pic clearfix">
-                        
                             <ul id="uls">
                                 @foreach($imgs as $k=>$v)
                                 <li class="current"  style="cursor: pointer;" ><img src="{{$v->goods_img}}" /> </li>
@@ -79,6 +77,9 @@
                     <div class="span11 goods-batch-img-list-block J_goodsBatchImg">
                     </div>
                 </div>
+
+
+
                 <div class="span7 goods-info-rightbox">
                     <div class="goods-info-leftborder"></div>
                     @foreach($goods as $k=>$v)
@@ -124,7 +125,7 @@
                                     @foreach($len as $kl => $vl)
                                         <div  class="float">
                                             <div>
-                                                <a href="" class="smallAttr" name="color" title="{{$vl}}" data-stat-id="bd7cb1fe26f82654" id="color">{{$vl}}</a>
+                                                <a href="" style="width:80px" class="smallAttr" name="color" title="{{$vl}}" data-stat-id="bd7cb1fe26f82654" id="color">{{$vl}}</a>
                                             </div>
                                         </div>
                                         @endforeach
@@ -400,7 +401,6 @@
                 smallimg.src = sr;
             }
 
-
             imgs[i].onmouseout = function(){
                 this.style.border = '';
             }
@@ -408,20 +408,5 @@
 
 </script>
 
-<script>
-    function getInfo(o)
-    {
-        var _that = $(o);
-        var content = $(o).prev().val();
-        var comment_id = $(o).attr('data-commentid');
-        var goods_id = {{$goods_id}};
-        var user_id = $(o).attr('user-id');
-        var username = $(o).attr('user-name');
-        $.post('/comments/storeReply',{'_token':"{{csrf_token()}}",'content':content,'comment_id':comment_id,'goods_id':goods_id,'user_id':user_id},function(data){
-            if(data.code == '1') {
-                _that.parent().parent().after('<dd class="user-comment-answer"><img class="self-image" src="/homes/common/image/head_4.png" alt="" /><p><span class="answer-user-name" >'+username+'</span>-'+content+'</p></dd>');
-            }
-        });
-    }
-</script>
+
 @endsection

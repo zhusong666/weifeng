@@ -1,5 +1,5 @@
 @extends('admin.layouts.default')
-
+@section('title',$title)
 @section('content')
 
 
@@ -29,8 +29,8 @@
 				<input type="text" class="input-text" style="width:250px" placeholder="输入商品名称" name="goods_name" value='{{$request->input("goods_name")}}'>
 
 
-					价格区间:<input type="text" class="input-text" style="width:100px" placeholder="最低价格" name="goods_price1" value='{{$request->input("goods_price")}}'>-
-					<input type="text" class="input-text" style="width:100px" placeholder="最高价格" name="goods_price2" value='{{$request->input("goods_price")}}'>
+					价格区间:<input type="text" class="input-text" style="width:100px" placeholder="最低价格" name="price1" value='{{$request->input("goods_price")}}'>-
+					<input type="text" class="input-text" style="width:100px" placeholder="最高价格" name="price2" value='{{$request->input("goods_price")}}'>
 
 						<!-- <span class="select-box" style="width:105px;">
 						<select class="select" name="" size="1">

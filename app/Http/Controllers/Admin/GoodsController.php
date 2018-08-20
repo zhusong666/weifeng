@@ -44,7 +44,7 @@ class GoodsController extends Controller
         $res = Category::select(DB::raw('*,concat(cate_path,cate_id) as paths'))->orderBy('paths')->get();
         // $res = Goods::with('CateGory')->where('cate_id',)
 
-        return view('admin.goods.index',['goods'=>$goods,'request'=>$request,'res'=>$res,'title'=>'商品显示页面']);
+        return view('admin.goods.index',['goods'=>$goods,'request'=>$request,'res'=>$res,'title'=>'商品浏览页面']);
     }
 
     /**

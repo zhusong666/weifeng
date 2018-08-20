@@ -29,6 +29,55 @@
 
 </style>
 <meta name="csrf-token" content="{{ csrf_token() }}"> 
+
+<div class="site-topbar">
+        <div class="container">
+            <div class="topbar-nav">
+                <a rel="nofollow" href="/" >小米商城</a>
+
+            </div>
+            <div class="topbar-cart" id="J_miniCartTrigger">
+                <a rel="nofollow" class="cart-mini" id="J_miniCartBtn" href="/home/cart"> <i class="iconfont">&#xe60c;</i>
+                    购物车
+                    <span class="cart-mini-num J_cartNum"></span>
+                </a>
+                {{--<div class="cart-menu" id="J_miniCartMenu">--}}
+                    {{--<div class="loading">--}}
+                        {{--<div class="loader"></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            </div>
+            @if(!session('username'))
+            <div class="topbar-info" id="J_userInfo">
+                <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
+                <span class="sep">|</span>
+                <a  rel="nofollow" class="link" href="/register" >注册</a>
+            </div>
+            @endif
+            @if(session('username'))
+            <div class="topbar-info" id="J_userInfo">
+                <span class="user">
+                    <a rel="nofollow" class="user-name" href="/user/details" target="_blank">
+                        <span class="name">{{session('username')}}</span> <i class="iconfont"></i>
+                    </a>
+                    <ul class="user-menu" style="display: none;">
+
+                        <li>
+                            <a rel="nofollow" href="/comments" target="_blank">评价晒单</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="/logout">退出登录</a>
+                        </li>
+                    </ul>
+                </span>
+                <span class="sep">|</span>
+                <a rel="nofollow" class="link link-order" href="/user/order" target="_blank">我的订单</a>
+            </div>
+            @endif
+        </div>
+    </div>
+
+
 <div class="site-header site-mini-header">
     <div class="container">
         <div class="header-logo">
@@ -37,35 +86,6 @@
         <div class="header-title has-more" id="J_miniHeaderTitle">
             <h2>我的购物车</h2>
             <p>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</p>
-        </div>
-       
-        <div class="topbar-info" id="J_userInfo">
-            <a  rel="nofollow" class="link" href="/login" data-needlogin="true">登录</a>
-            <span class="sep">|</span>
-            <a  rel="nofollow" class="link" href="/register" >注册</a>
-        </div>
-        <div class="topbar-info" id="J_userInfo">
-                <span class="user">
-                    <a rel="nofollow" class="user-name" href="/user/comment" target="_blank">
-                        <span class="name"></span> <i class="iconfont"></i>
-                    </a>
-                    <ul class="user-menu" style="display: none;">
-                        <li>
-                            <a rel="nofollow" href="/portal">个人中心</a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" href="/user/comment" target="_blank">评价晒单</a>
-                        </li>
-                        <!-- <li>
-                            <a rel="nofollow" href="http://order.mi.com/user/favorite" target="_blank">我的喜欢</a>
-                        </li> -->
-                        <li>
-                            <a rel="nofollow" href="/user/logout">退出登录</a>
-                        </li>
-                    </ul>
-                </span>
-            <span class="sep">|</span>
-            <a rel="nofollow" class="link link-order" href="/user/order/" target="_blank">我的订单</a>
         </div>
     </div>
 </div>
@@ -77,9 +97,14 @@
         <div class="cart-loading loading hide" id="J_cartLoading">
             <div class="loader"></div>
         </div>
-       
-
-
+         @if(empty($cart[0]))
+        <div class="cart-empty @if(empty(session('uid'))) cart-empty-nologin @endif" id="J_cartEmpty">
+            <h2>您的购物车还是空的！</h2>
+            <p class="login-desc">快去添加你想买的商品把!</p>
+            <a href="/home/search" class="btn btn-primary btn-shoping J_goShoping" >马上去购物</a>
+        </div>
+        @endif
+        @if(!empty($cart[0]))
 
         <div id="J_cartBox" class="">
             <div class="cart-goods-list">
@@ -131,7 +156,7 @@
                                     <p id="xiaoji"  style="margin:0;font-size:12px;color:#b0b0b0;">{{$v->price * $v->num}}</p>元
                                 </div>    
                                 <div class="col col-action">
-                                    <a id="2151900016_0_buy" onclick="DelGood({{$v->gid}})" href="javascript:void(0);" title="删除" class="del J_delGoods">
+                                    <a id="2151900016_0_buy" onclick="DelGood({{$v->cart_id}})" href="javascript:void(0);" title="删除" class="del J_delGoods">
                                         <i class="iconfont"></i>
                                     </a>
                                 </div>
@@ -141,9 +166,6 @@
                       
                 </div>
                 @endforeach
-    
-
-              
         <div class="cart-bar clearfix" id="J_cartBar">
                 <div class="section-left">
                     <a href="//list.mi.com/0" class="back-shopping J_goShoping" data-stat-id="cb50063b4f1b9ef0" onclick="_msq.push(['trackEvent', '5df97b551662ffe7-cb50063b4f1b9ef0', '//list.mi.com/0', 'pcpid', '']);">继续购物</a>
@@ -167,11 +189,9 @@
                     <i class="arrow arrow-b"></i>
                 </div>
         </div>
-          
-
 </div>
 </div>
-
+@endif
 @endsection
 @section('js')
 <script>
@@ -186,7 +206,7 @@
             layer.confirm('是否确认删除？', {
             btn: ['确定','取消'] //按钮
             }, function(){
-            $.post("{{url('/home/del/')}}/"+gid,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+            $.post("{{url('/cart/del/')}}/"+gid,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
              if(data.status == 0){
                 location.href = location.href;
                 layer.msg(data.msg, {icon: 6});
