@@ -39,7 +39,6 @@
                        
                     <tr class="text-c">
                         <td>{{$v->goods_name}}</td>
-                        <td>{{$v->carts['tname']}}</td>
                         <td><img src="{{$v->goods_img}}" style="width:150px;height:150px"></td>
                         <td>{{$v->goods_price}}</td>
                         <td>{{$v->details->details_cnt}}</td>

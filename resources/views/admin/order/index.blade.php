@@ -34,8 +34,7 @@
             <table class="table table-border table-bordered table-bg">
                 <thead>
                     <tr class="text-c">
-                        <th width="100">订单号</th>
-                        <th width="100">订单类型</th>
+                        <th width="150">订单号</th>
                         <th width="150">下单时间</th>
                         <th width="100">收货人</th>
                         <th width="100">订单总金额</th>
@@ -43,15 +42,14 @@
                         <th width="150">收货地址</th>
                         <th width="130">联系电话</th>
                         <th width="130">订单状态</th>
-                        <th width="150">买家留言</th>
-                        <th width="100">操作</th>
+                        <th width="115">买家留言</th>
+                        <th width="135">操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($res as $k=>$v)
                     <tr class="text-c">
                         <td>{{$v->order_id}}</td>
-                        <td>@if($v->order_type == '1') 普通订单 @else 加急订单 @endif</td>
                         <td>{{date('Y-m-d H:i:s',$v->order_time)}}</td>
                         <td>{{$v->order_linkman}}</td>
                         <td>{{$v->order_total}}</td>
