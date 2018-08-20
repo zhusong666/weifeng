@@ -50,7 +50,7 @@ class LoginController extends Controller
 
         //验证码
         $code = $request->input('code');
-        if(session('code')!=$code){
+        if($code != session('code')){
             return back()->with('error','验证码有误!');
         }
 

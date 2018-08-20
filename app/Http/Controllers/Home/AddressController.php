@@ -14,9 +14,18 @@ class AddressController extends Controller
     	$uid = session('user_id');
     	$res = Address::where('uid',$uid)->get();
 
-    	// dd($res);
+    	// dump($res);
 
-    	return view('/home/user/address',['res'=>$res]);
+        foreach($res as $k=>$v){
+
+            $phone = $v->address_phone;
+
+        }
+
+        // dd($phone);
+        $nphone = substr_replace($phone,'****',3,4);
+
+    	return view('/home/user/address',['res'=>$res,'nphone'=>$nphone]);
     }
 
     public function store(Request $request)
@@ -42,9 +51,15 @@ class AddressController extends Controller
     {
     	$res = Address::where('address_id',$id)->first();
 
-    	// dd($res);
+    	// dump($res);
 
-    	return view('/home/user/upaddress',['res'=>$res]);
+        $phone = $res->address_phone;
+
+        $nphone = substr_replace($phone,'****',3,4);
+
+        // dd($nphone);
+
+    	return view('/home/user/upaddress',['res'=>$res,'nphone'=>$nphone]);
     }
 
     public function update(Request $request,$id)

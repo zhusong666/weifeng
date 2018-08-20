@@ -25,7 +25,11 @@ class UserController extends Controller
 
 		$res = DB::table('wf_home_user')->where('username',$username)->first();
 
-		return view('home.user.details',['res'=>$res]);
+        $phone = $res->user_phone;
+
+        $nphone = substr_replace($phone,'****',3,4);
+
+		return view('home.user.details',['res'=>$res,'nphone'=>$nphone]);
 	}
 
     //用户详情修改
@@ -33,6 +37,8 @@ class UserController extends Controller
     {
 
     	$res = $request->except('_token','image');
+
+        // dd($res); 
 
     	//上传图片
         if($request->hasFile('image')){
@@ -108,7 +114,7 @@ class UserController extends Controller
 
     	$info = $this->dealTmp($orders);
 
-    	return view('home.user.order',['orders'=>$orders,'info'=>$info,'order'=>$order,'dd'=>'fdfd']);
+    	return view('home.user.order',['orders'=>$orders,'info'=>$info,'order'=>$order]);
     }
 
     private function dealTmp($orders)
@@ -185,7 +191,7 @@ class UserController extends Controller
                                             '.$val->order_linkman.'
                                             <span class="sep">|</span>
                                             订单号：
-                                            <a href="/user/orderView?num='.$val->order_id.'">'.$val->order_id.'</a>
+                                            <span>'.$val->order_id.'</span>
                                             <span class="sep">|</span>
                                             在线支付
                                         </p>
@@ -212,8 +218,8 @@ class UserController extends Controller
                                                         <img src="'.$vv->goodsimg['goods_img'].'" width="80" height="80" alt="'.$vv->goods['goods_name'].'"></a>
                                                 </div>
                                                 <p class="name">
-                                                    <a target="_blank" href="">'.$vv->goods['goods_name'].'</a><br>
-                                                    <a target="_blank" href="">'.$vv->carts['tname'].'</a>
+                                                    <span>'.$vv->goods['goods_name'].'</span>
+                                                    <span>'.$vv->carts['tname'].'</span>
                                                 </p>
                                                 <p class="price">'.$vv['details_price'].'元 × '.$vv['details_cnt'].'</p>
                                             </li>';

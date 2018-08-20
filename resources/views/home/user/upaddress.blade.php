@@ -83,7 +83,7 @@
                                                 <span class="hym"></span>
                                             </div>
                                             <div class="aa">  
-                                                <input class="input-text" type="text" name="address_phone" placeholder="11位手机号" value="{{$res->address_phone}}">
+                                                <input class="input-text" type="text" name="address_phone" placeholder="11位手机号" value="{{$nphone}}">
                                                 <span class="sjh"></span>
                                             </div>
                                             <div class="aa" style="margin-bottom:10px;">

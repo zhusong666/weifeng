@@ -182,7 +182,7 @@
                                 </div>
                                 <div class="more clearfix" style="margin-top:30px;width:400px">
                                     <span class="label"><em class="em">*</em>电话：</span>
-                                    <input type="text" name="user_phone" value="{{$res->user_phone}}">
+                                    <input type="text" name="user_phone" value="{{$nphone}}">
                                     <span class="sjh"></span>
                                 </div>
                                 <div class="more clearfix" style="margin-top:30px;">
