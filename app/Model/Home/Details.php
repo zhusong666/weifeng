@@ -26,6 +26,11 @@ class Details extends Model
     	return $this->hasOne('App\Model\Home\Goodsimg','good_id','goodss_id');
     }
 
+    public function carts()
+    {
+        return $this->hasOne('App\Model\Home\Carts','gid','goodss_id');
+    }
+
    
 
 

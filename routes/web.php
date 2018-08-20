@@ -78,7 +78,6 @@ Route::any('/home/addcart/{id}','Home\CartController@addcart');
 
 
 //前台登录
-
 Route::any('/login','Home\LoginController@login');
 Route::any('/dologin','Home\LoginController@dologin');
 Route::any('/captcha','Home\LoginController@getCaptcha');
@@ -110,7 +109,8 @@ Route::any('goodlist/{id}','GoodController@goodList');
 //用户详情修改
 	Route::any('/user/doedit/{id}','Home\UserController@update');
 //用户收货地址
-	Route::any('/user/address','Home\UserController@address');
+	Route::resource('/user/address','Home\AddressController');
+	// Route::any('/user/doaddress','Home\AddressController@save');
 //用户个人订单
 	Route::any('/user/order','Home\UserController@order');
 //订单支付

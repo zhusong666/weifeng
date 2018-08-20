@@ -32,4 +32,9 @@ class Details extends Model
     {
         return $this->hasOne('App\Model\Admin\Shop_orders','order_id');
     }
+
+    public function carts()
+    {
+        return $this->hasOne('App\Model\Admin\Carts','gid','goodss_id');
+    }
 }

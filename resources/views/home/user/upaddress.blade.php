@@ -22,7 +22,7 @@
         <div class="container">
             <a href='//www.mi.com/index.html'>首页</a>
             <span class="sep">&gt;</span>
-            <span>收货地址</span>
+            <span>修改收货地址</span>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
                                     <li>
                                         <a href="/user/details">个人资料</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="/user/address">收货地址</a>
                                     </li>
                                 </ul>
@@ -70,95 +70,48 @@
                     <div class="uc-box uc-main-box">
                         <div class="uc-content-box">
                             <div class="box-hd">
-                                <h1 class="title">收货地址</h1>
-                                <style type="text/css">
-                                    #success{
-                                        color: green;
-                                        text-align: center;
-                                    }
-                                    #error{
-                                        color: orangered;
-                                        text-align: center;
-                                    }
-                                </style>
-                                <div class="enter-area" id="success">
-                                    @if(session('success'))
-                                        <h4 id="success">
-                                            {{ session('success') }}
-                                        </h4>
-                                    @endif
-                                </div>
-                                <div class="enter-area" id="error">
-                                    @if(session('error'))
-                                        <h3 id="error">
-                                            {{ session('error') }}
-                                        </h3>
-                                    @endif
-                                </div>
+                                <h1 class="title">修改收货地址</h1>
                             </div>
                             <div class="box-bd">
                                 <div class="user-address-list J_addressList clearfix">
-                                    @if(!empty($res))
-                                    @foreach($res as $k=>$v)
-                                        <div class="address-item">
-                                            <dl>
-                                                <dt>
-                                                    <span class="tag"></span> <em class="uname">{{$v->address_name}}</em>
-                                                </dt>
-                                                <dd class="utel">{{$v->address_phone}}</dd>
-                                                <dd class="uaddress">
-                                                    {{$v->address_sheng}}  {{$v->address_shi}}  {{$v->address_xian}}
-                                                    <br>{{$v->address_details}}<br>{{$v->address_zcode}}</dd>
-                                            </dl>
-                                            <div class="actions">
-                                                <a href="/user/address/{{$v->address_id}}/edit" class="modify">修改</a>
-                                                <a title="删除" class="modify" href="javascript:;" onclick="member_del({{$v->address_id}})">删除</a>
+                                     <!-- 收货地址 -->
+                                    <div class="span16" style="margin-left:262px;height:300px;margin-top:30px;">
+                                      <form action="/user/address/{{$res->address_id}}" method="post">
+                                        <div class="box-main" style="width:600px;">
+                                            <div class="aa">
+                                                <input class="input-text" type="text" name="address_name" placeholder="收货人姓名" value="{{$res->address_name}}">
+                                                <span class="hym"></span>
                                             </div>
+                                            <div class="aa">  
+                                                <input class="input-text" type="text" name="address_phone" placeholder="11位手机号" value="{{$res->address_phone}}">
+                                                <span class="sjh"></span>
+                                            </div>
+                                            <div class="aa" style="margin-bottom:10px;">
+                                                <div data-toggle="distpicker">
+                                                  <select name="address_sheng"  style="height:40px;" value="{{$res->address_sheng}}"></select>
+                                                  <select name="address_shi"  style="height:40px;" value="{{$res->address_shi}}"></select>
+                                                  <select name="address_xian"  style="height:40px;" value="{{$res->address_xian}}"></select>
+                                                </div>
+                                            </div>
+                                            <div class="aa">  
+                                                <input class="input-text" type="text" name="address_details" placeholder="详细地址" value="{{$res->address_details}}">
+                                                <span class="dz"></span>
+                                            </div>
+                                            <div class="aa">  
+                                                <input class="input-text" type="text" name="address_zcode" placeholder="邮编" value="{{$res->address_zcode}}">
+                                                <span class="yb"></span>
+                                            </div>
+                                            {{csrf_field()}}
+
+                                            {{method_field('PUT')}}
+                                            <input class="btn btn-primary" type="submit" value="修改">
                                         </div>
-                                    @endforeach
-                                    @endif
+                                      </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- 收货地址 -->
-                <div class="span16" style="height:300px;background:#eee;margin-top:50px;margin-left:262px;">
-                  <form action="/user/address" method="post">
-                    <div class="box-main" style="width:450px;margin-left:300px;margin-top:5px;">
-                    
-                        <div class="aa">
-                            <input class="input-text" type="text" name="address_name" placeholder="收货人姓名">
-                            <span class="hym"></span>
-                        </div>
-                        <div class="aa">  
-                            <input class="input-text" type="text" name="address_phone" placeholder="11位手机号">
-                            <span class="sjh"></span>
-                        </div>
-                        <div class="aa" style="margin-bottom:10px;">
-                            <div data-toggle="distpicker">
-                              <select name="address_sheng"  style="height:40px;"></select>
-                              <select name="address_shi"  style="height:40px;"></select>
-                              <select name="address_xian"  style="height:40px;"></select>
-                            </div>
-                        </div>
-                        <div class="aa">  
-                            <input class="input-text" type="text" name="address_details" placeholder="详细地址">
-                            <span class="dz"></span>
-                        </div>
-                        <div class="aa">  
-                            <input class="input-text" type="text" name="address_zcode" placeholder="邮编">
-                            <span class="yb"></span>
-                        </div>
-                        {{csrf_field()}}
-                        <input class="btn btn-primary" type="submit" value="添加" style="margin-left:70px;">
-                       
-                    </div>
-                  </form>
-                </div>
-
-                <div id="J_modalEditAddress" class="modal fade modal-hide modal-edit-address">
-                    <div class="modal-body"></div>
                 </div>
             </div>
         </div>
