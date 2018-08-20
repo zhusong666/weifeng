@@ -12,9 +12,14 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $comments = Comment::paginate(5);
+    public function index(Request $request)
+    {   
+
+        $comments = Comment::where(function($query) use($request){
+                $content = $request->content;
+                if($content)
+                    $query->where('content','like',"%{$content}%");
+        })->paginate(5);
         return view('admin.comment.index',['comments'=>$comments]);
     }
 

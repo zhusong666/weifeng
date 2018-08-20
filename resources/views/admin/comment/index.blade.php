@@ -5,9 +5,9 @@
 		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">分类管理</span><span class="c-999 en">&gt;</span><span class="c-666">浏览分类</span></nav>
 		<div class="Hui-article">
 			<div class="page-container">
-	<form action="/admin/category" method="get">
+	<form action="/admin/comment" method="get">
 		<div class="text-c">
-			<input type="text"  name="cate_name"  value='' placeholder="分类名称、id" style="width:250px" class="input-text">
+			<input type="text"  name="content"  value='' placeholder="分类名称、id" style="width:250px" class="input-text">
 			<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 		</div>
 	</form>

@@ -420,6 +420,7 @@
         $.post('/comments/storeReply',{'_token':"{{csrf_token()}}",'content':content,'comment_id':comment_id,'goods_id':goods_id,'user_id':user_id},function(data){
             if(data.code == '1') {
                 _that.parent().parent().after('<dd class="user-comment-answer"><img class="self-image" src="/homes/common/image/head_4.png" alt="" /><p><span class="answer-user-name" >'+username+'</span>-'+content+'</p></dd>');
+                _that.prev().val('');
             }
         });
     }
