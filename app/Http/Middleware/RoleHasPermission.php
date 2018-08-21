@@ -46,9 +46,7 @@ class RoleHasPermission
             return $next($request);
 
         } else {
-            echo "<script> alert('没有权限哦');parent.location.href='/admin/index'; </script>"; 
-
-            // return view('/admin/index');
+            echo "<script> alert('没有权限哦,请联系超级管理员!');parent.location.href='/admin/index'; </script>"; 
         }
 
     }
