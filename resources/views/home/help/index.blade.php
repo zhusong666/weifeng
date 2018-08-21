@@ -59,6 +59,53 @@
                     @endforeach
                     </div>
                 </div>
+                <style>
+        .pagination{
+                            margin-top: 30px;
+                            margin-left: 40%;
+                        }
+                .pagination li{
+
+                    float: left;
+                    height: 25px;
+                    padding: 0 10px;
+                    display: block;
+                    font-size: 15px;
+                    line-height: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                    outline: none;
+                    background-color: skyblue;
+                    
+                    text-decoration: none;
+                        border-right: 0px solid rgba(0, 0, 0, 0);
+                    border-left: 1px solid rgba(255, 255, 255, 0.15);
+                        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+
+                }
+
+                .pagination li a{
+                    color: azure;
+                }
+
+
+                .pagination .active{
+
+                    background-color: whlie;
+                    color: slategray;
+                    border: none;
+                    background-image: none;
+                    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+                }
+
+                .pagination{
+                    padding:0 auto;
+                    margin:50 auto;
+                }
+
+            </style>
+
+            {{$rs->appends(request()->all())->links()}}
             </div>
         </div>
     </div>

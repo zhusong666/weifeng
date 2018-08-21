@@ -14,10 +14,10 @@ class HelpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {   
         // 获取帮助分类
-        $rs = ArticleCate::with('articles')->get();
+        $rs = ArticleCate::with('articles')->paginate($request->input('num',1));
         // dd($rs);
         return view ('home.help.index',['rs'=>$rs]);
     }

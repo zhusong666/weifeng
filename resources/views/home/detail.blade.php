@@ -407,5 +407,21 @@
         };
 
 </script>
-
+<script>
+    function getInfo(o)
+    {
+        var _that = $(o);
+        var content = $(o).prev().val();
+        var comment_id = $(o).attr('data-commentid');
+        var goods_id = {{$goods_id}};
+        var user_id = $(o).attr('user-id');
+        var username = $(o).attr('user-name');
+        $.post('/comments/storeReply',{'_token':"{{csrf_token()}}",'content':content,'comment_id':comment_id,'goods_id':goods_id,'user_id':user_id},function(data){
+            if(data.code == '1') {
+                _that.parent().parent().after('<dd class="user-comment-answer"><img class="self-image" src="/homes/common/image/head_4.png" alt="" /><p><span class="answer-user-name" >'+username+'</span>-'+content+'</p></dd>');
+                _that.prev().val('');
+            }
+        });
+    }
+</script>
 @endsection
