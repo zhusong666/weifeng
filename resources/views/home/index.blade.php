@@ -42,7 +42,7 @@
                         <div id="J_homeSlider" class="xm-slider" data-stat-title="焦点图轮播" style="width: auto; position: relative;">
                         @foreach($res as $k=>$v)
                             <div class="slide loaded">
-                                <a href="/home/details/56" >
+                                <a href="/home/details/121" >
                                    <img src="{{$v->lunbo_img}}" srcset="">
                                 </a>
                             </div>
