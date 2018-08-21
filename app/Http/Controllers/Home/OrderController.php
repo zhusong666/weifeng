@@ -28,6 +28,35 @@ class OrderController extends Controller
     public function success($id)
     {
 
+        /*//获取订单号
+        $data = Order::where('order_id',$id)->first();
+
+        //订单详情表的订单号 和 订单表的订单号 相同,获取
+        $oid = Details::where('orderss_id','=',$id)->get();
+
+        foreach ($oid as $k => $v) {
+            
+            $gid = $v->goods->goods_id;
+        }
+
+        $status = Goods::where('goods_id',$gid)->first();
+
+        // $status = Goods::where('goods_id',$gid)->update(['goods_status' + 1]);
+        // $res = Goods::where('goods_status');
+
+        dump($status);
+
+        // dd($gid);
+
+        // dd($oid);
+
+        // dd($data['order_status']);
+
+        $aa = DB::update('wf_goods set goods_volume=goods_volume+1 where goods_id = :id', ['id' => $gid]);
+
+        dd($aa);*/
+        ////////////////////////////////////////////////////
+
     	$res = DB::table('wf_shop_orders')->where('order_id',$id)->first();
     	
     	$status = $res->order_status;
@@ -52,29 +81,7 @@ class OrderController extends Controller
     {
     	//获取id
     	$id = $request->id;
-        //获取订单号
-    	$data = Order::where('order_id',$id)->first();
-
-        /*//订单详情表的订单号 和 订单表的订单号 相同,获取
-        $oid = Details::where('orderss_id','=',$id)->get();
-
-        foreach ($oid as $k => $v) {
-            
-            $gid = $v->goods->goods_id;
-        }
-
-        // $status = Goods::where('goods_id',$gid)->first();
-
-        $status = Goods::where('goods_id',$gid)->update(['goods_status' + 1]);
-        // $res = Goods::where('goods_status');
-
-        dump($status);
-
-        dump($gid);
-
-        dd($oid);*/
-
-    	// dd($data['order_status']);
+        
     	//修改状态
         $res = DB::table('wf_shop_orders')->where('order_id',$id)->update(['order_status'=>3]);
 
@@ -104,8 +111,8 @@ class OrderController extends Controller
     }
 
     //删除订单
-    public function delete(Request $request,$id)
-    {
+    // public function delete(Request $request,$id)
+    // {
         /*$oid = $request->id;
 
         dd($oid);
@@ -128,5 +135,5 @@ class OrderController extends Controller
         }
 
         return $data;*/
-    }
+    // }
 }

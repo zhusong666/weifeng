@@ -27,17 +27,13 @@ class LoginController extends Controller
 		$name = $request->input('username');
 		$res = DB::table('wf_users')->where('admin_name',$name)->first();
 
-        if($res->admin_status == 0){
-
-            return back()->with('error','您已被禁用,请联系boos恢复状态');
-        }
-
+        //用户名
 		if(!$res){
 
 			return redirect('/admin/login')->with('error','用户名或密码错误');
 		}
 
-		//判断密码是否正确 用查询到的用户名来获取它的密码
+		//密码
 		$pass = $request->input('password');
 
         //判断密码
@@ -45,20 +41,18 @@ class LoginController extends Controller
             return back()->with('error','用户名或者密码错误');
         }
 
-		/*//解密密码
-		$admin_pass = decrypt($res->admin_password);*/
-
-		/*if($pass != $admin_pass){
-
-			return back()->with('error','用户名或密码错误');
-		}*/
-
 		//判断验证码
         $code = $request->input('code');
 
         if($code != session('code')){
 
             return back()->with('error','验证码错误');
+        }
+
+        //判断状态
+        if($res->admin_status == '0'){
+
+            return back()->with('error','您已被禁用,请联系boos恢复状态');
         }
 
 		

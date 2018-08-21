@@ -95,7 +95,7 @@
                                                 <p class="price">{{$v->goods_price}}元</p>
                                                 <div class="actions">
                                                     <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/comments/create/{{$v->goods_id}}">去评价</a>
-                                                    <!-- <a class="btn btn-small btn-primary" href="/user/del/{{$v->goods_id}}" target="_blank" id="del" onclick="member_del({{$v->goods_id}})" title="删除订单">删除订单</a> -->
+                                                
                                                 </div>
                                             </li>
                                             </div>
