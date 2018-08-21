@@ -12,20 +12,9 @@ class AddressController extends Controller
     public function index()
     {
     	$uid = session('user_id');
-    	$res = Address::where('uid',$uid)->get();
+    	$res = Address::where('uid',$uid)->get();      
 
-    	// dump($res);
-
-        foreach($res as $k=>$v){
-
-            $phone = $v->address_phone;
-
-        }
-
-        // dd($phone);
-        $nphone = substr_replace($phone,'****',3,4);
-
-    	return view('/home/user/address',['res'=>$res,'nphone'=>$nphone]);
+    	return view('/home/user/address',['res'=>$res]);
     }
 
     public function store(Request $request)

@@ -73,21 +73,29 @@
                         <td>{{$v->order_msg}}</td>
                         <td class="td-manage">
                             @if($v->order_status == 0) 
-                                <a href="javascript:;" style="text-decoration:none">不给货</a>|
+                                <a href="javascript:;" style="text-decoration:none">不给货 </a>|
                             @endif
                             @if($v->order_status == 1) 
                                 <a href="javascript:;" onclick="status_show({{$v->order_id}})" style="text-decoration:none">发货</a>|
                             @endif
                             @if($v->order_status == 2) 
-                                <a style="text-decoration:none" href="javascript:;">已发货</a>|
+                                <a style="text-decoration:none" href="javascript:;">已发货 </a>|
                             @endif
                             
                             @if($v->order_status == 3)
-                                <a style="text-decoration:none" href="javascript:;">完成</a>|
+                                <a style="text-decoration:none" href="javascript:;">完成 </a>|
                             @endif
                             <a href="/admin/detail/{{$v->order_id}}" style="text-decoration:none">订单详情</a>
+                            @if($v->order_status == 0)
                             |
                             <a href="/order/edit/{{$v->order_id}}" style="text-decoration:none">修改订单</a>
+                            @endif
+                            @if($v->order_status == 1)
+                            |
+                            <a href="/order/edit/{{$v->order_id}}" style="text-decoration:none">修改订单</a>
+                            @endif
+                            @if($v->order_status == 2)
+                            @endif
                     </tr>
                   @endforeach
                 </tbody>

@@ -94,9 +94,31 @@ class OrderController extends Controller
         }
     }
 
-    public function edit()
+    public function edit($id)
     {
-        echo 23;
+        $res = DB::table('wf_shop_orders')->where('order_id',$id)->first();
+
+        $phone = $res->order_phone;
+
+        $nphone = substr_replace($phone,'****',3,4);
+
+        return view('admin.order.edit',['title'=>'修改订单','res'=>$res,'nphone'=>$nphone]);
+    }
+
+    public function update(Request $request,$id)
+    {
+
+        $res = $request->except('_token','_method');
+
+        $data = DB::table('wf_shop_orders')->where('order_id',$id)->update($res);
+
+        if($data){
+
+            return redirect('/admin/order')->with('success','修改成功');
+        } else {
+
+            return redirect('/admin/order')->with('error','修改失败');
+        }
     }
 
 

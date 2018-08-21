@@ -8,7 +8,7 @@
 	
 	<p>小米米商城账号激活提醒</p>
 
-	<p>您好！您注册了小米米商城账号，请点击以下链接，激活该用户：<a href="http://www.weifeng.com/jihuo?id={{$id}}&token={{$token}}">http://www.weifeng.com/jihuo?id={{$id}}&token={{$token}}</a></p>
+	<p>您好！您注册了小米米商城账号，请点击以下链接，激活该用户：<a href="http://www.xm.com/jihuo?id={{$id}}&token={{$token}}">http://www.xm.com/jihuo?id={{$id}}&token={{$token}}</a></p>
 	
 	(若无法点击链接请复制到地址栏访问,您若未注册小米米商城请忽略此邮件,敬请谅解)
 

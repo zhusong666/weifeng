@@ -57,8 +57,8 @@
 					
 						<span class="c-red">*</span>帮助内容：
 					</label>
-						<div class="formControls col-xs-8 col-sm-9"> 
-						<script id="editor" type="text/plain" name="article_content" style="width:100%;height:400px;">
+						<div class="formControls col-xs-8 col-sm-9" > 
+						<script id="editor" type="text/plain" name="article_content" style="width:100%;height:150px;">
 								{!!$res->article_content!!}
 						</script> 
 					</div>
@@ -66,7 +66,7 @@
 					<!-- input type="text"value="{{$res->article_content}}"> -->
 					
 				<!-- //百度编辑器 -->
-				<script>
+				<script >
     
     				var ue = UE.getEditor('editor');
     

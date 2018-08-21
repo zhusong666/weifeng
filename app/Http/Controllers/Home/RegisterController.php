@@ -37,19 +37,25 @@ class RegisterController extends Controller
     	//注册
     	$data = User::insertGetId($res);
 
+        // dd($data);
+
         if($data){
 
             // return redirect('/')->with('success','添加成功');
 
             //发送邮件
-    		Mail::send('home.emails.reminder', ['id' => $data,'token'=>$res['user_token']], function ($m) use ($res) {
+    		$aa = Mail::send('home.emails.reminder', ['id' => $data,'token'=>$res['user_token']], function ($m) use ($res) {
 
 	            $m->from(env('MAIL_USERNAME'), '小米米商城人力资源部');
 
 	            $m->to($res['user_email'], $res['username'])->subject('诚邀加入小米米集团');
 	        });
 
-	        return view('home.emails.tixing',['title'=>'新用户激活的提醒信息']);
+            // dump();
+
+            dd($aa);
+
+	        // return view('home.emails.tixing',['title'=>'新用户激活的提醒信息']);
 
         } else {
 

@@ -42,7 +42,7 @@
                                     </li>
                                     
                                     <li>
-                                        <a href="/user/comment/">评价晒单</a>
+                                        <a href="/comments">评价晒单</a>
                                     </li>
                                     
                                 </ul>
@@ -105,6 +105,10 @@
                                                 <dt>
                                                     <span class="tag"></span> <em class="uname">{{$v->address_name}}</em>
                                                 </dt>
+                                                @php              
+                                                    $phone = $v->address_phone;
+                                                    $nphone = substr_replace($phone,'****',3,4);
+                                                @endphp
                                                 <dd class="utel">{{$nphone}}</dd>
                                                 <dd class="uaddress">
                                                     {{$v->address_sheng}}  {{$v->address_shi}}  {{$v->address_xian}}
