@@ -26,7 +26,7 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
          return view('admin.permission.add',['title'=>'权限添加页面']);
     }
 
@@ -53,7 +53,7 @@ class PermissionController extends Controller
 
         }
     }
-
+    
     /**
      * Display the specified resource.
      *

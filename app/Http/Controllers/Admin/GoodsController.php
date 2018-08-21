@@ -256,22 +256,6 @@ class GoodsController extends Controller
      */
     public function destroy($id)
     {   
-        // // 商品详情图片删除
-        // $img = DB::table('wf_goods')->where('gooods_id',$id)->first();
-        // // dump($img);
-        // $name = $img[0]->goods_content;
-        // if(!empty($name)){
-        //     $name = '.'.$name;
-        //     unlink($name);
-        // }
-        // //商品图片删除
-        // $imgs = DB::table('wf_goods_img')->where('gooodsimg_id',$id)->first();
-        // // dump($img);
-        // $nam = $imgs[0]->goods_img;
-        // if(!empty($name1)){
-        //     $nam = '.'.$nam;
-        //     unlink($nam);
-        // }
 
         //删除对应id的商品
         $re =  Goods::where('goods_id',$id)->delete();

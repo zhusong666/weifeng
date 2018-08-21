@@ -41,18 +41,14 @@ class RoleHasPermission
         //获取当前控制器名称或方法
         $urls = \Route::current()->getActionName();
 
-        // $routes = $request->path();
-
-        // $routes = $request->url();
-
-        // dump($routes);
-
         if(in_array($urls,$role_pers)){
             
             return $next($request);
 
         } else {
-            return view('/admin/index');
+            echo "<script> alert('没有权限哦');parent.location.href='/admin/index'; </script>"; 
+
+            // return view('/admin/index');
         }
 
     }

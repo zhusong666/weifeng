@@ -56,34 +56,61 @@
 								
 				</table>
 				
-				<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-					<script>
-				        function DelPermission(id){
-				            //询问框
-				            layer.confirm('是否确认删除？', {
-				                btn: ['确定','取消'] //按钮
-				            }, function(){
-				                $.post("{{url('/admins/permission/')}}/"+id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
-				                    if(data.status == 0){
-				                        location.href = location.href;
-				                        layer.msg(data.msg, {icon: 6});
-				                    }else{
-				                        location.href = location.href;
-				                        layer.msg(data.msg, {icon: 5});
-				                    }
-				                });
-				            }, function(){
-				            });
-				        }
+				<!-- <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"></div> -->
+				
 
-	    			</script>
+					
 	    		
     		
 
-				</div>
+				
 			</div>
 			</div>
 			{{csrf_field()}}
 	</section>
-	
+<style>
+	.pagination{height:20px;float:right;padding-top: 10px;text-align: right;}
+	.pagination li{
+				float: left;
+                    height: 26px;
+	       			color: #eee;
+                    padding: 0 10px;
+                    display: block;
+                    text-decoration: none;
+                    font-size: 14px;
+                    line-height: 26px;
+                    margin-left: 2px;
+                    text-align: center;
+                    cursor: pointer;
+                    outline: none;
+                    border: 1px solid #ccc;
+                    margin: 0 0 6px 6px;
+    }
+
+    .pagination li:hover{
+		background: #5a98de;
+		color: #fff;
+
+    }
+</style>
+<script>
+    function DelPermission(id){
+        //询问框
+        layer.confirm('是否确认删除？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("{{url('/admins/permission/')}}/"+id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+                if(data.status == 0){
+                    location.href = location.href;
+                    layer.msg(data.msg, {icon: 6});
+                }else{
+                    location.href = location.href;
+                    layer.msg(data.msg, {icon: 5});
+                }
+            });
+        }, function(){
+        });
+    }
+
+</script>
 @stop

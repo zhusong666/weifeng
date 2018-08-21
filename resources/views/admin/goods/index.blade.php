@@ -82,16 +82,17 @@
                                     <th>下架</th>
                                 @endif
 
-							<td class="f-14">
-								 <a href="javascript:;" onclick="DelGood({{$v->goods_id}})" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除</a>
-								 <a href="/admins/goods/{{$v->goods_id}}/edit" onclick="" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 修改</a>
-
+					<td class="f-14">
+					<a title="修改" href="/admins/goods/{{$v->goods_id}}/edit" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 						@if($v->goods_status == 1 || $v->goods_status == 3)
-						<a href="javascript:;" onclick="Status({{$v->goods_id}})"  class="tpl-table-black-operation-del"> 上架</a>
+						<a title="上架"  href="javascript:;" onclick="Status({{$v->goods_id}})"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe679;</i></a>
 						@elseif($v->goods_status ==2)
-						<a href="javascript:;"  onclick="Status({{$v->goods_id}})" class="tpl-table-black-operation-del"> 下架</a>
+						<a title="下架"  href="javascript:;" onclick="Status({{$v->goods_id}})"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe674;</i></a>
+
 						@endif
-							</td>
+  						<a title="删除"  href="javascript:;" onclick="DelGood({{$v->goods_id}})"  class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+						</td>
+
 					</tr>
 					@endforeach
 
