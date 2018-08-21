@@ -44,8 +44,9 @@
                                 </div>
                                 <div class="box-bd">
                                     <ul class="uc-nav-list">
-                                        
-                                        
+                                        <li>
+                                            <a href="/user/details">个人资料</a>
+                                        </li>
                                         <li >
                                             <a href="/user/address">收货地址</a>
                                         </li>
@@ -94,6 +95,7 @@
                                                 <p class="price">{{$v->goods_price}}元</p>
                                                 <div class="actions">
                                                     <a class="btn btn-primary btn-small J_btnComment" data-gid="2161000055" href="/comments/create/{{$v->goods_id}}">去评价</a>
+                                                    <!-- <a class="btn btn-small btn-primary" href="/user/del/{{$v->goods_id}}" target="_blank" id="del" onclick="member_del({{$v->goods_id}})" title="删除订单">删除订单</a> -->
                                                 </div>
                                             </li>
                                             </div>
@@ -135,6 +137,28 @@
 
 
 @endsection
+
+<script>
+    function member_del(order_id){
+        //询问框
+        layer.confirm('是否确认删除？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("{{url('/user/del/')}}/"+order_id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+
+                // console.log(data);
+                if(data.status == 0){
+                    location.href = location.href;
+                    layer.msg(data.msg, {icon: 5});
+                }else{
+                    location.href = location.href;
+                    layer.msg(data.msg, {icon: 6});
+                }
+            });
+        }, function(){
+        });
+    }
+</script>
 
 @section('js')
 <script src="/homes/common/myjs/jquery.min.js"></script>

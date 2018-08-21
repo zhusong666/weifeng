@@ -27,6 +27,11 @@ class LoginController extends Controller
 		$name = $request->input('username');
 		$res = DB::table('wf_users')->where('admin_name',$name)->first();
 
+        if($res->admin_status == 0){
+
+            return back()->with('error','您已被禁用,请联系boos恢复状态');
+        }
+
 		if(!$res){
 
 			return redirect('/admin/login')->with('error','用户名或密码错误');

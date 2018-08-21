@@ -13,7 +13,7 @@ class Order extends Model
      */
     protected $table = 'wf_shop_orders';//表名称
 
-    protected $primarykey = 'order_id';//主键ID
+    protected $primarykey = 'ooid';//主键ID
 
     public $timestamps = false;//时间戳(不要)
 

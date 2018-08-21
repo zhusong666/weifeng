@@ -137,6 +137,7 @@ class UserController extends Controller
                 $action ='
                         <td class="order-actions">
                             <a class="btn btn-small btn-primary" href="/user/pay?id='.$val->order_id.'" target="_blank">立即支付</a>
+                            <a class="btn btn-small btn-primary" href="/user/delete?id='.$val->order_id.'" target="_blank">取消订单</a>
                         </td>';
             }elseif($status == 6) {
                 $class = 'uc-order-item-shipping';
@@ -169,7 +170,8 @@ class UserController extends Controller
                 $action ='
                         <td class="order-actions">
                             <!--<a class="btn btn-small btn-line-gray" href="user/orderView?id='.$val->id.'">订单详情</a>-->';
-                $action .= $status==2? '<a class="btn btn-small  btn-primary" href="/user/paysuccess?id='.$val->order_id.'">确认收货</a>':''; 
+                $action .= $status==2? '<a class="btn btn-small  btn-primary" href="/user/paysuccess?id='.$val->order_id.'">确认收货</a>':'';
+                 
                 if($status == 3){
                         
                 }
@@ -235,5 +237,6 @@ class UserController extends Controller
         $str .='</ul>';
         return $str;
     }
+
 
 }

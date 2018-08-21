@@ -30,7 +30,7 @@
                 <h4 class="title-big">注册小米官网</h4>
             </div>
             <div class="regbox" id="register_box">
-                <form action="/doregister" method="post" name="formUser" onsubmit="return submitPwdInfo();">
+                <form action="/doregister" method="post" name="formUser">
                     <input type="hidden" value="C4E1AB9A7DE79D7C750E8916875E7DBE" id="validate" />
                     <div class="phone_step1">
                         <style type="text/css">
