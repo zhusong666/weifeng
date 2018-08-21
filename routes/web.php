@@ -54,6 +54,8 @@ Route::group(['middleware'=>['login','roleper']],function(){
 	Route::any('/admin/order','Admin\OrderController@index');
 	//订单状态(发货,收货,完成)
 	Route::any('/admin/dset/{id}','Admin\OrderController@dset');
+	//修改订单地址
+	Route::any('/order/edit/{id}','Admin\OrderController@edit');
 	//订单详情
 	Route::any('/admin/detail/{id}','Admin\OrderController@detail');
 	//后台路由(商品上架下架)
@@ -141,6 +143,10 @@ Route::any('goodlist/{id}','GoodController@goodList');
 	Route::any('/user/success/{id}','Home\OrderController@success');
 //收货
 	Route::any('/user/paysuccess','Home\OrderController@paysuccess');
+//取消订单
+	Route::any('/user/delete','Home\OrderController@destroy');
+//用户删除自己订单
+	Route::any('/user/del/{id}','Home\OrderController@delete');
 
 //帮助模块
 Route::resource('/home/help','Home\HelpController');

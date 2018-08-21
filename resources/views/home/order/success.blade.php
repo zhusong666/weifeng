@@ -32,7 +32,7 @@
                     <div class="order-info clearfix">
                         <div class="fl">
                         <h2 class="title" style="padding-top:10px;">交易完成~ 谢谢.您的光临</h2>
-                        <h4><em id="asd">3</em>s之后自动跳转回<a href="/user/order">我的订单</a></h4>
+                        <h4><em id="asd">3</em>s之后自动跳转回<a href="/user/order" id="stop">我的订单</a></h4>
                         </div>
                         <div class="fr">
                            
@@ -48,10 +48,17 @@
 <script>
 var n = 3;
 var asd = document.getElementById('asd');
+var stop = document.getElementById('stop');
+
 var time = setInterval(function(){
     n--;
     asd.innerHTML = n;
-console.log(n);
+
+    $('#stop').click(function(){
+        window.location.replace('/user/order');
+        clearInterval(time);
+    })
+
     if(n==0){
         // console.log(n);
         // clearInterval(time);

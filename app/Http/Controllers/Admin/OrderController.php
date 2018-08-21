@@ -94,5 +94,10 @@ class OrderController extends Controller
         }
     }
 
+    public function edit()
+    {
+        echo 23;
+    }
+
 
 }

@@ -83,12 +83,11 @@
                             @endif
                             
                             @if($v->order_status == 3)
-                                <a style="text-decoration:none" href="javascript:;">待评价</a>|
-                            @endif
-                            @if($v->order_status == 6)
                                 <a style="text-decoration:none" href="javascript:;">完成</a>|
                             @endif
                             <a href="/admin/detail/{{$v->order_id}}" style="text-decoration:none">订单详情</a>
+                            |
+                            <a href="/order/edit/{{$v->order_id}}" style="text-decoration:none">修改订单</a>
                     </tr>
                   @endforeach
                 </tbody>

@@ -90,7 +90,8 @@ class CartController extends Controller
              
         }
 		$res = Session::put(['res'=>$re]);
-     
+     	$order_id = date('Ymd',time()).rand(11111111,99999999);
+     	session(['order_id'=>$order_id]);
 
       // $a =Session::get('res');
 
@@ -138,12 +139,12 @@ class CartController extends Controller
 		}
 
         // 生成订单号
-		$order_id = date('Ymd',time()).rand(11111111,99999999);
+		$order_id = session('order_id');
 		$order_linkman = $add[0][0];
 		$order_address = $add[0][1];
 		$order_phone   = $add[0][2];
 		//订单号存session
-		session(['order_id'=>$order_id]);
+		// 
 		$order_data = [
 			'order_id'=>$order_id,
 			'uid' => $uid,

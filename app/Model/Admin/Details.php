@@ -35,7 +35,7 @@ class Details extends Model
 
     public function shop_orders()
     {
-        return $this->hasOne('App\Model\Admin\Shop_orders','order_id');
+        return $this->hasOne('App\Model\Admin\Shop_orders','order_id','orderss_id');
     }
 
     public function carts()
