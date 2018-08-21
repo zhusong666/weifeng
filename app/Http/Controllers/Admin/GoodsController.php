@@ -26,21 +26,16 @@ class GoodsController extends Controller
             ->where(function($query) use($request){
                 //商品名字查询
                 $goods_name = $request->input('goods_name');
-
-                //分类名查询
-                $cate_name = $request->input('cate_name');
+        
                 //商品名不能为空
                 if(!empty($goods_name)) {
                     $query->where('goods_name','like','%'.$goods_name.'%');
                 }
-                //商品分类名称
-                if(!empty($cate_id)) {
-                    $query->where('cate_name','like','%'.$cate_name.'%');
-                }
                 
 
+
             })
-        ->paginate($request->input('num', 8));
+        ->paginate($request->input('num', 7));
         $res = Category::select(DB::raw('*,concat(cate_path,cate_id) as paths'))->orderBy('paths')->get();
         // $res = Goods::with('CateGory')->where('cate_id',)
 
