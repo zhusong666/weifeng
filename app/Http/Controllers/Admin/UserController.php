@@ -187,26 +187,27 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        return 2444;
+        //获取id
+        $result = DB::table('wf_users')->where('admin_id',$id)->first();
 
-        /*$result = DB::table('wf_users')->where('admin_id',$id)->first();
-        dd($result);die;*/
-        /*$status = $result->admin_status;
-
-
+        dd($result);
+        $status = $result->admin_status;
+        
+        //更改状态
         if($status=='0'){
             $result = DB::table('wf_users')->where('admin_id',$id)->update(['admin_status'=>1]);
         } else if($status=='1'){
             $result = DB::table('wf_users')->where('admin_id',$id)->update(['admin_status'=>0]);
         } 
-      
+        //返回结果
         if($result){
             $data = [
-                'status'=>0,
+                'status'=>1,
                 'msg'=>'操作成功！'
             ];
            return $data;   
-        }*/
-       
+        }
     }
 
     /**

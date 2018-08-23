@@ -29,15 +29,15 @@ Route::any('/admin/logout', 'Admin\LoginController@logout');
 Route::get('/admin/index', function () {
 	return view('admin.layouts.default');
 });
-
+Route::any('/admin/pass', 'Admin\LoginController@pass');
+Route::any('/admin/repass', 'Admin\LoginController@repass');
+Route::any('/admin/up/{id}','Admin\LoginController@up');
 
 
 //后台
 Route::group(['middleware'=>['login','roleper']],function(){
 	// 用户状态
-	Route::any('/admin/up/{id}', 'Admin\LoginController@up');
-	Route::any('/admin/pass', 'Admin\LoginController@pass');
-	Route::any('/admin/repass', 'Admin\LoginController@repass');
+	
 	//分类管理
 	Route::resource('/admin/category','Admin\CategoryController');
 	//用户管理

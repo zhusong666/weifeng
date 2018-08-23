@@ -23,7 +23,7 @@
 
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">角色展示</span></nav>
-	<div class="page-container" style="overflow-y:scroll;height:600px">
+	<div class="page-container" style="overflow-y:scroll;height:500px">
         <form action="/admin/user" method="get">
 			<div class="text-c">
 				
@@ -94,6 +94,7 @@
 					@endforeach
 				</tbody>
 			</table>
+
 			{{$res->appends($request->all())->render()}}
 </div>
 
@@ -118,12 +119,14 @@ function member_del(admin_id){
     });
 }
 
+
 function member_show(admin_id){
     //询问框
     layer.confirm('是否确认修改状态？', {
         btn: ['确定','取消'] //按钮
     }, function(){
         $.post("{{url('/admin/up/')}}/"+admin_id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
+        	// console.log(data);
             if(data.status == 0){
                 location.href = location.href;
                 layer.msg(data.msg, {icon: 5});

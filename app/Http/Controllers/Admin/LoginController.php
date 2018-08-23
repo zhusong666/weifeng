@@ -16,7 +16,7 @@ class LoginController extends Controller
 	public function login()
 	{
 
-		return view('/admin/login',['title'=>'威锋网后台登录']);
+		return view('/admin/login',['title'=>'小米米后台登录']);
 	}
 
 	public function dologin(Request $request)
@@ -160,10 +160,17 @@ class LoginController extends Controller
     }
 
 
-    public function up(Request $request, $id)
+    public function up(Request $request,$id)
     {   
+
+        // return 2323;
+
+        // $id = $request->id;
+        // dd($id);
         //获取id
         $result = DB::table('wf_users')->where('admin_id',$id)->first();
+
+        // dd($result);
         $status = $result->admin_status;
         
         //更改状态

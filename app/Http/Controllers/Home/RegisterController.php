@@ -44,7 +44,7 @@ class RegisterController extends Controller
             // return redirect('/')->with('success','添加成功');
 
             //发送邮件
-    		$aa = Mail::send('home.emails.reminder', ['id' => $data,'token'=>$res['user_token']], function ($m) use ($res) {
+    		Mail::send('home.emails.reminder', ['id' => $data,'token'=>$res['user_token']], function ($m) use ($res) {
 
 	            $m->from(env('MAIL_USERNAME'), '小米米商城人力资源部');
 
@@ -53,9 +53,9 @@ class RegisterController extends Controller
 
             // dump();
 
-            dd($aa);
+            // dd($aa);
 
-	        // return view('home.emails.tixing',['title'=>'新用户激活的提醒信息']);
+	        return view('home.emails.tixing',['title'=>'新用户激活的提醒信息']);
 
         } else {
 

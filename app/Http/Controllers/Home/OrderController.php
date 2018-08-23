@@ -28,7 +28,7 @@ class OrderController extends Controller
     public function success($id)
     {
 
-        /*//获取订单号
+        //获取订单号
         $data = Order::where('order_id',$id)->first();
 
         //订单详情表的订单号 和 订单表的订单号 相同,获取
@@ -39,12 +39,18 @@ class OrderController extends Controller
             $gid = $v->goods->goods_id;
         }
 
-        $status = Goods::where('goods_id',$gid)->first();
+        // $status = Goods::where('goods_id',$gid)->first();
 
         // $status = Goods::where('goods_id',$gid)->update(['goods_status' + 1]);
         // $res = Goods::where('goods_status');
 
-        dump($status);
+        // dump($gid);
+
+        $dds = Goods::where('goods_id',$gid)->first();
+
+        $b = $dds->goods_volume;
+
+        $aa = Goods::where('goods_id',$gid)->update(['goods_volume'=>$b+1]);
 
         // dd($gid);
 
@@ -52,9 +58,14 @@ class OrderController extends Controller
 
         // dd($data['order_status']);
 
-        $aa = DB::update('wf_goods set goods_volume=goods_volume+1 where goods_id = :id', ['id' => $gid]);
+        // $aa = DB::update('wf_goods set goods_volume=goods_volume+1 where goods_id = :id', ['id' => $gid]);
 
-        dd($aa);*/
+        // $results = DB::update('wf_goods set goods_volume=goods_volume+1 where goods_id= :id', ['id' => $gid]);
+
+         // tp_admin ;
+
+        // dd($aa);
+        // dump($aa);
         ////////////////////////////////////////////////////
 
     	$res = DB::table('wf_shop_orders')->where('order_id',$id)->first();

@@ -4,7 +4,7 @@
 
 
  <section class="Hui-article-box">
-		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">商品管理</span></nav>
+		<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span><span class="c-666">角色管理</span></nav>
 		<article class="cl pd-20">
 @if (count($errors) > 0)
         <div class="mws-form-message error">

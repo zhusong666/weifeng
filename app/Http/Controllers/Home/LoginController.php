@@ -166,7 +166,10 @@ class LoginController extends Controller
         $data = $request->only('password','confirm_password');
 
         //密码加密
-        $res['user_password'] = encrypt($data['password']);
+        // $res['user_password'] = encrypt();
+
+        //密码加密
+        $res['user_password'] = Hash::make($data['password']);
 
         //获取id
         $id = session('user_id');
